@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary border-t border-border py-12">
+    <footer className="bg-background/95 backdrop-blur-sm border-t border-border py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -23,17 +23,10 @@ const Footer = () => {
           <div>
             <h4 className="text-foreground font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
-<<<<<<< HEAD
               <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Web Development</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">App Development</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Graphics Designing</a></li>
+              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Graphics Design</a></li>
+              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">UI/UX Design</a></li>
               <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Digital Marketing</a></li>
-=======
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">SEO</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Social Media</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Content Marketing</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">PPC</a></li>
->>>>>>> 71bb57dcd97441ab822e7494165eab70b333db2a
             </ul>
           </div>
 
