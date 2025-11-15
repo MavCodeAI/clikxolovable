@@ -1,67 +1,169 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background/95 backdrop-blur-sm border-t border-border py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="flex items-center space-x-1">
-                <div className="w-6 h-6 rounded-full bg-primary"></div>
-                <div className="w-6 h-6 rounded-full bg-orange-glow"></div>
+    <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border">
+      {/* Main Footer Content */}
+      <div className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center space-x-2 mb-6">
+                <div className="flex items-center space-x-1">
+                  <div className="w-8 h-8 rounded-full bg-primary"></div>
+                  <div className="w-8 h-8 rounded-full bg-orange-glow"></div>
+                </div>
+                <span className="text-2xl font-bold text-foreground">ClikXo</span>
               </div>
-              <span className="text-xl font-bold text-foreground">ClikXo</span>
+
+              <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+                Your trusted digital marketing partner driving growth, engagement, and measurable results for businesses worldwide.
+              </p>
+
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">+971 44318653</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">info@clikxo.com</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">Dubai, UAE</span>
+                </div>
+              </div>
             </div>
-            <p className="text-muted-foreground text-sm">
-              Performance digital marketing agency delivering results that matter.
-            </p>
-          </div>
 
-          <div>
-            <h4 className="text-foreground font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Web Development</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Graphics Design</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">UI/UX Design</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Digital Marketing</a></li>
-            </ul>
-          </div>
+            {/* Services Section */}
+            <div>
+              <h4 className="text-foreground font-bold text-lg mb-6">Our Services</h4>
+              <ul className="space-y-3">
+                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Web Development
+                </a></li>
+                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Graphics Design
+                </a></li>
+                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  UI/UX Design
+                </a></li>
+                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Digital Marketing
+                </a></li>
+                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  SEO Optimization
+                </a></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-foreground font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors text-sm">About Us</a></li>
-              <li><a href="#contact" className="text-muted-foreground hover:text-primary transition-colors text-sm">Contact</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">Blog</a></li>
-            </ul>
-          </div>
+            {/* Company Section */}
+            <div>
+              <h4 className="text-foreground font-bold text-lg mb-6">Company</h4>
+              <ul className="space-y-3">
+                <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  About Us
+                </a></li>
+                <li><a href="#team" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Our Team
+                </a></li>
+                <li><a href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Portfolio
+                </a></li>
+                <li><a href="#contact" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Contact Us
+                </a></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  Blog & Insights
+                </Link></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-foreground font-semibold mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-card hover:bg-primary/10 flex items-center justify-center transition-colors group">
-                <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-card hover:bg-primary/10 flex items-center justify-center transition-colors group">
-                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-card hover:bg-primary/10 flex items-center justify-center transition-colors group">
-                <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-card hover:bg-primary/10 flex items-center justify-center transition-colors group">
-                <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
-              </a>
+            {/* Social & Newsletter */}
+            <div>
+              <h4 className="text-foreground font-bold text-lg mb-6">Connect With Us</h4>
+
+              {/* Social Links */}
+              <div className="flex space-x-3 mb-6">
+                <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                </a>
+                <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                </a>
+                <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                </a>
+                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                  <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                </a>
+              </div>
+
+              {/* Working Hours */}
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <span>Mon - Fri: 9AM - 6PM</span>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Available 24/7 for urgent inquiries
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-border pt-8 text-center">
-          <p className="text-muted-foreground text-sm">
-            © {currentYear} ClikXo. All rights reserved.
-          </p>
+      {/* Bottom Bar */}
+      <div className="border-t border-border/50">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-6">
+              <p className="text-muted-foreground text-sm">
+                © {currentYear} ClikXo. All rights reserved.
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-6">
+              <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                Privacy Policy
+              </a>
+              <a href="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                Terms of Service
+              </a>
+              <a href="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                Cookie Policy
+              </a>
+            </div>
+          </div>
+
+          {/* Additional Footer Info */}
+          <div className="mt-6 pt-6 border-t border-border/30">
+            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+              <div className="text-xs text-muted-foreground text-center md:text-left">
+                Powered by innovation | Built with ❤️ in Dubai
+              </div>
+              <div className="text-xs text-muted-foreground">
+                Last updated: November {currentYear}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
