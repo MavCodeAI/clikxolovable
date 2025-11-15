@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import useScrollSpy from "@/hooks/use-scroll-spy";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -12,6 +14,31 @@ const Navbar = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
+  };
+
+  const getButtonClasses = (sectionId: string) => {
+    const isActive = activeSection === sectionId;
+    return `relative px-3 py-2 transition-all duration-300 font-bold text-lg group ${
+      isActive
+        ? 'text-primary'
+        : 'text-foreground hover:text-primary'
+    }`;
+  };
+
+  const getUnderlineClasses = (sectionId: string) => {
+    const isActive = activeSection === sectionId;
+    return `absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+    }`;
+  };
+
+  const getMobileButtonClasses = (sectionId: string) => {
+    const isActive = activeSection === sectionId;
+    return `block w-full text-left px-3 py-3 transition-all duration-200 font-medium rounded-md ${
+      isActive
+        ? 'text-primary bg-primary/10'
+        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+    }`;
   };
 
   return (
@@ -33,34 +60,50 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <button
               onClick={() => scrollToSection("home")}
-              className="relative px-3 py-2 text-foreground hover:text-primary transition-all duration-300 font-bold text-lg group"
+              className={getButtonClasses("home")}
             >
               Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+              <span className={getUnderlineClasses("home")}></span>
             </button>
 
             <button
               onClick={() => scrollToSection("services")}
-              className="relative px-3 py-2 text-foreground hover:text-primary transition-all duration-300 font-bold text-lg group"
+              className={getButtonClasses("services")}
             >
               Services
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+              <span className={getUnderlineClasses("services")}></span>
             </button>
 
             <button
               onClick={() => scrollToSection("about")}
-              className="relative px-3 py-2 text-foreground hover:text-primary transition-all duration-300 font-bold text-lg group"
+              className={getButtonClasses("about")}
             >
               About
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+              <span className={getUnderlineClasses("about")}></span>
+            </button>
+
+            <button
+              onClick={() => scrollToSection("team")}
+              className={getButtonClasses("team")}
+            >
+              Team
+              <span className={getUnderlineClasses("team")}></span>
+            </button>
+
+            <button
+              onClick={() => scrollToSection("portfolio")}
+              className={getButtonClasses("portfolio")}
+            >
+              Portfolio
+              <span className={getUnderlineClasses("portfolio")}></span>
             </button>
 
             <button
               onClick={() => scrollToSection("contact")}
-              className="relative px-3 py-2 text-foreground hover:text-primary transition-all duration-300 font-bold text-lg group"
+              className={getButtonClasses("contact")}
             >
               Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+              <span className={getUnderlineClasses("contact")}></span>
             </button>
           </div>
 
@@ -90,28 +133,42 @@ const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <button
                 onClick={() => scrollToSection("home")}
-                className="block w-full text-left px-3 py-3 text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium rounded-md"
+                className={getMobileButtonClasses("home")}
               >
                 Home
               </button>
 
               <button
                 onClick={() => scrollToSection("services")}
-                className="block w-full text-left px-3 py-3 text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium rounded-md"
+                className={getMobileButtonClasses("services")}
               >
                 Services
               </button>
 
               <button
                 onClick={() => scrollToSection("about")}
-                className="block w-full text-left px-3 py-3 text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium rounded-md"
+                className={getMobileButtonClasses("about")}
               >
                 About
               </button>
 
               <button
+                onClick={() => scrollToSection("team")}
+                className={getMobileButtonClasses("team")}
+              >
+                Team
+              </button>
+
+              <button
+                onClick={() => scrollToSection("portfolio")}
+                className={getMobileButtonClasses("portfolio")}
+              >
+                Portfolio
+              </button>
+
+              <button
                 onClick={() => scrollToSection("contact")}
-                className="block w-full text-left px-3 py-3 text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium rounded-md"
+                className={getMobileButtonClasses("contact")}
               >
                 Contact
               </button>

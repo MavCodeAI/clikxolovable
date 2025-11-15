@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
@@ -46,27 +46,47 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <p className="text-muted-foreground text-lg mb-6">
-            Digital marketing is evolving—are you staying ahead?
-          </p>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
-            CLIKXO IS A PERFORMANCE
-          </h1>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-            <span className="text-primary">DIGITAL MARKETING</span>{" "}
-            <span className="text-foreground">AGENCY</span>
-          </h2>
-
-          <Button
-            onClick={scrollToContact}
-            size="lg"
-            className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-6 text-lg font-semibold"
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.p
+            className="text-muted-foreground text-lg mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            Request a Proposal
-          </Button>
+            Digital marketing is evolving—are you staying ahead?
+          </motion.p>
+
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            CLIKXO IS A PERFORMANCE
+          </motion.h1>
+
+          <motion.h2
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            DIGITAL MARKETING AGENCY
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          >
+            <Button
+              onClick={scrollToContact}
+              size="lg"
+              className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-6 text-lg font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+            >
+              Request a Proposal
+            </Button>
+          </motion.div>
         </div>
       </div>
     </section>
