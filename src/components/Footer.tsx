@@ -29,15 +29,30 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border relative overflow-hidden">
       {/* Geometric Background Shapes */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute top-8 left-16 w-10 h-10 rounded-full bg-primary/10"></div>
-        <div className="absolute top-32 right-12 w-6 h-6 rotate-45 bg-orange-glow/10"></div>
-        <div className="absolute top-20 left-1/3 w-8 h-8 bg-primary/8 transform rotate-30"></div>
-        <div className="absolute bottom-24 right-1/4 w-7 h-7 rounded-full bg-orange-glow/8"></div>
-        <div className="absolute bottom-16 left-24 w-5 h-5 rotate-45 bg-primary/6"></div>
-        <div className="absolute top-1/2 left-1/4 w-4 h-4 transform rotate-60 bg-orange-glow/6"></div>
-        <div className="absolute top-40 right-1/3 w-6 h-6 bg-primary/7 transform -rotate-15"></div>
-        <div className="absolute bottom-40 left-2/3 w-9 h-9 rounded-full bg-orange-glow/5"></div>
+      <div className="absolute inset-0 opacity-[0.025]">
+        {/* Animated Circles */}
+        <div className="absolute top-8 left-16 w-8 h-8 rounded-full bg-primary/20 animate-pulse"></div>
+        <div className="absolute bottom-24 right-1/4 w-6 h-6 rounded-full bg-orange-glow/25 animate-bounce" style={{animationDuration: '4s'}}></div>
+
+        {/* Rotating Triangles */}
+        <div className="absolute top-20 left-1/3 w-0 h-0 border-l-[10px] border-r-[10px] border-t-[16px] border-l-transparent border-r-transparent border-t-primary/15 animate-spin" style={{animationDuration: '9s'}}></div>
+        <div className="absolute bottom-16 left-24 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[14px] border-l-transparent border-r-transparent border-b-orange-glow/20 animate-spin" style={{animationDuration: '11s', animationDirection: 'reverse'}}></div>
+
+        {/* Thin Lines */}
+        <div className="absolute top-32 right-12 w-14 h-0.5 bg-primary/18 transform rotate-15 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/4 w-10 h-0.5 bg-orange-glow/22 transform -rotate-12 animate-bounce" style={{animationDuration: '4.5s'}}></div>
+
+        {/* Abstract Polygons */}
+        <div className="absolute top-40 right-1/3 w-7 h-7 bg-primary/12 transform rotate-45 animate-spin" style={{animationDuration: '13s'}}></div>
+        <div className="absolute bottom-40 left-2/3 w-5 h-5 rounded-sm bg-orange-glow/15 transform rotate-60 animate-pulse"></div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-6 left-1/5 w-3 h-3 rounded-full bg-primary/35 animate-bounce" style={{animationDuration: '5.5s'}}></div>
+        <div className="absolute bottom-8 right-16 w-4 h-1 bg-orange-glow/25 rounded-full animate-pulse"></div>
+
+        {/* Additional Shapes */}
+        <div className="absolute top-16 left-1/2 w-2 h-2 bg-primary/30 transform rotate-30 animate-spin" style={{animationDuration: '7s'}}></div>
+        <div className="absolute bottom-32 right-8 w-3 h-3 rounded-full bg-orange-glow/20 animate-bounce" style={{animationDuration: '6s'}}></div>
       </div>
 
       {/* Main Footer Content */}
