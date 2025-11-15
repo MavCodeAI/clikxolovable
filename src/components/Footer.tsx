@@ -1,8 +1,30 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const navigateToServices = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/#services');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById('services');
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    } else {
+      const element = document.getElementById('services');
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border">
@@ -45,23 +67,23 @@ const Footer = () => {
             <div>
               <h4 className="text-foreground font-bold text-lg mb-6">Our Services</h4>
               <ul className="space-y-3">
-                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Web Development
                 </a></li>
-                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Graphics Design
                 </a></li>
-                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   UI/UX Design
                 </a></li>
-                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Digital Marketing
                 </a></li>
-                <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   SEO Optimization
                 </a></li>
@@ -141,24 +163,21 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-6">
-              <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Privacy Policy
-              </a>
-              <a href="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+              </Link>
+              <Link to="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Terms of Service
-              </a>
-              <a href="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+              </Link>
+              <Link to="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
 
           {/* Additional Footer Info */}
           <div className="mt-6 pt-6 border-t border-border/30">
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              <div className="text-xs text-muted-foreground text-center md:text-left">
-                Powered by innovation | Built with ❤️ in Dubai
-              </div>
+            <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0">
               <div className="text-xs text-muted-foreground">
                 Last updated: November {currentYear}
               </div>

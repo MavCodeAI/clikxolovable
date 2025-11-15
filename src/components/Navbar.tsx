@@ -126,7 +126,17 @@ const Navbar = () => {
                   className={`${getButtonClasses("services")} inline-block`}
                   onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = '/#services';
+                    // Navigate to home page first, then scroll to services
+                    if (window.location.pathname !== '/') {
+                      window.location.href = '/#services';
+                    } else {
+                      setTimeout(() => {
+                        const element = document.getElementById('services');
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }, 100);
+                    }
                   }}
                 >
                   Services
@@ -256,7 +266,17 @@ const Navbar = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setIsOpen(false);
-                      window.location.href = '/#services';
+                      // Navigate to home page first, then scroll to services
+                      if (window.location.pathname !== '/') {
+                        window.location.href = '/#services';
+                      } else {
+                        setTimeout(() => {
+                          const element = document.getElementById('services');
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }, 100);
+                      }
                     }}
                   >
                     Services
