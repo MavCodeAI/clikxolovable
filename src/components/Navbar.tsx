@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
@@ -6,6 +7,8 @@ import useScrollSpy from "@/hooks/use-scroll-spy";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
 
   const scrollToSection = (id: string) => {
@@ -46,65 +49,123 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 relative">
           {/* Left Side - Logo */}
-          <div className="flex items-center z-10">
+          <Link to="/" className="flex items-center z-10" onClick={() => setIsOpen(false)}>
             <div className="flex items-center space-x-1">
               <div className="w-6 h-6 rounded-full bg-primary"></div>
               <div className="w-6 h-6 rounded-full bg-orange-glow"></div>
             </div>
-            <span className="ml-2 text-xl font-bold text-foreground">
+            <span className="ml-2 text-xl font-bold text-foreground hover:text-primary transition-colors">
               ClikXo
             </span>
-          </div>
+          </Link>
 
           {/* Center - Desktop Navigation Menu */}
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            <button
-              onClick={() => scrollToSection("home")}
-              className={getButtonClasses("home")}
-            >
-              Home
-              <span className={getUnderlineClasses("home")}></span>
-            </button>
+            {isHomePage ? (
+              <>
+                <button
+                  onClick={() => scrollToSection("home")}
+                  className={getButtonClasses("home")}
+                >
+                  Home
+                  <span className={getUnderlineClasses("home")}></span>
+                </button>
 
-            <button
-              onClick={() => scrollToSection("services")}
-              className={getButtonClasses("services")}
-            >
-              Services
-              <span className={getUnderlineClasses("services")}></span>
-            </button>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className={getButtonClasses("services")}
+                >
+                  Services
+                  <span className={getUnderlineClasses("services")}></span>
+                </button>
 
-            <button
-              onClick={() => scrollToSection("about")}
-              className={getButtonClasses("about")}
-            >
-              About
-              <span className={getUnderlineClasses("about")}></span>
-            </button>
+                <Link
+                  to="/about"
+                  className={`${getButtonClasses("about")} inline-block`}
+                >
+                  About
+                  <span className={getUnderlineClasses("about")}></span>
+                </Link>
 
-            <button
-              onClick={() => scrollToSection("team")}
-              className={getButtonClasses("team")}
-            >
-              Team
-              <span className={getUnderlineClasses("team")}></span>
-            </button>
+                <Link
+                  to="/team"
+                  className={`${getButtonClasses("team")} inline-block`}
+                >
+                  Team
+                  <span className={getUnderlineClasses("team")}></span>
+                </Link>
 
-            <button
-              onClick={() => scrollToSection("portfolio")}
-              className={getButtonClasses("portfolio")}
-            >
-              Portfolio
-              <span className={getUnderlineClasses("portfolio")}></span>
-            </button>
+                <Link
+                  to="/portfolio"
+                  className={`${getButtonClasses("portfolio")} inline-block`}
+                >
+                  Portfolio
+                  <span className={getUnderlineClasses("portfolio")}></span>
+                </Link>
 
-            <button
-              onClick={() => scrollToSection("contact")}
-              className={getButtonClasses("contact")}
-            >
-              Contact
-              <span className={getUnderlineClasses("contact")}></span>
-            </button>
+                <Link
+                  to="/contact"
+                  className={`${getButtonClasses("contact")} inline-block`}
+                >
+                  Contact
+                  <span className={getUnderlineClasses("contact")}></span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/"
+                  className={`${getButtonClasses("home")} inline-block`}
+                >
+                  Home
+                  <span className={getUnderlineClasses("home")}></span>
+                </Link>
+
+                <Link
+                  to="/#services"
+                  className={`${getButtonClasses("services")} inline-block`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = '/#services';
+                  }}
+                >
+                  Services
+                  <span className={getUnderlineClasses("services")}></span>
+                </Link>
+
+                <Link
+                  to="/about"
+                  className={`${getButtonClasses("about")} inline-block ${location.pathname === '/about' ? 'text-primary' : ''}`}
+                >
+                  About
+                  <span className={getUnderlineClasses("about")}></span>
+                </Link>
+
+                <Link
+                  to="/team"
+                  className={`${getButtonClasses("team")} inline-block ${location.pathname === '/team' ? 'text-primary' : ''}`}
+                >
+                  Team
+                  <span className={getUnderlineClasses("team")}></span>
+                </Link>
+
+                <Link
+                  to="/portfolio"
+                  className={`${getButtonClasses("portfolio")} inline-block ${location.pathname === '/portfolio' ? 'text-primary' : ''}`}
+                >
+                  Portfolio
+                  <span className={getUnderlineClasses("portfolio")}></span>
+                </Link>
+
+                <Link
+                  to="/contact"
+                  className={`${getButtonClasses("contact")} inline-block ${location.pathname === '/contact' ? 'text-primary' : ''}`}
+                >
+                  Contact
+                  <span className={getUnderlineClasses("contact")}></span>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Right Side - Contact Number and Mobile Menu */}
@@ -131,47 +192,109 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-sm">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <button
-                onClick={() => scrollToSection("home")}
-                className={getMobileButtonClasses("home")}
-              >
-                Home
-              </button>
+              {isHomePage ? (
+                <>
+                  <button
+                    onClick={() => scrollToSection("home")}
+                    className={getMobileButtonClasses("home")}
+                  >
+                    Home
+                  </button>
 
-              <button
-                onClick={() => scrollToSection("services")}
-                className={getMobileButtonClasses("services")}
-              >
-                Services
-              </button>
+                  <button
+                    onClick={() => scrollToSection("services")}
+                    className={getMobileButtonClasses("services")}
+                  >
+                    Services
+                  </button>
 
-              <button
-                onClick={() => scrollToSection("about")}
-                className={getMobileButtonClasses("about")}
-              >
-                About
-              </button>
+                  <Link
+                    to="/about"
+                    className={getMobileButtonClasses("about")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About
+                  </Link>
 
-              <button
-                onClick={() => scrollToSection("team")}
-                className={getMobileButtonClasses("team")}
-              >
-                Team
-              </button>
+                  <Link
+                    to="/team"
+                    className={getMobileButtonClasses("team")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Team
+                  </Link>
 
-              <button
-                onClick={() => scrollToSection("portfolio")}
-                className={getMobileButtonClasses("portfolio")}
-              >
-                Portfolio
-              </button>
+                  <Link
+                    to="/portfolio"
+                    className={getMobileButtonClasses("portfolio")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Portfolio
+                  </Link>
 
-              <button
-                onClick={() => scrollToSection("contact")}
-                className={getMobileButtonClasses("contact")}
-              >
-                Contact
-              </button>
+                  <Link
+                    to="/contact"
+                    className={getMobileButtonClasses("contact")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/"
+                    className={getMobileButtonClasses("home")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Home
+                  </Link>
+
+                  <Link
+                    to="/#services"
+                    className={getMobileButtonClasses("services")}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      window.location.href = '/#services';
+                    }}
+                  >
+                    Services
+                  </Link>
+
+                  <Link
+                    to="/about"
+                    className={`${getMobileButtonClasses("about")} ${location.pathname === '/about' ? 'text-primary bg-primary/10' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About
+                  </Link>
+
+                  <Link
+                    to="/team"
+                    className={`${getMobileButtonClasses("team")} ${location.pathname === '/team' ? 'text-primary bg-primary/10' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Team
+                  </Link>
+
+                  <Link
+                    to="/portfolio"
+                    className={`${getMobileButtonClasses("portfolio")} ${location.pathname === '/portfolio' ? 'text-primary bg-primary/10' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Portfolio
+                  </Link>
+
+                  <Link
+                    to="/contact"
+                    className={`${getMobileButtonClasses("contact")} ${location.pathname === '/contact' ? 'text-primary bg-primary/10' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}
