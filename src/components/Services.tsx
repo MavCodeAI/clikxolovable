@@ -51,19 +51,33 @@ const Services = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="bg-card border-border hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in group"
+              className="bg-card border-border hover:border-primary transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 animate-fade-in group cursor-pointer relative overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader>
-                <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="w-7 h-7 text-primary" />
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-hero-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Floating particles effect */}
+              <div className="absolute top-4 right-4 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-full group-hover:translate-x-0"></div>
+              <div className="absolute bottom-6 left-6 w-1 h-1 bg-orange-glow rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform -translate-y-full group-hover:translate-y-0"></div>
+
+              <CardHeader className="relative z-10">
+                <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-500 relative">
+                  <service.icon className="w-7 h-7 text-primary group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" />
+                  {/* Pulse ring effect */}
+                  <div className="absolute inset-0 rounded-lg bg-primary/20 scale-0 group-hover:scale-125 group-hover:opacity-0 transition-all duration-700 animate-ping"></div>
                 </div>
-                <CardTitle className="text-foreground">{service.title}</CardTitle>
+                <CardTitle className="text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-muted-foreground">
+              <CardContent className="relative z-10">
+                <CardDescription className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
                   {service.description}
                 </CardDescription>
+                {/* Learn more button effect */}
+                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  <span className="inline-flex items-center text-primary text-sm font-medium">
+                    Learn more →
+                  </span>
+                </div>
               </CardContent>
             </Card>
           ))}

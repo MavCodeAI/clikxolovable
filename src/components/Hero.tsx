@@ -1,6 +1,29 @@
 import { Button } from "@/components/ui/button";
 
+import { useEffect, useRef } from "react";
+
 const Hero = () => {
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+
+        // Apply parallax effect to background elements
+        const elements = parallaxRef.current.querySelectorAll('.parallax-element');
+        elements.forEach((element, index) => {
+          const speed = (index + 1) * 0.1;
+          (element as HTMLElement).style.transform = `translateY(${rate * speed}px)`;
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -10,11 +33,15 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-bg">
-      {/* Geometric Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 -left-32 w-96 h-96 rounded-full bg-hero-accent/30 blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 -right-32 w-96 h-96 rounded-full bg-hero-accent/20 blur-3xl animate-float" style={{ animationDelay: "3s" }}></div>
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-primary/10 blur-2xl"></div>
+      {/* Parallax Container */}
+      <div ref={parallaxRef} className="absolute inset-0 overflow-hidden">
+        {/* Geometric Background Elements with Parallax */}
+        <div className="parallax-element absolute top-20 -left-32 w-96 h-96 rounded-full bg-hero-accent/30 blur-3xl animate-float transition-transform duration-75 ease-out"></div>
+        <div className="parallax-element absolute bottom-20 -right-32 w-96 h-96 rounded-full bg-hero-accent/20 blur-3xl animate-float transition-transform duration-75 ease-out" style={{ animationDelay: "3s" }}></div>
+        <div className="parallax-element absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-primary/10 blur-2xl transition-transform duration-75 ease-out"></div>
+        {/* Additional floating elements */}
+        <div className="parallax-element absolute top-40 right-20 w-32 h-32 rounded-full bg-orange-glow/10 blur-xl transition-transform duration-75 ease-out" style={{ animationDelay: "1s" }}></div>
+        <div className="parallax-element absolute bottom-40 left-20 w-48 h-48 rounded-full bg-primary/5 blur-2xl transition-transform duration-75 ease-out" style={{ animationDelay: "2s" }}></div>
       </div>
 
       {/* Content */}
