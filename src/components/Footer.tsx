@@ -27,9 +27,21 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border">
+    <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border relative overflow-hidden">
+      {/* Geometric Background Shapes */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="absolute top-8 left-16 w-10 h-10 rounded-full bg-primary/10"></div>
+        <div className="absolute top-32 right-12 w-6 h-6 rotate-45 bg-orange-glow/10"></div>
+        <div className="absolute top-20 left-1/3 w-8 h-8 bg-primary/8 transform rotate-30"></div>
+        <div className="absolute bottom-24 right-1/4 w-7 h-7 rounded-full bg-orange-glow/8"></div>
+        <div className="absolute bottom-16 left-24 w-5 h-5 rotate-45 bg-primary/6"></div>
+        <div className="absolute top-1/2 left-1/4 w-4 h-4 transform rotate-60 bg-orange-glow/6"></div>
+        <div className="absolute top-40 right-1/3 w-6 h-6 bg-primary/7 transform -rotate-15"></div>
+        <div className="absolute bottom-40 left-2/3 w-9 h-9 rounded-full bg-orange-glow/5"></div>
+      </div>
+
       {/* Main Footer Content */}
-      <div className="py-16">
+      <div className="py-16 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}

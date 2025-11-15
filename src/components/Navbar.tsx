@@ -45,8 +45,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border relative overflow-hidden">
+      {/* Geometric Background Shapes */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-2 left-8 w-8 h-8 rotate-45 bg-primary/20"></div>
+        <div className="absolute top-4 right-16 w-6 h-6 rounded-full bg-orange-glow/20"></div>
+        <div className="absolute bottom-2 left-1/4 w-4 h-4 transform rotate-12 bg-primary/15"></div>
+        <div className="absolute bottom-1 right-1/3 w-5 h-5 rounded-full bg-orange-glow/15"></div>
+        <div className="absolute top-1/2 left-32 w-3 h-3 rotate-45 bg-primary/10"></div>
+        <div className="absolute top-3 right-24 w-4 h-4 bg-orange-glow/20 transform -rotate-12"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-16 relative">
           {/* Left Side - Logo */}
           <Link to="/" className="flex items-center z-10" onClick={() => setIsOpen(false)}>
