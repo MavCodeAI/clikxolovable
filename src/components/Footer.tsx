@@ -72,22 +72,22 @@ const Footer = () => {
             <div>
               <h4 className="text-foreground font-bold text-lg mb-6">Company</h4>
               <ul className="space-y-3">
-                <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   About Us
-                </a></li>
-                <li><a href="#team" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                </Link></li>
+                <li><Link to="/team" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Our Team
-                </a></li>
-                <li><a href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                </Link></li>
+                <li><Link to="/portfolio" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Portfolio
-                </a></li>
-                <li><a href="#contact" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                </Link></li>
+                <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Contact Us
-                </a></li>
+                </Link></li>
                 <li><Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Blog & Insights
