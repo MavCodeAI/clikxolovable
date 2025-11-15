@@ -59,11 +59,7 @@ export default {
         },
       },
       fontFamily: {
-<<<<<<< HEAD
         sans: ['Roboto', 'Helvetica', 'Arial', 'Lucida', 'sans-serif'],
-=======
-        sans: ['Inter', 'system-ui', 'sans-serif'],
->>>>>>> 71bb57dcd97441ab822e7494165eab70b333db2a
       },
       borderRadius: {
         lg: "var(--radius)",
