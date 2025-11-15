@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Twitter, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Team = () => {
+const Team: React.FC = () => {
   const teamMembers = [
     {
       name: "Darwesh",
