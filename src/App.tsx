@@ -2,8 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
+import { AnimatePresence } from "framer-motion";
+import RouteTransition from "./components/RouteTransition";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import About from "./pages/About";
@@ -15,6 +17,27 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<RouteTransition><Index /></RouteTransition>} />
+        <Route path="/about" element={<RouteTransition><About /></RouteTransition>} />
+        <Route path="/team" element={<RouteTransition><Team /></RouteTransition>} />
+        <Route path="/portfolio" element={<RouteTransition><Portfolio /></RouteTransition>} />
+        <Route path="/contact" element={<RouteTransition><Contact /></RouteTransition>} />
+        <Route path="/blog" element={<RouteTransition><Blog /></RouteTransition>} />
+        <Route path="/privacy-policy" element={<RouteTransition><PrivacyPolicy /></RouteTransition>} />
+        <Route path="/terms-of-service" element={<RouteTransition><TermsOfService /></RouteTransition>} />
+        <Route path="/cookie-policy" element={<RouteTransition><CookiePolicy /></RouteTransition>} />
+        <Route path="*" element={<RouteTransition><NotFound /></RouteTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,19 +47,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
