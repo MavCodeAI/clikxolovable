@@ -19,16 +19,16 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 100%;
 
     --primary: 36 100% 50%;
-    --primary-foreground: 0 0% 10%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 28%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 32%;
-    --muted-foreground: 0 0% 75%;
+    --muted-foreground: 0 0% 90%;
 
     --accent: 36 100% 50%;
-    --accent-foreground: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -44,10 +44,11 @@ All colors MUST be HSL.
     --hero-accent: 0 0% 24%;
     --orange-primary: 36 100% 50%;
     --orange-glow: 36 100% 60%;
-    --gray-text: 0 0% 75%;
+    --gray-text: 0 0% 90%;
     --gray-bg: 0 0% 28%;
     --dark-charcoal: 0 0% 16%;
     --medium-grey: 0 0% 32%;
+    --pure-white: 0 0% 100%;
   }
 }
 

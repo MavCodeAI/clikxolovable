@@ -66,6 +66,9 @@ export default {
         grey: {
           medium: "hsl(var(--medium-grey))",
         },
+        white: {
+          pure: "hsl(var(--pure-white))",
+        },
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
