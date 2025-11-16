@@ -68,6 +68,7 @@ export default {
         },
         white: {
           pure: "hsl(var(--pure-white))",
+          section: "hsl(var(--white-section))",
         },
       },
       fontFamily: {
