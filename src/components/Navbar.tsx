@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const getButtonClasses = (sectionId: string) => {
     const isActive = activeSection === sectionId;
-    return `relative px-3 py-2 transition-all duration-300 font-bold text-lg group ${
+    return `relative px-4 py-2 transition-all duration-300 font-bold text-base font-heading group ${
       isActive
         ? 'text-primary'
         : 'text-foreground hover:text-primary'
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const getUnderlineClasses = (sectionId: string) => {
     const isActive = activeSection === sectionId;
-    return `absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+    return `absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 rounded-full ${
       isActive ? 'w-full' : 'w-0 group-hover:w-full'
     }`;
   };
@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border relative overflow-hidden">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 relative overflow-hidden shadow-lg shadow-background/10">
       {/* Geometric Background Shapes */}
       <div className="absolute inset-0 opacity-[0.03]">
         {/* Animated Circles */}
@@ -77,7 +77,7 @@ const Navbar = () => {
               <div className="w-6 h-6 rounded-full bg-primary"></div>
               <div className="w-6 h-6 rounded-full bg-orange-glow"></div>
             </div>
-            <span className="ml-2 text-xl font-bold text-foreground hover:text-primary transition-colors">
+            <span className="ml-2 text-xl font-black font-heading text-foreground hover:text-primary transition-colors tracking-tight">
               ClikXo
             </span>
           </Link>

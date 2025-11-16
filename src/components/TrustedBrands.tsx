@@ -22,14 +22,14 @@ const TrustedBrands = () => {
             viewport={{ once: true }}
             className="inline-block mb-4"
           >
-            <span className="text-primary text-sm font-bold tracking-widest uppercase px-4 py-2 bg-primary/10 rounded-full">
+            <span className="text-primary text-sm font-black font-heading tracking-widest uppercase px-5 py-2 bg-primary/10 rounded-full border-2 border-primary/20">
               Our Partners
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-black text-background mb-4 uppercase tracking-tight">
-            Trusted by Leading Brands
+          <h2 className="text-4xl md:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary">Leading Brands</span>
           </h2>
-          <p className="text-gray-textDark/70 text-lg">
+          <p className="text-gray-textDark text-lg md:text-xl font-medium">
             Who Value Growth, Integrity, and Genuine Partnership
           </p>
         </div>
@@ -44,7 +44,7 @@ const TrustedBrands = () => {
               transition={{ delay: index * 0.1 }}
               className="flex items-center justify-center p-8 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-sm border border-gray-textDark/10 hover:border-primary/30 group"
             >
-              <span className="text-background font-bold text-lg group-hover:text-primary transition-colors duration-300">{brand}</span>
+              <span className="text-background font-black font-heading text-lg md:text-xl group-hover:text-primary transition-colors duration-300 tracking-tight">{brand}</span>
             </motion.div>
           ))}
         </div>
