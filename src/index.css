@@ -8,42 +8,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Minimal Grey/Black Theme */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
+    /* DigitalOrks Inspired Dark Theme with Orange Accent */
+    --background: 220 20% 12%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 18% 16%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 18% 16%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 85%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 36 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 220 15% 22%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 0 0% 25%;
-    --accent-foreground: 0 0% 95%;
+    --accent: 36 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 75%;
+    --border: 220 15% 25%;
+    --input: 220 18% 18%;
+    --ring: 36 100% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom design tokens for minimal theme */
-    --hero-bg: 0 0% 8%;
-    --hero-accent: 0 0% 12%;
-    --orange-glow: 0 0% 75%;
-    --gray-text: 0 0% 60%;
+    /* Custom design tokens - DigitalOrks Style */
+    --hero-bg: 220 20% 12%;
+    --hero-accent: 220 18% 16%;
+    --orange-primary: 36 100% 50%;
+    --orange-glow: 36 100% 60%;
+    --gray-text: 0 0% 70%;
+    --dark-slate: 220 20% 18%;
   }
 }
 
@@ -176,4 +178,35 @@ html {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+/* Geometric shapes background similar to DigitalOrks */
+.geometric-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.geometric-bg::before,
+.geometric-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: hsl(var(--hero-accent));
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.geometric-bg::before {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -200px;
+}
+
+.geometric-bg::after {
+  width: 800px;
+  height: 800px;
+  bottom: -300px;
+  right: -300px;
+  opacity: 0.4;
 }

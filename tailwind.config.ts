@@ -53,14 +53,19 @@ export default {
           accent: "hsl(var(--hero-accent))",
         },
         orange: {
+          primary: "hsl(var(--orange-primary))",
           glow: "hsl(var(--orange-glow))",
         },
         gray: {
           text: "hsl(var(--gray-text))",
         },
+        slate: {
+          dark: "hsl(var(--dark-slate))",
+        },
       },
       fontFamily: {
-        sans: ['Roboto', 'Helvetica', 'Arial', 'Lucida', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
