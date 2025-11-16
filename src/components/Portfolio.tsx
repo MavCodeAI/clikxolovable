@@ -190,29 +190,30 @@ const Portfolio = () => {
             return (
               <div
                 key={project.id}
-                className="group bg-card rounded-2xl p-8 border-2 border-border hover:border-primary/40 transition-all duration-500 animate-fade-in hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:-translate-y-1 relative overflow-hidden"
+                role="listitem"
+                className="group bg-card rounded-2xl p-6 md:p-8 border-2 border-border hover:border-primary/40 transition-all duration-500 animate-fade-in hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:-translate-y-1 relative overflow-hidden"
               >
                 {/* Hover Gradient Effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-orange-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-black text-foreground mb-2 uppercase">{project.title}</h3>
-                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary font-bold text-sm rounded-full border border-primary/20">{project.category}</span>
+                  <div className="mb-4 md:mb-6">
+                    <h3 className="text-xl md:text-2xl font-black text-foreground mb-2 uppercase leading-tight">{project.title}</h3>
+                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary font-bold text-xs md:text-sm rounded-full border border-primary/20">{project.category}</span>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
                     {metrics.map((metric, idx) => (
-                      <div key={idx} className="text-center p-4 rounded-xl bg-background/50 border border-border group-hover:border-primary/30 transition-all duration-300">
-                        <div className="text-3xl md:text-4xl font-black text-primary mb-1 group-hover:scale-110 transition-transform duration-300">{metric.value}</div>
-                        <div className="text-xs font-semibold text-gray-text uppercase tracking-wide">{metric.label}</div>
+                      <div key={idx} className="text-center p-3 md:p-4 rounded-xl bg-background/50 border border-border group-hover:border-primary/30 transition-all duration-300">
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-black text-primary mb-1 group-hover:scale-110 transition-transform duration-300">{metric.value}</div>
+                        <div className="text-[10px] sm:text-xs font-semibold text-gray-text uppercase tracking-wide break-words">{metric.label}</div>
                       </div>
                     ))}
                   </div>
 
-                  <blockquote className="border-l-4 border-primary/50 pl-6 mb-6 py-2">
-                    <p className="text-foreground/90 italic text-lg mb-3 leading-relaxed">"{project.testimonial.quote}"</p>
-                    <footer className="text-sm font-semibold text-gray-text">
+                  <blockquote className="border-l-2 md:border-l-4 border-primary/50 pl-4 md:pl-6 mb-4 md:mb-6 py-2">
+                    <p className="text-foreground/90 italic text-sm md:text-lg mb-2 md:mb-3 leading-relaxed">"{project.testimonial.quote}"</p>
+                    <footer className="text-xs md:text-sm font-semibold text-gray-text">
                       — {project.testimonial.author}, <span className="text-primary">{project.testimonial.position}</span>
                     </footer>
                   </blockquote>
@@ -221,7 +222,7 @@ const Portfolio = () => {
                     {project.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-4 py-1.5 bg-background border border-border text-foreground rounded-full text-xs font-bold uppercase tracking-wide hover:border-primary/40 transition-colors duration-300"
+                        className="px-3 md:px-4 py-1 md:py-1.5 bg-background border border-border text-foreground rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wide hover:border-primary/40 transition-colors duration-300"
                       >
                         {tag}
                       </span>
