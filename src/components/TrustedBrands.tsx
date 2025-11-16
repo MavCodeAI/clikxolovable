@@ -7,9 +7,9 @@ const TrustedBrands = () => {
   ];
 
   return (
-    <section className="py-24 bg-white-section relative overflow-hidden">
+    <section className="py-24 bg-white-section relative overflow-hidden" aria-label="Trusted brands section">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true" style={{
         backgroundImage: 'linear-gradient(30deg, #000 12%, transparent 12.5%, transparent 87%, #000 87.5%, #000), linear-gradient(150deg, #000 12%, transparent 12.5%, transparent 87%, #000 87.5%, #000)',
         backgroundSize: '20px 35px'
       }}></div>
@@ -26,7 +26,7 @@ const TrustedBrands = () => {
               Our Partners
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary">Leading Brands</span>
           </h2>
           <p className="text-gray-textDark text-lg md:text-xl font-medium">
@@ -34,15 +34,16 @@ const TrustedBrands = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center max-w-5xl mx-auto" role="list">
           {brands.map((brand, index) => (
             <motion.div
               key={index}
+              role="listitem"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex items-center justify-center p-8 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-sm border border-gray-textDark/10 hover:border-primary/30 group"
+              className="flex items-center justify-center p-8 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-md border-2 border-gray-textDark/20 hover:border-primary/40 group focus-within:ring-4 focus-within:ring-primary/20"
             >
               <span className="text-background font-black font-heading text-lg md:text-xl group-hover:text-primary transition-colors duration-300 tracking-tight">{brand}</span>
             </motion.div>

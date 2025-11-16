@@ -63,7 +63,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-8xl font-black font-heading text-white mb-6 leading-[1.1] uppercase tracking-tighter"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black font-heading text-white mb-6 leading-[1.1] uppercase tracking-tighter"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
@@ -72,7 +72,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.h2
-            className="text-4xl md:text-6xl lg:text-8xl font-black font-heading mb-12 leading-[1.1] uppercase tracking-tighter"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black font-heading mb-12 leading-[1.1] uppercase tracking-tighter"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -88,9 +88,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
             <Button
-              onClick={scrollToContact}
+               onClick={scrollToContact}
               size="lg"
-              className="group relative overflow-hidden bg-gradient-to-r from-white via-white to-gray-100 text-background hover:from-gray-50 hover:via-white hover:to-gray-100 px-8 sm:px-12 py-6 sm:py-8 text-base md:text-lg font-black font-heading uppercase tracking-wider shadow-2xl shadow-white/20 transition-all duration-500 border-4 border-white/30 hover:scale-110 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] rounded-full hover:rotate-1"
+              aria-label="Get started with ClikXo"
+              className="group relative overflow-hidden bg-gradient-to-r from-white via-white to-gray-100 text-background hover:from-gray-50 hover:via-white hover:to-gray-100 px-8 sm:px-12 py-6 sm:py-8 text-base md:text-lg font-black font-heading uppercase tracking-wider shadow-2xl shadow-white/20 transition-all duration-500 border-4 border-white/30 hover:scale-110 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] rounded-full hover:rotate-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
             >
               <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                 Get Started Today

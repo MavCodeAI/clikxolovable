@@ -27,9 +27,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-primary/5 via-background to-orange-glow/5 border-t border-border relative overflow-hidden" role="contentinfo" aria-label="Site footer">
       {/* Geometric Background Shapes */}
-      <div className="absolute inset-0 opacity-[0.025]">
+      <div className="absolute inset-0 opacity-[0.025]" aria-hidden="true">
         {/* Animated Circles */}
         <div className="absolute top-8 left-16 w-8 h-8 rounded-full bg-primary/20 animate-pulse"></div>
         <div className="absolute bottom-24 right-1/4 w-6 h-6 rounded-full bg-orange-glow/25 animate-bounce" style={{animationDuration: '4s'}}></div>
