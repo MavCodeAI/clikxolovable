@@ -7,20 +7,30 @@ import Team from "@/components/Team";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
+import SkipToContent from "@/components/SkipToContent";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <Hero />
-      <TrustedBrands />
-      <Services />
-      <About />
-      <Team />
-      <Portfolio />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <SEO />
+      <StructuredData />
+      <SkipToContent />
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main id="main-content">
+          <Hero />
+          <TrustedBrands />
+          <Services />
+          <About />
+          <Team />
+          <Portfolio />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

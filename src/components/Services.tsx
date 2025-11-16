@@ -112,10 +112,10 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-background relative overflow-hidden">
+    <section id="services" className="py-24 bg-background relative overflow-hidden" aria-labelledby="services-heading">
       {/* Background Decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl" aria-hidden="true"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -135,7 +135,7 @@ const Services = () => {
               What We Offer
             </span>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6 uppercase tracking-tight">
+          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
             Our <span className="text-primary">Services</span>
           </h2>
           <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
@@ -143,9 +143,11 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
+            <div key={index} role="listitem">
+              <ServiceCard service={service} index={index} />
+            </div>
           ))}
         </div>
       </div>

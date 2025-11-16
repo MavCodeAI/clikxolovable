@@ -138,12 +138,15 @@ const Portfolio = () => {
         </div>
 
         {/* Enhanced Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 mb-16" role="tablist" aria-label="Project filters">
           {["all", "ecommerce", "saas", "mobile"].map((filter) => (
             <button
               key={filter}
+              role="tab"
+              aria-selected={activeFilter === filter}
+              aria-controls="projects-grid"
               onClick={() => setActiveFilter(filter)}
-              className={`group relative px-8 py-3 rounded-full font-bold uppercase text-sm tracking-wider transition-all duration-300 overflow-hidden ${
+              className={`group relative px-8 py-3 rounded-full font-bold uppercase text-sm tracking-wider transition-all duration-300 overflow-hidden focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50 ${
                 activeFilter === filter
                   ? "bg-primary text-background shadow-[0_0_20px_rgba(255,140,0,0.3)]"
                   : "bg-card border-2 border-border text-foreground hover:border-primary/50"
@@ -158,7 +161,25 @@ const Portfolio = () => {
         </div>
 
         {/* Enhanced Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+        <div id="projects-grid" role="tabpanel" aria-live="polite">
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-20 animate-fade-in">
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-muted/20 flex items-center justify-center">
+                <Star className="w-12 h-12 text-muted-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-3">No Projects Found</h3>
+              <p className="text-muted-foreground max-w-md mx-auto">
+                We don't have any projects in this category yet. Check back soon or explore other categories!
+              </p>
+              <button
+                onClick={() => setActiveFilter("all")}
+                className="mt-6 px-6 py-3 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50"
+              >
+                View All Projects
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20" role="list">
           {filteredProjects.map((project) => {
             const metrics = [
               { value: Object.values(project.after)[0], label: Object.keys(project.after)[0] },
@@ -210,6 +231,8 @@ const Portfolio = () => {
               </div>
             );
           })}
+        </div>
+          )}
         </div>
 
         {/* Enhanced Testimonials Section */}
