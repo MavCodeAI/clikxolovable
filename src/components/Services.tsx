@@ -54,26 +54,27 @@ function ServiceCard({ service, index }: { service: ServiceType; index: number }
       onMouseLeave={handleMouseLeave}
       className="group cursor-pointer"
     >
-      <Card className="bg-card border-border hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden h-full">
-        {/* Animated gradient border */}
-        <div className="absolute inset-0 rounded-lg p-[2px] bg-gradient-to-r from-primary via-hero-accent to-orange-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="w-full h-full bg-card rounded-lg"></div>
-        </div>
+      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 relative overflow-hidden h-full group-hover:scale-[1.02]">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/5 group-hover:via-orange-glow/5 group-hover:to-primary/5 transition-all duration-500"></div>
+        
+        {/* Animated corner accent */}
+        <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 blur-2xl group-hover:w-32 group-hover:h-32 transition-all duration-500"></div>
 
         {/* Content */}
-        <div className="relative z-10 p-6">
-          <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-500 relative">
-            <service.icon className="w-7 h-7 text-primary group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" />
+        <div className="relative z-10 p-8">
+          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-orange-glow/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative shadow-lg">
+            <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-all duration-500" />
             {/* Pulse ring effect */}
-            <div className="absolute inset-0 rounded-lg bg-primary/20 scale-0 group-hover:scale-125 group-hover:opacity-0 transition-all duration-700 animate-ping"></div>
+            <div className="absolute inset-0 rounded-xl bg-primary/30 scale-0 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700"></div>
           </div>
-          <CardTitle className="text-foreground group-hover:text-primary transition-colors duration-300 mb-3">{service.title}</CardTitle>
-          <CardDescription className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+          <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wide">{service.title}</CardTitle>
+          <CardDescription className="text-gray-text leading-relaxed group-hover:text-foreground transition-colors duration-300">
             {service.description}
           </CardDescription>
           {/* Learn more button effect */}
-          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-            <span className="inline-flex items-center text-primary text-sm font-medium">
+          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+            <span className="inline-flex items-center text-primary text-sm font-bold uppercase tracking-wider">
               Learn more →
             </span>
           </div>
@@ -108,19 +109,33 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block mb-4"
+          >
+            <span className="text-primary text-sm font-bold tracking-widest uppercase px-4 py-2 border border-primary/30 rounded-full">
+              What We Offer
+            </span>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6 uppercase tracking-tight">
             Our <span className="text-primary">Services</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
             Comprehensive web development, graphics, and digital marketing solutions for modern businesses
           </p>
         </motion.div>

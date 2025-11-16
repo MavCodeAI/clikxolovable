@@ -55,9 +55,11 @@ export default {
         orange: {
           primary: "hsl(var(--orange-primary))",
           glow: "hsl(var(--orange-glow))",
+          dim: "hsl(var(--orange-dim))",
         },
         gray: {
           text: "hsl(var(--gray-text))",
+          textDark: "hsl(var(--gray-text-dark))",
           bg: "hsl(var(--gray-bg))",
         },
         charcoal: {
@@ -65,6 +67,7 @@ export default {
         },
         grey: {
           medium: "hsl(var(--medium-grey))",
+          light: "hsl(var(--light-grey))",
         },
         white: {
           pure: "hsl(var(--pure-white))",

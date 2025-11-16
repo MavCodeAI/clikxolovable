@@ -33,22 +33,28 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-bg">
-      {/* Parallax Container */}
+      {/* Enhanced Parallax Container with Larger Circles */}
       <div ref={parallaxRef} className="absolute inset-0 overflow-hidden">
-        {/* Geometric Background Elements with Parallax */}
-        <div className="parallax-element absolute top-20 -left-32 w-96 h-96 rounded-full bg-hero-accent/30 blur-3xl animate-float transition-transform duration-75 ease-out"></div>
-        <div className="parallax-element absolute bottom-20 -right-32 w-96 h-96 rounded-full bg-hero-accent/20 blur-3xl animate-float transition-transform duration-75 ease-out" style={{ animationDelay: "3s" }}></div>
-        <div className="parallax-element absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-primary/10 blur-2xl transition-transform duration-75 ease-out"></div>
+        {/* Large Geometric Background Circles - DigitalOrks Style */}
+        <div className="parallax-element absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-hero-accent/40 blur-3xl animate-float transition-transform duration-75 ease-out"></div>
+        <div className="parallax-element absolute -bottom-40 -right-40 w-[700px] h-[700px] rounded-full bg-hero-accent/25 blur-3xl animate-float transition-transform duration-75 ease-out" style={{ animationDelay: "3s" }}></div>
+        <div className="parallax-element absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-muted/20 blur-2xl transition-transform duration-75 ease-out" style={{ animationDelay: "1.5s" }}></div>
         {/* Additional floating elements */}
-        <div className="parallax-element absolute top-40 right-20 w-32 h-32 rounded-full bg-orange-glow/10 blur-xl transition-transform duration-75 ease-out" style={{ animationDelay: "1s" }}></div>
-        <div className="parallax-element absolute bottom-40 left-20 w-48 h-48 rounded-full bg-primary/5 blur-2xl transition-transform duration-75 ease-out" style={{ animationDelay: "2s" }}></div>
+        <div className="parallax-element absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-primary/5 blur-2xl transition-transform duration-75 ease-out" style={{ animationDelay: "2s" }}></div>
+        <div className="parallax-element absolute bottom-1/4 left-1/3 w-[250px] h-[250px] rounded-full bg-orange-glow/8 blur-xl transition-transform duration-75 ease-out" style={{ animationDelay: "1s" }}></div>
+        
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent)',
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.p
-            className="text-white/80 text-lg mb-6"
+            className="text-gray-text text-base md:text-lg mb-8 tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -57,7 +63,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight uppercase"
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight uppercase tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
@@ -66,25 +72,28 @@ const Hero = () => {
           </motion.h1>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight uppercase"
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-12 leading-tight uppercase tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <span className="text-primary">DIGITAL MARKETING</span> <span className="text-white">AGENCY</span>
+            <span className="text-primary glow-text">DIGITAL MARKETING</span>{" "}
+            <span className="text-white">AGENCY</span>
           </motion.h2>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="bg-transparent border-2 border-primary text-white hover:bg-primary hover:text-background transition-all duration-300 px-8 py-6 text-lg font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/25 uppercase"
+              className="bg-transparent border-2 border-primary text-white hover:bg-primary hover:text-background transition-all duration-300 px-10 py-7 text-base font-bold hover:scale-105 btn-glow uppercase tracking-wider group relative overflow-hidden"
             >
-              Request a Proposal
+              <span className="relative z-10">Request a Proposal</span>
+              <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </Button>
           </motion.div>
         </div>

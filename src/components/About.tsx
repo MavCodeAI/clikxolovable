@@ -1,5 +1,6 @@
 import { CheckCircle2, Users, Award, Target, Clock } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const useCounter = (end: number, duration: number = 2000) => {
   const [count, setCount] = useState(0);
@@ -60,33 +61,55 @@ const About = () => {
   const experienceCounter = useCounter(10);
 
   return (
-    <section id="about" className="py-20 bg-white-section">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-slide-in-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-background mb-6 uppercase">
+    <section id="about" className="py-24 bg-white-section relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block mb-6"
+            >
+              <span className="text-primary text-sm font-bold tracking-widest uppercase px-4 py-2 bg-primary/10 rounded-full">
+                About Us
+              </span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-background mb-6 uppercase tracking-tight">
               About <span className="text-primary">ClikXo</span>
             </h2>
-            <p className="text-gray-text/80 text-lg mb-6">
+            <p className="text-gray-textDark/80 text-lg mb-6 leading-relaxed">
               We are a performance-driven digital marketing agency dedicated to helping businesses grow through innovative strategies and data-driven solutions.
             </p>
-            <p className="text-gray-text/80 text-lg mb-8">
+            <p className="text-gray-textDark/80 text-lg mb-8 leading-relaxed">
               Our team of experts combines creativity with technical expertise to deliver measurable results that exceed expectations.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {achievements.map((achievement, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex items-center space-x-3 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors duration-300"
                 >
                   <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                  <span className="text-background font-medium">{achievement}</span>
-                </div>
+                  <span className="text-background font-semibold">{achievement}</span>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           <div className="relative animate-fade-in">
             {/* Statistics Grid */}
@@ -136,7 +159,7 @@ const About = () => {
             <div className="mt-6 bg-gradient-to-br from-primary/10 to-hero-accent/10 rounded-2xl p-8 border border-primary/20">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">Award Winning</div>
-                <p className="text-gray-text/80">Industry Recognition & Excellence</p>
+                <p className="text-gray-textDark/70">Industry Recognition & Excellence</p>
                 <div className="mt-4 flex justify-center">
                   <Award className="w-8 h-8 text-primary animate-pulse" />
                 </div>
