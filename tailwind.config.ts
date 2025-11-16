@@ -58,9 +58,13 @@ export default {
         },
         gray: {
           text: "hsl(var(--gray-text))",
+          bg: "hsl(var(--gray-bg))",
         },
-        slate: {
-          dark: "hsl(var(--dark-slate))",
+        charcoal: {
+          dark: "hsl(var(--dark-charcoal))",
+        },
+        grey: {
+          medium: "hsl(var(--medium-grey))",
         },
       },
       fontFamily: {

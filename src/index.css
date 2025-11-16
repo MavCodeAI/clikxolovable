@@ -8,44 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* DigitalOrks Inspired Dark Theme with Orange Accent */
-    --background: 220 20% 12%;
-    --foreground: 0 0% 98%;
+    /* DigitalOrks Exact Color Scheme - Grey & White Theme */
+    --background: 0 0% 16%;
+    --foreground: 0 0% 100%;
 
-    --card: 220 18% 16%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 24%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 220 18% 16%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 24%;
+    --popover-foreground: 0 0% 100%;
 
     --primary: 36 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 28%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 15% 22%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 0 0% 32%;
+    --muted-foreground: 0 0% 75%;
 
     --accent: 36 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 25%;
-    --input: 220 18% 18%;
+    --border: 0 0% 30%;
+    --input: 0 0% 22%;
     --ring: 36 100% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom design tokens - DigitalOrks Style */
-    --hero-bg: 220 20% 12%;
-    --hero-accent: 220 18% 16%;
+    /* Custom design tokens - DigitalOrks Grey Scheme */
+    --hero-bg: 0 0% 16%;
+    --hero-accent: 0 0% 24%;
     --orange-primary: 36 100% 50%;
     --orange-glow: 36 100% 60%;
-    --gray-text: 0 0% 70%;
-    --dark-slate: 220 20% 18%;
+    --gray-text: 0 0% 75%;
+    --gray-bg: 0 0% 28%;
+    --dark-charcoal: 0 0% 16%;
+    --medium-grey: 0 0% 32%;
   }
 }
 
@@ -201,6 +203,7 @@ html {
   height: 600px;
   top: -200px;
   left: -200px;
+  background: hsl(0 0% 24%);
 }
 
 .geometric-bg::after {
@@ -209,4 +212,5 @@ html {
   bottom: -300px;
   right: -300px;
   opacity: 0.4;
+  background: hsl(0 0% 28%);
 }

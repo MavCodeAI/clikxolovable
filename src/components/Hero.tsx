@@ -71,7 +71,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            DIGITAL MARKETING AGENCY
+            <span className="text-primary">DIGITAL MARKETING</span> AGENCY
           </motion.h2>
 
           <motion.div
