@@ -48,7 +48,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.p
-            className="text-muted-foreground text-lg mb-6"
+            className="text-white/80 text-lg mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -57,7 +57,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
@@ -66,12 +66,12 @@ const Hero = () => {
           </motion.h1>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <span className="text-primary">DIGITAL MARKETING</span> AGENCY
+            <span className="text-primary">DIGITAL MARKETING</span> <span className="text-white">AGENCY</span>
           </motion.h2>
 
           <motion.div
@@ -82,7 +82,7 @@ const Hero = () => {
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-6 text-lg font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+              className="bg-transparent border-2 border-primary text-white hover:bg-primary hover:text-background transition-all duration-300 px-8 py-6 text-lg font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/25 uppercase"
             >
               Request a Proposal
             </Button>
