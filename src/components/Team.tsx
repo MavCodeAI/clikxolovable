@@ -1,191 +1,80 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Twitter, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import { Linkedin, Twitter, Mail } from "lucide-react";
 
-const Team: React.FC = () => {
+const Team = () => {
   const teamMembers = [
     {
-      name: "Darwesh",
-      role: "Lead Developer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces",
-      bio: "Expert full-stack developer specialized in React, TypeScript, and modern web technologies with 8+ years of experience.",
-      social: {
-        linkedin: "https://linkedin.com/in/darweshexpert",
-        github: "https://github.com/darwesh-dev",
-        email: "darwesh@clikxo.com"
-      }
+      name: "Sarah Ahmed",
+      role: "CEO & Founder",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300",
+      bio: "10+ years of experience in digital marketing and business strategy.",
     },
     {
-      name: "Ali",
-      role: "Lead Graphics Designer",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=faces",
-      bio: "Creative design excellence specialist with expertise in branding, UI/UX design, and visual storytelling – 7+ years of award-winning work.",
-      social: {
-        linkedin: "https://linkedin.com/in/alidesigner",
-        twitter: "https://twitter.com/alicreative",
-        email: "ali@clikxo.com"
-      }
-    }
+      name: "Ahmed Hassan",
+      role: "Head of Technology",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+      bio: "Full-stack developer with expertise in modern web technologies.",
+    },
+    {
+      name: "Maria Rodriguez",
+      role: "Creative Director",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300",
+      bio: "Award-winning designer focused on brand identity and UX/UI.",
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeInOut" },
-    },
-  };
-
-  const statsVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, delay: 0.4, ease: "easeInOut" },
-    },
-  };
-
   return (
-    <section id="team" className="py-24 bg-background overflow-hidden relative">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }}></div>
-      
+    <section id="team" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="inline-block mb-4"
           >
-            <span className="text-primary text-sm font-bold tracking-widest uppercase px-4 py-2 border border-primary/30 rounded-full">
-              Our People
+            <span className="text-primary text-sm font-bold uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
+              Our Team
             </span>
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6 uppercase tracking-tight">
-            Meet Our <span className="text-primary">Expert Team</span>
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+            Meet the <span className="text-primary">Experts</span>
           </h2>
-          <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
-            Our expert team combines technical excellence and creative design to deliver
-            outstanding digital solutions and exceptional user experiences.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Our diverse team of specialists brings together expertise from various fields
+            to deliver exceptional results for our clients.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <motion.div key={index} variants={cardVariants as any}>
-              <Card className="overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:scale-[1.02] group bg-card h-full border-2 border-border hover:border-primary/50">
-                <div className="relative">
-                  <motion.img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                    <motion.div
-                      className="p-6 w-full"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      {/* Social Links */}
-                      <div className="flex justify-center space-x-4">
-                        {member.social.linkedin && (
-                          <motion.a
-                            href={member.social.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-colors duration-200"
-                            whileHover={{ scale: 1.2, rotate: 5 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Linkedin className="w-4 h-4" />
-                          </motion.a>
-                        )}
-                        {member.social.twitter && (
-                          <motion.a
-                            href={member.social.twitter}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-colors duration-200"
-                            whileHover={{ scale: 1.2, rotate: 5 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Twitter className="w-4 h-4" />
-                          </motion.a>
-                        )}
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="bg-card rounded-2xl p-6 border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg group"
+            >
+              <div className="text-center">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                />
+                <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
+                <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
+                <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
 
-                        <motion.a
-                          href={`mailto:${member.social.email}`}
-                          className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-colors duration-200"
-                          whileHover={{ scale: 1.2, rotate: 5 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Mail className="w-4 h-4" />
-                        </motion.a>
-                      </div>
-                    </motion.div>
-                  </div>
+                <div className="flex justify-center space-x-3">
+                  <Linkedin className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                  <Twitter className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                  <Mail className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
                 </div>
-
-                <CardContent className="p-6 flex flex-col flex-1">
-                  <motion.h3
-                    className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    {member.name}
-                  </motion.h3>
-                  <motion.p
-                    className="text-primary font-medium mb-3"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    {member.role}
-                  </motion.p>
-                  <motion.p
-                    className="text-muted-foreground text-sm leading-relaxed flex-1"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    {member.bio}
-                  </motion.p>
-                </CardContent>
-              </Card>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
