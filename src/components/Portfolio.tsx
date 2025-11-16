@@ -40,8 +40,8 @@ const Portfolio = () => {
     <section id="portfolio" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 uppercase">
-            Our Work
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+            Our <span className="text-primary">Work</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
             See how we've helped businesses succeed with our digital solutions.

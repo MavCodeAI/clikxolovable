@@ -6,10 +6,29 @@ import useScrollSpy from "@/hooks/use-scroll-spy";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
+
+  // Handle navbar dynamic styling based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isHomePage) {
+        // Sections that have lighter backgrounds (where navbar should be dark)
+        const lightSections = activeSection === 'about' || activeSection === 'team';
+        setIsScrolled(lightSections);
+      } else {
+        // On other pages, use dark navbar
+        setIsScrolled(true);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection, isHomePage]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -45,7 +64,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 relative overflow-hidden shadow-lg shadow-background/10">
+    <nav className={`sticky top-0 left-0 right-0 z-50 backdrop-blur-md border-b relative overflow-hidden shadow-lg transition-all duration-500 ${
+      isScrolled
+        ? 'bg-background/95 border-border/60 shadow-background/20'
+        : 'bg-hero-bg/90 border-primary/20 shadow-primary/10'
+    }`}>
       {/* Geometric Background Shapes */}
       <div className="absolute inset-0 opacity-[0.03]">
         {/* Animated Circles */}
