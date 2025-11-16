@@ -4,22 +4,16 @@ import { Linkedin, Twitter, Mail } from "lucide-react";
 const Team = () => {
   const teamMembers = [
     {
-      name: "Sarah Ahmed",
-      role: "CEO & Founder",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300",
-      bio: "10+ years of experience in digital marketing and business strategy.",
-    },
-    {
-      name: "Ahmed Hassan",
-      role: "Head of Technology",
+      name: "AB Darwesh",
+      role: "Lead Developer",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
-      bio: "Full-stack developer with expertise in modern web technologies.",
+      bio: "Expert full-stack developer with 5+ years experience in React, Node.js, and modern web technologies.",
     },
     {
-      name: "Maria Rodriguez",
-      role: "Creative Director",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300",
-      bio: "Award-winning designer focused on brand identity and UX/UI.",
+      name: "Ali Khan",
+      role: "Graphic Designer",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300",
+      bio: "Creative design specialist focused on branding, UI/UX design, and marketing materials with 4+ years experience.",
     },
   ];
 
@@ -46,7 +40,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
