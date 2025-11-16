@@ -68,14 +68,17 @@ function ServiceCard({ service, index }: { service: ServiceType; index: number }
             {/* Pulse ring effect */}
             <div className="absolute inset-0 rounded-xl bg-primary/30 scale-0 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700"></div>
           </div>
-          <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wide">{service.title}</CardTitle>
-          <CardDescription className="text-gray-text leading-relaxed group-hover:text-foreground transition-colors duration-300">
+          <CardTitle className="text-2xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wider">{service.title}</CardTitle>
+          <CardDescription className="text-gray-text text-base leading-relaxed group-hover:text-foreground transition-colors duration-300 font-medium">
             {service.description}
           </CardDescription>
           {/* Learn more button effect */}
           <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-            <span className="inline-flex items-center text-primary text-sm font-bold uppercase tracking-wider">
-              Learn more →
+            <span className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2">
+              Learn more 
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </span>
           </div>
         </div>
