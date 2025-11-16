@@ -26,7 +26,7 @@ const About = () => {
   ];
 
   return (
-    <section className="py-24 bg-white-section relative overflow-hidden" aria-label="About section">
+    <section id="about" className="py-24 bg-white-section relative overflow-hidden" aria-label="About section">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <motion.div
@@ -40,7 +40,20 @@ const About = () => {
             </span>
           </motion.div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
-            Driving Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary">Excellence</span>
+            Driving Digital <span
+              className="text-background"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)))',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                filter: 'brightness(1.1)',
+                textShadow: '0 0 20px hsl(var(--primary) / 0.2)',
+                fontWeight: 900
+              }}
+            >
+              Excellence
+            </span>
           </h2>
           <p className="text-gray-textDark text-lg md:text-xl font-medium">
             We are a results-driven digital agency that combines creativity, strategy, and technology to transform businesses and drive measurable growth.

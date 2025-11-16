@@ -103,9 +103,21 @@ const Contact = () => {
             <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Get In Touch</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-none pb-2" style={{lineHeight: '0.9'}}>
-            <span className="block mb-4">Let's Create</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary bg-300% animate-gradient block">Something Amazing</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+            Let's Create <span
+              className="text-background"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)))',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                filter: 'brightness(1.1)',
+                textShadow: '0 0 20px hsl(var(--primary) / 0.2)',
+                fontWeight: 900
+              }}
+            >
+              Something Amazing
+            </span>
           </h1>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2">
