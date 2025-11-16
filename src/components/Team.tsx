@@ -57,19 +57,35 @@ const Team: React.FC = () => {
   };
 
   return (
-    <section id="team" className="py-20 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="team" className="py-24 bg-background overflow-hidden relative">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
+        backgroundSize: '40px 40px'
+      }}></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block mb-4"
+          >
+            <span className="text-primary text-sm font-bold tracking-widest uppercase px-4 py-2 border border-primary/30 rounded-full">
+              Our People
+            </span>
+          </motion.div>
+          <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6 uppercase tracking-tight">
             Meet Our <span className="text-primary">Expert Team</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
             Our expert team combines technical excellence and creative design to deliver
             outstanding digital solutions and exceptional user experiences.
           </p>
@@ -84,7 +100,7 @@ const Team: React.FC = () => {
         >
           {teamMembers.map((member, index) => (
             <motion.div key={index} variants={cardVariants as any}>
-              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 group bg-card h-full">
+              <Card className="overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:scale-[1.02] group bg-card h-full border-2 border-border hover:border-primary/50">
                 <div className="relative">
                   <motion.img
                     src={member.image}

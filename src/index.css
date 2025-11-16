@@ -8,48 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* DigitalOrks Exact Color Scheme - Grey & White Theme */
-    --background: 0 0% 16%;
+    /* Enhanced DigitalOrks Color Scheme - Professional Dark & Light */
+    --background: 0 0% 14%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 24%;
+    --card: 0 0% 20%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 24%;
+    --popover: 0 0% 20%;
     --popover-foreground: 0 0% 100%;
 
     --primary: 36 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 0 0% 14%;
 
-    --secondary: 0 0% 28%;
+    --secondary: 0 0% 24%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 32%;
-    --muted-foreground: 0 0% 90%;
+    --muted: 0 0% 28%;
+    --muted-foreground: 0 0% 85%;
 
     --accent: 36 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 0 0% 14%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 30%;
-    --input: 0 0% 22%;
+    --border: 0 0% 28%;
+    --input: 0 0% 18%;
     --ring: 36 100% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom design tokens - DigitalOrks Grey Scheme */
-    --hero-bg: 0 0% 16%;
-    --hero-accent: 0 0% 24%;
+    /* Enhanced Custom Tokens */
+    --hero-bg: 0 0% 14%;
+    --hero-accent: 0 0% 20%;
     --orange-primary: 36 100% 50%;
     --orange-glow: 36 100% 60%;
-    --gray-text: 0 0% 90%;
-    --gray-bg: 0 0% 28%;
-    --dark-charcoal: 0 0% 16%;
-    --medium-grey: 0 0% 32%;
+    --orange-dim: 36 100% 40%;
+    --gray-text: 0 0% 85%;
+    --gray-text-dark: 0 0% 25%;
+    --gray-bg: 0 0% 24%;
+    --dark-charcoal: 0 0% 14%;
+    --medium-grey: 0 0% 28%;
     --pure-white: 0 0% 100%;
-    --white-section: 0 0% 96%;
+    --white-section: 0 0% 98%;
+    --light-grey: 0 0% 95%;
+    
+    /* Shadow & Glow Effects */
+    --shadow-glow: 0 10px 40px -10px hsl(36 100% 50% / 0.3);
+    --shadow-dark: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
   }
 }
 
@@ -176,12 +183,70 @@ html {
   transform: scale(0.95);
 }
 
-/* Custom gradient text */
+/* Enhanced gradient text */
 .gradient-text {
   background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 0 0 20px hsl(var(--primary) / 0.5),
+               0 0 40px hsl(var(--primary) / 0.3);
+}
+
+/* Button hover glow */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px hsl(var(--primary) / 0.5),
+              0 0 50px hsl(var(--primary) / 0.3);
+}
+
+/* Smooth fade in animation */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.smooth-fade-in {
+  animation: smoothFadeIn 0.8s ease-out forwards;
+}
+
+/* Scale on hover */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px -10px hsl(0 0% 0% / 0.3);
+}
+
+/* Gradient border animation */
+@keyframes gradient-border {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-border {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)));
+  background-size: 200% 200%;
+  animation: gradient-border 3s ease infinite;
 }
 
 /* Geometric shapes background similar to DigitalOrks */
