@@ -103,13 +103,13 @@ const Portfolio = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="portfolio" className="py-20 bg-secondary">
+    <section id="portfolio" className="py-20 bg-white-section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-background mb-4 uppercase">
             Our <span className="text-primary">Success Stories</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-text/80 text-lg max-w-2xl mx-auto">
             Real results from real clients. See how we've helped businesses transform and grow through innovative digital solutions.
           </p>
         </div>
@@ -122,8 +122,8 @@ const Portfolio = () => {
               onClick={() => setActiveFilter(filter)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 activeFilter === filter
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-card text-foreground hover:bg-primary/10 border border-border"
+                  ? "bg-primary text-background shadow-lg"
+                  : "bg-white border-2 border-background text-background hover:bg-background hover:text-white"
               }`}
             >
               {filter.charAt(0).toUpperCase() + filter.slice(1)}

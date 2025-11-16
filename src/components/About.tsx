@@ -60,17 +60,17 @@ const About = () => {
   const experienceCounter = useCounter(10);
 
   return (
-    <section id="about" className="py-20 bg-secondary">
+    <section id="about" className="py-20 bg-white-section">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-background mb-6 uppercase">
               About <span className="text-primary">ClikXo</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-6">
+            <p className="text-gray-text/80 text-lg mb-6">
               We are a performance-driven digital marketing agency dedicated to helping businesses grow through innovative strategies and data-driven solutions.
             </p>
-            <p className="text-muted-foreground text-lg mb-8">
+            <p className="text-gray-text/80 text-lg mb-8">
               Our team of experts combines creativity with technical expertise to deliver measurable results that exceed expectations.
             </p>
 
@@ -82,7 +82,7 @@ const About = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                  <span className="text-foreground font-medium">{achievement}</span>
+                  <span className="text-background font-medium">{achievement}</span>
                 </div>
               ))}
             </div>
@@ -98,7 +98,7 @@ const About = () => {
                 <div className="text-3xl font-bold text-primary mb-1">
                   {projectCounter.count}+
                 </div>
-                <p className="text-muted-foreground text-sm">Projects Completed</p>
+                <p className="text-gray-text/80 text-sm">Projects Completed</p>
               </div>
 
               <div ref={clientCounter.ref} className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -108,7 +108,7 @@ const About = () => {
                 <div className="text-3xl font-bold text-primary mb-1">
                   {clientCounter.count}+
                 </div>
-                <p className="text-muted-foreground text-sm">Happy Clients</p>
+                <p className="text-gray-text/80 text-sm">Happy Clients</p>
               </div>
 
               <div ref={satisfactionCounter.ref} className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -118,7 +118,7 @@ const About = () => {
                 <div className="text-3xl font-bold text-primary mb-1">
                   {satisfactionCounter.count}%
                 </div>
-                <p className="text-muted-foreground text-sm">Client Satisfaction</p>
+                <p className="text-gray-text/80 text-sm">Client Satisfaction</p>
               </div>
 
               <div ref={experienceCounter.ref} className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -128,7 +128,7 @@ const About = () => {
                 <div className="text-3xl font-bold text-primary mb-1">
                   {experienceCounter.count}+
                 </div>
-                <p className="text-muted-foreground text-sm">Years Experience</p>
+                <p className="text-gray-text/80 text-sm">Years Experience</p>
               </div>
             </div>
 
@@ -136,7 +136,7 @@ const About = () => {
             <div className="mt-6 bg-gradient-to-br from-primary/10 to-hero-accent/10 rounded-2xl p-8 border border-primary/20">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">Award Winning</div>
-                <p className="text-muted-foreground">Industry Recognition & Excellence</p>
+                <p className="text-gray-text/80">Industry Recognition & Excellence</p>
                 <div className="mt-4 flex justify-center">
                   <Award className="w-8 h-8 text-primary animate-pulse" />
                 </div>
