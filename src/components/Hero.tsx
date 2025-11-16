@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import CycleText from "@/components/CycleText";
 
 const Hero = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -77,7 +78,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <span className="text-primary glow-text">DIGITAL MARKETING</span>{" "}
+            <CycleText
+              words={["DIGITAL MARKETING", "CONTENT CREATION", "SOCIAL MEDIA", "BRAND DESIGN", "SEO OPTIMIZATION", "WEB DEVELOPMENT"]}
+              interval={2500}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black font-heading leading-[1.1] uppercase tracking-tighter"
+            />{" "}
             <span className="text-white">AGENCY</span>
           </motion.h2>
 
