@@ -57,52 +57,76 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 bg-white-section relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, hsl(var(--dark-charcoal) / 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--dark-charcoal) / 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+
+      {/* Decorative Blobs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold uppercase tracking-wider border border-primary/20">
+              Contact Us
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-background mb-6 uppercase tracking-tight">
             Get in <span className="text-primary">Touch</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ready to take your digital marketing to the next level? Let's talk!
+          <p className="text-gray-text-dark text-lg max-w-3xl mx-auto leading-relaxed">
+            Ready to take your digital marketing to the next level? Let's talk and create something amazing together!
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-8 animate-slide-in-left">
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Mail className="w-6 h-6 text-primary" />
+          <div className="space-y-6 animate-slide-in-left">
+            <div className="group flex items-start space-x-5 p-6 bg-background/50 border-2 border-border rounded-2xl hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="w-7 h-7 text-background" />
               </div>
               <div>
-                <h3 className="text-foreground font-semibold text-lg mb-1">Email</h3>
-                <p className="text-muted-foreground">contact@clikxo.com</p>
+                <h3 className="text-background font-black text-xl mb-2 uppercase">Email</h3>
+                <a href="mailto:contact@clikxo.com" className="text-gray-text-dark hover:text-primary transition-colors font-semibold">
+                  contact@clikxo.com
+                </a>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Phone className="w-6 h-6 text-primary" />
+            <div className="group flex items-start space-x-5 p-6 bg-background/50 border-2 border-border rounded-2xl hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <Phone className="w-7 h-7 text-background" />
               </div>
               <div>
-                <h3 className="text-foreground font-semibold text-lg mb-1">Phone</h3>
-                <p className="text-muted-foreground">+971 44318653</p>
+                <h3 className="text-background font-black text-xl mb-2 uppercase">Phone</h3>
+                <a href="tel:+97144318653" className="text-gray-text-dark hover:text-primary transition-colors font-semibold">
+                  +971 44318653
+                </a>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-primary" />
+            <div className="group flex items-start space-x-5 p-6 bg-background/50 border-2 border-border rounded-2xl hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <MapPin className="w-7 h-7 text-background" />
               </div>
               <div>
-                <h3 className="text-foreground font-semibold text-lg mb-1">Location</h3>
-                <p className="text-muted-foreground">Dubai, UAE</p>
+                <h3 className="text-background font-black text-xl mb-2 uppercase">Location</h3>
+                <p className="text-gray-text-dark font-semibold">Dubai, UAE</p>
               </div>
             </div>
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 animate-fade-in">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 animate-fade-in bg-background/50 p-8 rounded-2xl border-2 border-border shadow-xl">
               <FormField
                 control={form.control}
                 name="name"
@@ -112,11 +136,11 @@ const Contact = () => {
                       <Input
                         placeholder="Your Name *"
                         {...field}
-                        className="bg-card border-border text-foreground placeholder:text-muted-foreground"
+                        className="h-14 bg-white border-2 border-border text-background placeholder:text-gray-text-dark/60 rounded-xl font-semibold focus:border-primary transition-colors"
                         disabled={form.formState.isSubmitting}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-destructive font-semibold" />
                   </FormItem>
                 )}
               />
@@ -131,11 +155,11 @@ const Contact = () => {
                         type="email"
                         placeholder="Your Email *"
                         {...field}
-                        className="bg-card border-border text-foreground placeholder:text-muted-foreground"
+                        className="h-14 bg-white border-2 border-border text-background placeholder:text-gray-text-dark/60 rounded-xl font-semibold focus:border-primary transition-colors"
                         disabled={form.formState.isSubmitting}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-destructive font-semibold" />
                   </FormItem>
                 )}
               />
@@ -150,11 +174,11 @@ const Contact = () => {
                         type="tel"
                         placeholder="Your Phone (Optional)"
                         {...field}
-                        className="bg-card border-border text-foreground placeholder:text-muted-foreground"
+                        className="h-14 bg-white border-2 border-border text-background placeholder:text-gray-text-dark/60 rounded-xl font-semibold focus:border-primary transition-colors"
                         disabled={form.formState.isSubmitting}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-destructive font-semibold" />
                   </FormItem>
                 )}
               />
@@ -168,12 +192,12 @@ const Contact = () => {
                       <Textarea
                         placeholder="Your Message *"
                         {...field}
-                        rows={5}
-                        className="bg-card border-border text-foreground placeholder:text-muted-foreground resize-none"
+                        rows={6}
+                        className="bg-white border-2 border-border text-background placeholder:text-gray-text-dark/60 resize-none rounded-xl font-semibold focus:border-primary transition-colors"
                         disabled={form.formState.isSubmitting}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-destructive font-semibold" />
                   </FormItem>
                 )}
               />
@@ -181,12 +205,12 @@ const Contact = () => {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
+                className="w-full h-14 bg-gradient-to-r from-primary via-orange-glow to-primary text-background hover:shadow-[0_0_30px_rgba(255,140,0,0.4)] transition-all duration-300 font-black uppercase text-base tracking-wider rounded-xl border-2 border-primary/20 hover:scale-[1.02]"
                 disabled={form.formState.isSubmitting}
               >
                 {form.formState.isSubmitting ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                     Sending...
                   </>
                 ) : (

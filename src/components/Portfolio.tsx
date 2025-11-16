@@ -103,148 +103,167 @@ const Portfolio = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="portfolio" className="py-20 bg-white-section">
-      <div className="container mx-auto px-4">
+    <section id="portfolio" className="py-20 bg-background relative overflow-hidden">
+      {/* Enhanced Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden opacity-40">
+        {/* Gradient Mesh */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/20 via-orange-glow/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-orange-dim/15 via-primary/10 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, hsl(var(--border) / 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border) / 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-background mb-4 uppercase">
-            Our <span className="text-primary">Success Stories</span>
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold uppercase tracking-wider border border-primary/20">
+              Success Stories
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-foreground mb-6 uppercase tracking-tight">
+            Real Results From <span className="text-primary">Real Clients</span>
           </h2>
-          <p className="text-gray-text/80 text-lg max-w-2xl mx-auto">
-            Real results from real clients. See how we've helped businesses transform and grow through innovative digital solutions.
+          <p className="text-gray-text text-lg max-w-3xl mx-auto leading-relaxed">
+            See how we've helped businesses transform and grow through innovative digital solutions that deliver measurable impact.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* Enhanced Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {["all", "ecommerce", "saas", "mobile"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`group relative px-8 py-3 rounded-full font-bold uppercase text-sm tracking-wider transition-all duration-300 overflow-hidden ${
                 activeFilter === filter
-                  ? "bg-primary text-background shadow-lg"
-                  : "bg-white border-2 border-background text-background hover:bg-background hover:text-white"
+                  ? "bg-primary text-background shadow-[0_0_20px_rgba(255,140,0,0.3)]"
+                  : "bg-card border-2 border-border text-foreground hover:border-primary/50"
               }`}
             >
-              {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              {activeFilter === filter && (
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-dim via-primary to-orange-glow animate-pulse"></div>
+              )}
+              <span className="relative z-10">{filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
             </button>
           ))}
         </div>
 
-        {/* Projects Grid */}
+        {/* Enhanced Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-          {filteredProjects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-              <div className="relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ExternalLink className="w-6 h-6 text-white" />
+          {filteredProjects.map((project) => {
+            const metrics = [
+              { value: Object.values(project.after)[0], label: Object.keys(project.after)[0] },
+              { value: Object.values(project.after)[1], label: Object.keys(project.after)[1] },
+              { value: Object.values(project.after)[2], label: Object.keys(project.after)[2] }
+            ];
+            
+            return (
+              <div
+                key={project.id}
+                className="group bg-card rounded-2xl p-8 border-2 border-border hover:border-primary/40 transition-all duration-500 animate-fade-in hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:-translate-y-1 relative overflow-hidden"
+              >
+                {/* Hover Gradient Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-orange-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-black text-foreground mb-2 uppercase">{project.title}</h3>
+                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary font-bold text-sm rounded-full border border-primary/20">{project.category}</span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {metrics.map((metric, idx) => (
+                      <div key={idx} className="text-center p-4 rounded-xl bg-background/50 border border-border group-hover:border-primary/30 transition-all duration-300">
+                        <div className="text-3xl md:text-4xl font-black text-primary mb-1 group-hover:scale-110 transition-transform duration-300">{metric.value}</div>
+                        <div className="text-xs font-semibold text-gray-text uppercase tracking-wide">{metric.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <blockquote className="border-l-4 border-primary/50 pl-6 mb-6 py-2">
+                    <p className="text-foreground/90 italic text-lg mb-3 leading-relaxed">"{project.testimonial.quote}"</p>
+                    <footer className="text-sm font-semibold text-gray-text">
+                      — {project.testimonial.author}, <span className="text-primary">{project.testimonial.position}</span>
+                    </footer>
+                  </blockquote>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-4 py-1.5 bg-background border border-border text-foreground rounded-full text-xs font-bold uppercase tracking-wide hover:border-primary/40 transition-colors duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              <CardHeader>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-                <CardDescription className="text-primary font-medium">{project.client}</CardDescription>
-              </CardHeader>
-
-              <CardContent className="space-y-6">
-                {/* Before/After Metrics */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-semibold text-red-500 mb-3">Before</h4>
-                    {Object.entries(project.before).map(([key, value]) => (
-                      <div key={key} className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">{key}:</span>
-                        <span className="font-medium">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-green-500 mb-3">After</h4>
-                    {Object.entries(project.after).map(([key, value]) => (
-                      <div key={key} className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">{key}:</span>
-                        <span className="font-medium text-primary">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Testimonial */}
-                <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
-                  <blockquote className="text-sm italic text-muted-foreground mb-2">
-                    "{project.testimonial.quote}"
-                  </blockquote>
-                  <cite className="text-xs font-medium">
-                    - {project.testimonial.author}, {project.testimonial.position}
-                  </cite>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Testimonials Section */}
-        <div className="bg-card rounded-2xl p-8 shadow-lg">
-          <h3 className="text-3xl font-bold text-center mb-12 text-foreground">
-            What Our <span className="text-primary">Clients Say</span>
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Enhanced Testimonials Section */}
+        <div className="mt-20 mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold uppercase tracking-wider border border-primary/20">
+                Client Testimonials
+              </span>
+            </div>
+            <h3 className="text-3xl md:text-5xl font-black text-foreground uppercase">
+              What Our Clients Say
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="text-center group">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden border-2 border-primary/20 group-hover:border-primary transition-colors">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    className="w-full h-full object-cover"
-                  />
+              <div
+                key={index}
+                className="group bg-card rounded-2xl p-8 border-2 border-border hover:border-primary/40 transition-all duration-500 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:-translate-y-1 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-orange-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-primary text-5xl mb-4 opacity-30">"</div>
+                  <p className="text-foreground/90 italic text-base mb-6 leading-relaxed">{testimonial.quote}</p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-border">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center text-background font-black text-lg">
+                      {testimonial.author.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="font-bold text-foreground">{testimonial.author}</div>
+                      <div className="text-sm text-gray-text">{testimonial.position}</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-center mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-muted-foreground mb-4 italic">
-                  "{testimonial.quote}"
-                </blockquote>
-                <cite className="font-semibold text-foreground">
-                  {testimonial.author}
-                </cite>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {testimonial.position}
-                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-primary to-hero-accent rounded-2xl p-8 text-white">
-            <h3 className="text-3xl font-bold mb-4">Ready to Join Our Success Stories?</h3>
-            <p className="text-lg mb-6 opacity-90">
+        {/* Enhanced CTA Section */}
+        <div className="mt-16 text-center bg-gradient-to-br from-card via-card to-card/50 rounded-2xl p-12 border-2 border-border relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-orange-glow/5 to-primary/5 animate-pulse"></div>
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-black text-foreground mb-4 uppercase">
+              Ready to Join Our Success Stories?
+            </h3>
+            <p className="text-gray-text text-lg mb-8 max-w-2xl mx-auto">
               Let's create your next success story together. Our expertise is ready to transform your business.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center mx-auto"
+              className="inline-block px-10 py-4 bg-gradient-to-r from-primary via-orange-glow to-primary text-background font-black uppercase tracking-wider rounded-full hover:shadow-[0_0_30px_rgba(255,140,0,0.4)] transition-all duration-300 hover:scale-105"
             >
               Start Your Project
-              <ChevronRight className="ml-2 w-5 h-5" />
             </button>
           </div>
         </div>
