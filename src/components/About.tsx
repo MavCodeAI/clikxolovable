@@ -1,8 +1,8 @@
-import { CheckCircle2, Users, Award, Target, Clock } from "lucide-react";
+import { CheckCircle2, Users, Award, Target, Clock, Sparkles, Star, Trophy, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-const useCounter = (end: number, duration: number = 2000) => {
+const useCounter = (end: number, duration: number = 2500) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +32,7 @@ const useCounter = (end: number, duration: number = 2000) => {
       if (!startTime) startTime = currentTime;
 
       const progress = (currentTime - startTime) / duration;
-      const current = Math.floor(end * Math.min(progress, 1));
+      const current = Math.floor(end * (1 - Math.pow(1 - Math.min(progress, 1), 3))); // Ease out cubic
 
       setCount(current);
 
@@ -47,12 +47,118 @@ const useCounter = (end: number, duration: number = 2000) => {
   return { count, ref };
 };
 
+interface StatCardProps {
+  icon: React.ComponentType<{ className?: string }>;
+  value: number;
+  suffix: string;
+  label: string;
+  index: number;
+  colors: string;
+}
+
+const StatCard = ({ icon: Icon, value, suffix, label, index, colors }: StatCardProps) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = (mouseX / width - 0.5) * 2;
+    const yPct = (mouseY / height - 0.5) * 2;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const statCounter = useCounter(value);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.15,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }}
+      style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative"
+    >
+      {/* Card background with premium gradient */}
+      <div className={`relative bg-gradient-to-br ${colors} rounded-2xl p-8 text-center overflow-hidden
+                      border border-white/20 shadow-2xl backdrop-blur-sm
+                      hover:shadow-3xl hover:shadow-primary/25 hover:border-primary/30
+                      transition-all duration-700 group-hover:scale-[1.02] h-full`}>
+
+        {/* Animated particle effects */}
+        <div className="absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full animate-ping group-hover:w-3 group-hover:h-3 transition-all duration-500" />
+        <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-primary/50 rounded-full animate-pulse group-hover:w-2 group-hover:h-2 transition-all duration-500" />
+
+        {/* Glowing border effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+
+        {/* Main content */}
+        <div className="relative z-10">
+          {/* Icon with enhanced animation */}
+          <motion.div
+            className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm
+                       flex items-center justify-center shadow-lg border border-white/30"
+            whileHover={{ rotate: 360, scale: 1.1 }}
+            transition={{ duration: 0.6, type: "spring" }}
+          >
+            <Icon className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
+            <div className="absolute inset-0 rounded-2xl bg-primary/20 scale-0 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
+          </motion.div>
+
+          {/* Counter with premium typography */}
+          <div ref={statCounter.ref} className="text-5xl sm:text-6xl font-black text-white mb-3 font-heading tracking-tight">
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: index * 0.2 + 0.5, type: "spring" }}
+            >
+              {statCounter.count}
+            </motion.span>
+            <span className="text-4xl">{suffix}</span>
+          </div>
+
+          {/* Label with elegant styling */}
+          <p className="text-white/90 text-lg font-semibold tracking-wide uppercase mb-0 leading-tight">
+            {label}
+          </p>
+        </div>
+
+        {/* Premium shadow effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+      </div>
+    </motion.div>
+  );
+};
+
 const About = () => {
   const achievements = [
-    "10+ Years of Excellence",
-    "500+ Successful Projects",
+    "Quality-Focused Excellence",
+    "50+ Successful Projects",
     "98% Client Satisfaction",
-    "Award-Winning Team",
+    "25+ Expert Team Members",
   ];
 
   const projectCounter = useCounter(500);
@@ -113,48 +219,49 @@ const About = () => {
           </motion.div>
 
           <div className="relative animate-fade-in">
-            {/* Statistics Grid */}
-            <div className="grid grid-cols-2 gap-4" role="list" aria-label="Company statistics">
-              <div ref={projectCounter.ref} role="listitem" className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                  <Target className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-3xl font-bold text-primary mb-1" aria-label={`${projectCounter.count} plus projects completed`}>
-                  {projectCounter.count}+
-                </div>
-                <p className="text-gray-text/80 text-sm">Projects Completed</p>
+            {/* Premium Statistics Grid */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, type: "spring" }}
+              className="relative"
+            >
+              <div className="grid grid-cols-2 gap-4" role="list" aria-label="Company statistics">
+                <StatCard
+                  icon={Trophy}
+                  value={50}
+                  suffix="+"
+                  label="Successful Projects"
+                  index={0}
+                  colors="from-emerald-500 via-teal-500 to-cyan-500"
+                />
+                <StatCard
+                  icon={Award}
+                  value={98}
+                  suffix="%"
+                  label="Client Satisfaction"
+                  index={1}
+                  colors="from-amber-500 via-orange-500 to-red-500"
+                />
+                <StatCard
+                  icon={Users}
+                  value={25}
+                  suffix="+"
+                  label="Team Members"
+                  index={2}
+                  colors="from-purple-500 via-violet-500 to-indigo-500"
+                />
+                <StatCard
+                  icon={Zap}
+                  value={5}
+                  suffix="+"
+                  label="Years Experience"
+                  index={3}
+                  colors="from-pink-500 via-rose-500 to-red-500"
+                />
               </div>
-
-              <div ref={clientCounter.ref} role="listitem" className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-3xl font-bold text-primary mb-1" aria-label={`${clientCounter.count} plus happy clients`}>
-                  {clientCounter.count}+
-                </div>
-                <p className="text-gray-text/80 text-sm">Happy Clients</p>
-              </div>
-
-              <div ref={satisfactionCounter.ref} role="listitem" className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-3xl font-bold text-primary mb-1" aria-label={`${satisfactionCounter.count} percent client satisfaction`}>
-                  {satisfactionCounter.count}%
-                </div>
-                <p className="text-gray-text/80 text-sm">Client Satisfaction</p>
-              </div>
-
-              <div ref={experienceCounter.ref} role="listitem" className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                  <Clock className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-3xl font-bold text-primary mb-1" aria-label={`${experienceCounter.count} plus years experience`}>
-                  {experienceCounter.count}+
-                </div>
-                <p className="text-gray-text/80 text-sm">Years Experience</p>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Featured Card */}
             <div className="mt-6 bg-gradient-to-br from-primary/10 to-hero-accent/10 rounded-2xl p-8 border border-primary/20">

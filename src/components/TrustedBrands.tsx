@@ -2,17 +2,12 @@ import { motion } from "framer-motion";
 
 const TrustedBrands = () => {
   const brands = [
-    "TechCorp", "InnovateLab", "GlobalEdge", "NextGen Solutions",
+    "TechCorp", "InnovateLab", "Global Edge", "NextGen",
     "Digital First", "Creative Hub", "Smart Systems", "Future Tech"
   ];
 
   return (
     <section className="py-24 bg-white-section relative overflow-hidden" aria-label="Trusted brands section">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true" style={{
-        backgroundImage: 'linear-gradient(30deg, #000 12%, transparent 12.5%, transparent 87%, #000 87.5%, #000), linear-gradient(150deg, #000 12%, transparent 12.5%, transparent 87%, #000 87.5%, #000)',
-        backgroundSize: '20px 35px'
-      }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
@@ -43,7 +38,7 @@ const TrustedBrands = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex items-center justify-center p-8 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-md border-2 border-gray-textDark/20 hover:border-primary/40 group focus-within:ring-4 focus-within:ring-primary/20"
+              className="flex items-center justify-center min-h-[120px] p-6 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-md border-2 border-gray-textDark/20 hover:border-primary/40 group focus-within:ring-4 focus-within:ring-primary/20"
             >
               <span className="text-background font-black font-heading text-lg md:text-xl group-hover:text-primary transition-colors duration-300 tracking-tight">{brand}</span>
             </motion.div>

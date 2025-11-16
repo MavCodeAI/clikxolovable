@@ -186,28 +186,6 @@ const Team: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Stats Section */}
-        <div className="mt-20 bg-gradient-to-r from-primary to-hero-accent rounded-2xl p-8 text-white">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold mb-2">50+</div>
-              <div className="text-lg opacity-90">Successful Projects</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">98%</div>
-              <div className="text-lg opacity-90">Client Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">25+</div>
-              <div className="text-lg opacity-90">Team Members</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">5+</div>
-              <div className="text-lg opacity-90">Years Experience</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

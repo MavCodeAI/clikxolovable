@@ -92,22 +92,22 @@ const Services = () => {
     {
       icon: Code,
       title: "Web Development",
-      description: "Build modern, scalable web applications with cutting-edge technologies and frameworks.",
+      description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
     },
     {
       icon: Smartphone,
       title: "App Development",
-      description: "Create responsive mobile applications that deliver exceptional user experiences across all devices.",
+      description: "Native and cross-platform mobile apps designed for exceptional user experience across all devices.",
     },
     {
       icon: Palette,
       title: "Graphics Designing",
-      description: "Professional visual design solutions including logos, branding, and marketing materials.",
+      description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
     },
     {
       icon: TrendingUp,
       title: "Digital Marketing",
-      description: "Comprehensive online marketing strategies to grow your brand and reach your target audience.",
+      description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
     },
   ];
 
