@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Form,
   FormControl,
@@ -38,8 +39,18 @@ const Contact = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Submitting contact form:", data);
+      
+      const { data: responseData, error } = await supabase.functions.invoke('send-contact-email', {
+        body: data
+      });
+
+      if (error) {
+        console.error("Error sending email:", error);
+        throw error;
+      }
+
+      console.log("Email sent successfully:", responseData);
       
       toast({
         title: "✓ Message Sent Successfully!",
@@ -47,10 +58,11 @@ const Contact = () => {
       });
       
       form.reset();
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Failed to send message:", error);
       toast({
         title: "✗ Error",
-        description: "Failed to send message. Please try again.",
+        description: error.message || "Failed to send message. Please try again or email us directly.",
         variant: "destructive",
       });
     }
