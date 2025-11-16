@@ -54,7 +54,7 @@ function ServiceCard({ service, index }: { service: ServiceType; index: number }
       onMouseLeave={handleMouseLeave}
       className="group cursor-pointer"
     >
-      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 relative overflow-hidden h-full group-hover:scale-[1.02]">
+      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 relative overflow-hidden h-full min-h-[300px] group-hover:scale-[1.02]">
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/5 group-hover:via-orange-glow/5 group-hover:to-primary/5 transition-all duration-500"></div>
         
@@ -143,7 +143,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" role="list">
           {services.map((service, index) => (
             <div key={index} role="listitem">
               <ServiceCard service={service} index={index} />

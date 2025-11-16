@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Loader2, MessageSquare, Clock, Code, Smartphone, Palette, TrendingUp } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -12,13 +12,26 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email("Invalid email address").max(255),
   phone: z.string().min(10, "Phone number must be at least 10 digits").max(20).optional().or(z.literal("")),
+  serviceType: z.string().min(1, "Please select a service"),
+  projectType: z.string().min(1, "Please select a project type"),
+  budget: z.string().min(1, "Please select a budget range"),
+  timeline: z.string().min(1, "Please select a timeline"),
+  companySize: z.string().min(1, "Please select your company/project scale"),
   message: z.string().min(10, "Message must be at least 10 characters").max(1000),
 });
 
@@ -33,6 +46,11 @@ const Contact = () => {
       name: "",
       email: "",
       phone: "",
+      serviceType: "",
+      projectType: "",
+      budget: "",
+      timeline: "",
+      companySize: "",
       message: "",
     },
   });
@@ -69,206 +87,400 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white-section relative overflow-hidden">
-      {/* Enhanced Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.04]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 1px 1px, hsl(var(--dark-charcoal) / 0.15) 1px, transparent 0)
-          `,
-          backgroundSize: '40px 40px'
-        }}></div>
+    <section id="contact" className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden py-24">
+      {/* Modern Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-glow/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-0 w-72 h-72 bg-gradient-to-r from-primary/3 to-orange-glow/3 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Animated Decorative Blobs */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/8 to-orange-glow/8 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-tl from-orange-dim/6 to-primary/6 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20 animate-fade-in">
-          <div className="inline-block mb-4">
-            <span className="px-5 py-2 bg-primary/10 text-primary rounded-full text-sm font-black font-heading uppercase tracking-widest border-2 border-primary/20 shadow-lg shadow-primary/10">
-              Contact Us
-            </span>
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header Section */}
+        <div className="text-center mb-20 px-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-sm mb-6">
+            <MessageSquare className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Get In Touch</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-8 uppercase tracking-tighter leading-[1.1]">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary animate-gradient">Touch</span>
-          </h2>
-          <p className="text-gray-textDark text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
-            Ready to take your digital marketing to the next level? Let's talk and create something amazing together!
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-none pb-2" style={{lineHeight: '0.9'}}>
+            <span className="block mb-4">Let's Create</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary bg-300% animate-gradient block">Something Amazing</span>
+          </h1>
+
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2">
+            Ready to transform your digital presence? We're here to turn your vision into reality.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
-          {/* Contact Info Cards */}
-          <div className="lg:col-span-2 space-y-4 md:space-y-6 animate-slide-in-left">
-            <div className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-orange-glow/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6 p-6 md:p-8 bg-white/80 backdrop-blur-sm border-2 border-gray-textDark/10 rounded-2xl md:rounded-3xl hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-background font-black font-heading text-lg md:text-2xl mb-2 md:mb-3 uppercase tracking-tight">Email</h3>
-                  <a href="mailto:contact@clikxo.com" className="text-gray-textDark hover:text-primary transition-colors font-bold text-base md:text-lg group-hover:underline break-all">
-                    contact@clikxo.com
-                  </a>
-                  <p className="text-gray-textDark/60 text-xs md:text-sm mt-2 font-medium">Send us an email anytime</p>
-                </div>
-              </div>
-            </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            {/* Contact Info Section */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">Connect With Us</h3>
 
-            <div className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-orange-glow/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6 p-6 md:p-8 bg-white/80 backdrop-blur-sm border-2 border-gray-textDark/10 rounded-2xl md:rounded-3xl hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-background font-black font-heading text-lg md:text-2xl mb-2 md:mb-3 uppercase tracking-tight">Phone</h3>
-                  <a href="tel:+97144318653" className="text-gray-textDark hover:text-primary transition-colors font-bold text-base md:text-lg group-hover:underline break-all">
-                    +971 44318653
-                  </a>
-                  <p className="text-gray-textDark/60 text-xs md:text-sm mt-2 font-medium">Mon-Fri from 9am to 6pm</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-orange-glow/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6 p-6 md:p-8 bg-white/80 backdrop-blur-sm border-2 border-gray-textDark/10 rounded-2xl md:rounded-3xl hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-orange-glow flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                  <MapPin className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-background font-black font-heading text-lg md:text-2xl mb-2 md:mb-3 uppercase tracking-tight">Location</h3>
-                  <p className="text-gray-textDark font-bold text-base md:text-lg">Dubai, UAE</p>
-                  <p className="text-gray-textDark/60 text-xs md:text-sm mt-2 font-medium">Visit us at our office</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-3 animate-fade-in">
-            <div className="relative group overflow-hidden">
-              {/* Animated border gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-orange-glow to-primary opacity-20 blur-xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="relative space-y-4 md:space-y-6 bg-white/90 backdrop-blur-sm p-6 md:p-12 rounded-2xl md:rounded-3xl border-2 border-gray-textDark/10 shadow-2xl shadow-primary/5 hover:shadow-primary/10 transition-shadow duration-500">
-                  <div className="text-center mb-6 md:mb-8">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-black font-heading text-background mb-2 md:mb-3 uppercase tracking-tight leading-tight">Send us a Message</h3>
-                    <p className="text-gray-textDark font-medium text-sm md:text-base">Fill out the form below and we'll get back to you shortly</p>
+                {/* Modern Contact Cards */}
+                <div className="space-y-4">
+                  {/* Email Card */}
+                  <div className="group relative bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-14 h-14 bg-gradient-to-br from-primary to-orange-glow rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <Mail className="w-7 h-7 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Email Us</h4>
+                        <a
+                          href="mailto:contact@clikxo.com"
+                          className="text-gray-700 hover:text-primary font-semibold text-lg transition-colors group-hover:underline block mb-1"
+                        >
+                          contact@clikxo.com
+                        </a>
+                        <p className="text-gray-500 text-sm font-medium">We typically respond within 2 hours</p>
+                      </div>
+                    </div>
                   </div>
 
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                            <Input
-                              placeholder="Your Full Name *"
-                              {...field}
-                              className="h-12 md:h-16 bg-white border-2 border-gray-textDark/20 text-background placeholder:text-gray-textDark/50 rounded-xl md:rounded-2xl font-bold text-base md:text-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 hover:border-gray-textDark/40"
-                              disabled={form.formState.isSubmitting}
-                            />
-                        </FormControl>
-                        <FormMessage className="text-destructive font-bold mt-2" />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="Your Email *"
-                              {...field}
-                              className="h-12 md:h-16 bg-white border-2 border-gray-textDark/20 text-background placeholder:text-gray-textDark/50 rounded-xl md:rounded-2xl font-bold text-base md:text-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 hover:border-gray-textDark/40"
-                              disabled={form.formState.isSubmitting}
-                            />
-                          </FormControl>
-                          <FormMessage className="text-destructive font-bold mt-2" />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input
-                              type="tel"
-                              placeholder="Your Phone (Optional)"
-                              {...field}
-                              className="h-12 md:h-16 bg-white border-2 border-gray-textDark/20 text-background placeholder:text-gray-textDark/50 rounded-xl md:rounded-2xl font-bold text-base md:text-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 hover:border-gray-textDark/40"
-                              disabled={form.formState.isSubmitting}
-                            />
-                          </FormControl>
-                          <FormMessage className="text-destructive font-bold mt-2" />
-                        </FormItem>
-                      )}
-                    />
+                  {/* Phone Card */}
+                  <div className="group relative bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-14 h-14 bg-gradient-to-br from-primary to-orange-glow rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <Phone className="w-7 h-7 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Call Us</h4>
+                        <a
+                          href="tel:+97144318653"
+                          className="text-gray-700 hover:text-primary font-semibold text-lg transition-colors group-hover:underline block mb-1"
+                        >
+                          +971 44 318 653
+                        </a>
+                        <div className="flex items-center gap-2 text-gray-500 text-sm font-medium">
+                          <Clock className="w-4 h-4" />
+                          <span>Mon-Fri: 9AM - 6PM (GST)</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell us about your project... *"
-                            {...field}
-                            rows={5}
-                            className="bg-white border-2 border-gray-textDark/20 text-background placeholder:text-gray-textDark/50 resize-none rounded-xl md:rounded-2xl font-bold text-base md:text-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 hover:border-gray-textDark/40"
-                            disabled={form.formState.isSubmitting}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-destructive font-bold mt-2" />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="group relative w-full h-12 md:h-16 bg-gradient-to-r from-primary via-orange-glow to-primary hover:from-orange-glow hover:via-primary hover:to-orange-glow text-white font-black font-heading text-base md:text-lg uppercase tracking-widest rounded-xl md:rounded-2xl shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:scale-[1.02] overflow-hidden"
-                    disabled={form.formState.isSubmitting}
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3">
-                      {form.formState.isSubmitting ? (
-                        <>
-                          <Loader2 className="h-5 w-5 md:h-6 md:w-6 animate-spin" />
-                          <span className="hidden sm:inline">Sending Message...</span>
-                          <span className="sm:hidden">Sending...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Message</span>
-                          <svg className="w-5 h-5 md:w-6 md:h-6 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-125" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </>
-                      )}
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-dim to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </Button>
 
-                  <p className="text-center text-gray-textDark/60 text-sm font-medium mt-6">
-                    By submitting this form, you agree to our <span className="text-primary font-bold cursor-pointer hover:underline">privacy policy</span>
-                  </p>
-                </form>
-              </Form>
+                  {/* Location Card */}
+                  <div className="group relative bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-14 h-14 bg-gradient-to-br from-primary to-orange-glow rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <MapPin className="w-7 h-7 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Visit Our Office</h4>
+                        <p className="text-gray-700 font-semibold text-lg mb-2">Dubai, UAE</p>
+                        <p className="text-gray-500 text-sm font-medium">Business Bay, Dubai</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Stats/Info */}
+              <div className="bg-gradient-to-r from-primary/5 to-orange-glow/5 p-8 rounded-2xl border border-primary/10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                  <div>
+                    <div className="text-2xl md:text-3xl font-black text-primary mb-1">24h</div>
+                    <div className="text-sm font-semibold text-gray-700">Response Time</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl md:text-3xl font-black text-primary mb-1">500+</div>
+                    <div className="text-sm font-semibold text-gray-700">Projects Done</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl md:text-3xl font-black text-primary mb-1">5.0</div>
+                    <div className="text-sm font-semibold text-gray-700">Client Rating</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl md:text-3xl font-black text-primary mb-1">10+</div>
+                    <div className="text-sm font-semibold text-gray-700">Years Experience</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form Section */}
+            <div className="relative">
+              <div className="sticky top-8">
+                <div className="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gray-200/50 shadow-2xl">
+                  <div className="mb-8">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Send a Message</h3>
+                    <p className="text-gray-600 font-medium">Fill out the form below and we'll get back to you within 24 hours.</p>
+                  </div>
+
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <div className="relative">
+                                <Input
+                                  placeholder="Your Full Name *"
+                                  {...field}
+                                  className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 placeholder:text-gray-500 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300"
+                                  disabled={form.formState.isSubmitting}
+                                />
+                              </div>
+                            </FormControl>
+                            <FormMessage className="text-red-500 font-semibold mt-2" />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="Your Email *"
+                                  {...field}
+                                  className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 placeholder:text-gray-500 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300"
+                                  disabled={form.formState.isSubmitting}
+                                />
+                              </FormControl>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <Input
+                                  type="tel"
+                                  placeholder="Your Phone (Optional)"
+                                  {...field}
+                                  className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 placeholder:text-gray-500 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300"
+                                  disabled={form.formState.isSubmitting}
+                                />
+                              </FormControl>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      {/* Service-Related Fields */}
+                      <FormField
+                        control={form.control}
+                        name="serviceType"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-gray-900 font-bold text-base">Service Interest *</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value} disabled={form.formState.isSubmitting}>
+                              <FormControl>
+                                <SelectTrigger className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300">
+                                  <SelectValue placeholder="What service are you interested in?" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="web-development">
+                                  <div className="flex items-center gap-3">
+                                    <Code className="w-4 h-4 text-primary" />
+                                    <span>Web Development</span>
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="app-development">
+                                  <div className="flex items-center gap-3">
+                                    <Smartphone className="w-4 h-4 text-primary" />
+                                    <span>App Development</span>
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="graphics-designing">
+                                  <div className="flex items-center gap-3">
+                                    <Palette className="w-4 h-4 text-primary" />
+                                    <span>Graphics Designing</span>
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="digital-marketing">
+                                  <div className="flex items-center gap-3">
+                                    <TrendingUp className="w-4 h-4 text-primary" />
+                                    <span>Digital Marketing</span>
+                                  </div>
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage className="text-red-500 font-semibold mt-2" />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="projectType"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-900 font-bold text-base">Project Type *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={form.formState.isSubmitting}>
+                                <FormControl>
+                                  <SelectTrigger className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300">
+                                    <SelectValue placeholder="What type of project?" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="new-project">New Project</SelectItem>
+                                  <SelectItem value="redesign">Redesign/Revamp</SelectItem>
+                                  <SelectItem value="maintenance">Maintenance/Update</SelectItem>
+                                  <SelectItem value="consultation">Consultation</SelectItem>
+                                  <SelectItem value="other">Other</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="budget"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-900 font-bold text-base">Budget Range *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={form.formState.isSubmitting}>
+                                <FormControl>
+                                  <SelectTrigger className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300">
+                                    <SelectValue placeholder="Your budget range?" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="under-5k">Under $5,000</SelectItem>
+                                  <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
+                                  <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
+                                  <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
+                                  <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
+                                  <SelectItem value="over-100k">Over $100,000</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="timeline"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-900 font-bold text-base">Timeline *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={form.formState.isSubmitting}>
+                                <FormControl>
+                                  <SelectTrigger className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300">
+                                    <SelectValue placeholder="When do you need it?" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="asap">As soon as possible</SelectItem>
+                                  <SelectItem value="1-month">Within 1 month</SelectItem>
+                                  <SelectItem value="2-3-months">2-3 months</SelectItem>
+                                  <SelectItem value="3-6-months">3-6 months</SelectItem>
+                                  <SelectItem value="6-months-plus">6+ months</SelectItem>
+                                  <SelectItem value="flexible">Flexible</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="companySize"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-900 font-bold text-base">Company/Project Scale *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={form.formState.isSubmitting}>
+                                <FormControl>
+                                  <SelectTrigger className="h-14 bg-gray-50/50 border-2 border-gray-200 text-gray-900 rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300">
+                                    <SelectValue placeholder="Company/project size?" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="startup">Startup (1-10 employees)</SelectItem>
+                                  <SelectItem value="small-business">Small Business (11-50 employees)</SelectItem>
+                                  <SelectItem value="medium-business">Medium Business (51-200 employees)</SelectItem>
+                                  <SelectItem value="enterprise">Enterprise (200+ employees)</SelectItem>
+                                  <SelectItem value="individual">Individual/Personal Project</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage className="text-red-500 font-semibold mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Tell us about your project, goals, and timeline... *"
+                                {...field}
+                                rows={6}
+                                className="bg-gray-50/50 border-2 border-gray-200 text-gray-900 placeholder:text-gray-500 resize-none rounded-xl font-semibold text-base focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 transition-all duration-300 hover:border-gray-300"
+                                disabled={form.formState.isSubmitting}
+                              />
+                            </FormControl>
+                            <FormMessage className="text-red-500 font-semibold mt-2" />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="group relative w-full h-14 bg-gradient-to-r from-primary via-orange-glow to-primary hover:from-orange-glow hover:via-primary hover:to-orange-glow text-white font-bold text-lg rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+                        disabled={form.formState.isSubmitting}
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                          {form.formState.isSubmitting ? (
+                            <>
+                              <Loader2 className="h-5 w-5 animate-spin" />
+                              <span>Sending Message...</span>
+                            </>
+                          ) : (
+                            <>
+                              <MessageSquare className="h-5 w-5" />
+                              <span>Send Message</span>
+                            </>
+                          )}
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange-dim to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </Button>
+
+                      <p className="text-center text-gray-500 text-sm font-medium">
+                        By submitting this form, you agree to our{' '}
+                        <button type="button" className="text-primary font-bold hover:underline focus:outline-none">
+                          Privacy Policy
+                        </button>
+                      </p>
+                    </form>
+                  </Form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
