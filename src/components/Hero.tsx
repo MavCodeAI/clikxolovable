@@ -32,6 +32,66 @@ const Hero = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Magnetic cursor effect components
+  const MagneticButton = ({ children, onClick, className, variant = "default", ...props }: any) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const springX = useSpring(x, { stiffness: 400, damping: 25 });
+    const springY = useSpring(y, { stiffness: 400, damping: 25 });
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+      if (!isHovered) return;
+
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const distance = Math.sqrt(
+        Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+      );
+
+      const range = 150; // Magnetic range
+      if (distance < range) {
+        const pull = (range - distance) / range;
+        const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+        x.set(Math.cos(angle) * pull * 0.5 * 20);
+        y.set(Math.sin(angle) * pull * 0.5 * 20);
+      } else {
+        x.set(0);
+        y.set(0);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovered(false);
+      x.set(0);
+      y.set(0);
+    };
+
+    return (
+      <motion.div
+        className="inline-block"
+        style={{
+          x: springX,
+          y: springY,
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+      >
+        <Button
+          onClick={onClick}
+          className={className}
+          variant={variant}
+          {...props}
+        >
+          {children}
+        </Button>
+      </motion.div>
+    );
+  };
+
   // Service rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
@@ -203,7 +263,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
               >
-                <Button
+                <MagneticButton
                   onClick={scrollToServices}
                   size="lg"
                   aria-label="Explore our services"
@@ -218,16 +278,16 @@ const Hero = () => {
                     initial={false}
                     animate={{}}
                   />
-                </Button>
+                </MagneticButton>
 
-                <Button
+                <MagneticButton
                   onClick={() => navigate('/portfolio')}
                   size="lg"
                   variant="outline"
                   aria-label="View our work"
-                  className="px-10 py-5 bg-transparent border-2 border-white/30 text-white font-bold text-lg uppercase tracking-wider rounded-full hover:bg-white/15 hover:border-white/60 transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 min-w-[200px] relative"
+                  className="px-10 py-5 bg-transparent border-2 border-white/30 text-white font-bold text-lg uppercase tracking-wider rounded-full hover:bg-white/5 hover:border-white/60 transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 min-w-[200px] relative"
                 >
-                  <span className="relative z-10 flex items-center justify-center drop-shadow-sm"
+                  <span className="relative z-10 flex items-center justify-center drop-shadow-sm hover:text-primary transition-colors duration-300"
                         style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.2)' }}>
                     View Our Work
                   </span>
@@ -236,7 +296,7 @@ const Hero = () => {
                     initial={false}
                     animate={{}}
                   />
-                </Button>
+                </MagneticButton>
               </motion.div>
             </motion.div>
 
