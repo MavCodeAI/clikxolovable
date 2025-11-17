@@ -58,8 +58,8 @@ const Hero = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div className="space-y-8 text-center lg:text-left" initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={{duration: 0.8}}>
               <motion.div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/30 shadow-lg" whileHover={{scale: 1.05}}>
-                <Sparkles className="w-4 h-4 text-primary animate-pulse" aria-hidden="true" />
-                <span className="text-sm font-bold text-foreground uppercase tracking-wider">#1 Digital Innovation Partner</span>
+              <Sparkles className="icon-primary icon-md animate-pulse" aria-hidden="true" />
+              <span className="text-sm font-bold text-foreground uppercase tracking-wider">#1 Digital Innovation Partner</span>
               </motion.div>
 
               <div className="space-y-4">

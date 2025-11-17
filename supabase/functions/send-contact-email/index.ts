@@ -1,7 +1,7 @@
 import { serve } from "@std/http/server";
-import { Resend } from "npm:resend@^4.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY")!);
+// Use fetch for email sending instead of Resend SDK
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
