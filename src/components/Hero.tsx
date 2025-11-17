@@ -32,63 +32,17 @@ const Hero = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Magnetic cursor effect components
+  // Simplified button component for better performance
   const MagneticButton = ({ children, onClick, className, variant = "default", ...props }: any) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const springX = useSpring(x, { stiffness: 400, damping: 25 });
-    const springY = useSpring(y, { stiffness: 400, damping: 25 });
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-      if (!isHovered) return;
-
-      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const distance = Math.sqrt(
-        Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
-      );
-
-      const range = 150; // Magnetic range
-      if (distance < range) {
-        const pull = (range - distance) / range;
-        const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-        x.set(Math.cos(angle) * pull * 0.5 * 20);
-        y.set(Math.sin(angle) * pull * 0.5 * 20);
-      } else {
-        x.set(0);
-        y.set(0);
-      }
-    };
-
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-      x.set(0);
-      y.set(0);
-    };
-
     return (
-      <motion.div
-        className="inline-block"
-        style={{
-          x: springX,
-          y: springY,
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
+      <Button
+        onClick={onClick}
+        className={className}
+        variant={variant}
+        {...props}
       >
-        <Button
-          onClick={onClick}
-          className={className}
-          variant={variant}
-          {...props}
-        >
-          {children}
-        </Button>
-      </motion.div>
+        {children}
+      </Button>
     );
   };
 

@@ -6,35 +6,47 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
+import { lazy, Suspense } from "react";
 import RouteTransition from "./components/RouteTransition";
-import Index from "./pages/Index";
-import Blog from "./pages/Blog";
-import About from "./pages/About";
-import Team from "./pages/Team";
-import Portfolio from "./pages/Portfolio";
-import Contact from "./pages/Contact";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import CookiePolicy from "./pages/CookiePolicy";
-import NotFound from "./pages/NotFound";
+
+// Lazy load pages for better performance
+const Index = lazy(() => import("./pages/Index"));
+const Blog = lazy(() => import("./pages/Blog"));
+const About = lazy(() => import("./pages/About"));
+const Team = lazy(() => import("./pages/Team"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Contact = lazy(() => import("./pages/Contact"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="animate-pulse text-primary text-lg font-bold">Loading...</div>
+  </div>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<RouteTransition><Index /></RouteTransition>} />
-        <Route path="/about" element={<RouteTransition><About /></RouteTransition>} />
-        <Route path="/team" element={<RouteTransition><Team /></RouteTransition>} />
-        <Route path="/portfolio" element={<RouteTransition><Portfolio /></RouteTransition>} />
-        <Route path="/contact" element={<RouteTransition><Contact /></RouteTransition>} />
-        <Route path="/blog" element={<RouteTransition><Blog /></RouteTransition>} />
-        <Route path="/privacy-policy" element={<RouteTransition><PrivacyPolicy /></RouteTransition>} />
-        <Route path="/terms-of-service" element={<RouteTransition><TermsOfService /></RouteTransition>} />
-        <Route path="/cookie-policy" element={<RouteTransition><CookiePolicy /></RouteTransition>} />
-        <Route path="*" element={<RouteTransition><NotFound /></RouteTransition>} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<RouteTransition><Index /></RouteTransition>} />
+          <Route path="/about" element={<RouteTransition><About /></RouteTransition>} />
+          <Route path="/team" element={<RouteTransition><Team /></RouteTransition>} />
+          <Route path="/portfolio" element={<RouteTransition><Portfolio /></RouteTransition>} />
+          <Route path="/contact" element={<RouteTransition><Contact /></RouteTransition>} />
+          <Route path="/blog" element={<RouteTransition><Blog /></RouteTransition>} />
+          <Route path="/privacy-policy" element={<RouteTransition><PrivacyPolicy /></RouteTransition>} />
+          <Route path="/terms-of-service" element={<RouteTransition><TermsOfService /></RouteTransition>} />
+          <Route path="/cookie-policy" element={<RouteTransition><CookiePolicy /></RouteTransition>} />
+          <Route path="*" element={<RouteTransition><NotFound /></RouteTransition>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 };

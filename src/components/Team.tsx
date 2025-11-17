@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Mail } from "lucide-react";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const Team = () => {
   const teamMembers = [
@@ -51,10 +52,12 @@ const Team = () => {
               className="bg-card rounded-2xl p-6 border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg group"
             >
               <div className="text-center">
-                <img
+                <OptimizedImage
                   src={member.image}
-                  alt={member.name}
+                  alt={`${member.name} - ${member.role} at ClikXo`}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                  width={96}
+                  height={96}
                 />
                 <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
                 <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
