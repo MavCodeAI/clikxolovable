@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
+  const prefersReducedMotion = useReducedMotion();
 
   // Handle navbar dynamic styling based on scroll position
   useEffect(() => {
@@ -70,27 +72,29 @@ const Navbar = () => {
         : 'bg-hero-bg/90 border-primary/20 shadow-primary/10'
     }`}>
       {/* Geometric Background Shapes */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        {/* Animated Circles */}
-        <div className="absolute top-2 left-8 w-8 h-8 rounded-full bg-primary/30 animate-pulse"></div>
-        <div className="absolute top-4 right-16 w-6 h-6 rounded-full bg-orange-glow/30 animate-bounce" style={{animationDuration: '3s'}}></div>
+      {!prefersReducedMotion && (
+        <div className="absolute inset-0 opacity-[0.03]">
+          {/* Animated Circles */}
+          <div className="absolute top-2 left-8 w-8 h-8 rounded-full bg-primary/30 animate-pulse"></div>
+          <div className="absolute top-4 right-16 w-6 h-6 rounded-full bg-orange-glow/30 animate-bounce" style={{animationDuration: '3s'}}></div>
 
-        {/* Rotating Triangles */}
-        <div className="absolute bottom-2 left-1/4 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] border-l-transparent border-r-transparent border-b-primary/20 animate-spin" style={{animationDuration: '8s'}}></div>
-        <div className="absolute top-3 right-24 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[14px] border-l-transparent border-r-transparent border-t-orange-glow/25 animate-spin" style={{animationDuration: '10s', animationDirection: 'reverse'}}></div>
+          {/* Rotating Triangles */}
+          <div className="absolute bottom-2 left-1/4 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] border-l-transparent border-r-transparent border-b-primary/20 animate-spin" style={{animationDuration: '8s'}}></div>
+          <div className="absolute top-3 right-24 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[14px] border-l-transparent border-r-transparent border-t-orange-glow/25 animate-spin" style={{animationDuration: '10s', animationDirection: 'reverse'}}></div>
 
-        {/* Thin Lines */}
-        <div className="absolute bottom-1 right-1/3 w-12 h-0.5 bg-primary/25 transform rotate-12 animate-pulse"></div>
-        <div className="absolute top-1/2 left-32 w-8 h-0.5 bg-orange-glow/20 transform -rotate-6 animate-bounce" style={{animationDuration: '4s'}}></div>
+          {/* Thin Lines */}
+          <div className="absolute bottom-1 right-1/3 w-12 h-0.5 bg-primary/25 transform rotate-12 animate-pulse"></div>
+          <div className="absolute top-1/2 left-32 w-8 h-0.5 bg-orange-glow/20 transform -rotate-6 animate-bounce" style={{animationDuration: '4s'}}></div>
 
-        {/* Abstract Polygons */}
-        <div className="absolute top-6 left-1/2 w-6 h-6 bg-primary/15 transform rotate-45 animate-spin" style={{animationDuration: '12s'}}></div>
-        <div className="absolute bottom-4 right-8 w-4 h-4 rounded-sm bg-orange-glow/20 transform rotate-30 animate-pulse"></div>
+          {/* Abstract Polygons */}
+          <div className="absolute top-6 left-1/2 w-6 h-6 bg-primary/15 transform rotate-45 animate-spin" style={{animationDuration: '12s'}}></div>
+          <div className="absolute bottom-4 right-8 w-4 h-4 rounded-sm bg-orange-glow/20 transform rotate-30 animate-pulse"></div>
 
-        {/* Floating Elements */}
-        <div className="absolute top-1 right-1/4 w-2 h-2 rounded-full bg-primary/40 animate-bounce" style={{animationDuration: '5s'}}></div>
-        <div className="absolute bottom-3 left-16 w-3 h-1 bg-orange-glow/30 rounded-full animate-pulse"></div>
-      </div>
+          {/* Floating Elements */}
+          <div className="absolute top-1 right-1/4 w-2 h-2 rounded-full bg-primary/40 animate-bounce" style={{animationDuration: '5s'}}></div>
+          <div className="absolute bottom-3 left-16 w-3 h-1 bg-orange-glow/30 rounded-full animate-pulse"></div>
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-16 relative">
