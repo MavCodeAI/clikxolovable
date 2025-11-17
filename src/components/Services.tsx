@@ -19,26 +19,39 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      className="group cursor-pointer"
+      className="group cursor-pointer h-full"
     >
-      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl h-full min-h-[300px]">
+      <Card className="relative bg-card border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 h-full flex flex-col overflow-hidden">
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/5 group-hover:via-orange-glow/5 group-hover:to-primary/5 transition-all duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/10 group-hover:via-orange-glow/5 group-hover:to-primary/10 transition-all duration-500 rounded-lg"></div>
+        
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+        </div>
         
         {/* Content */}
-        <div className="relative z-10 p-8">
-          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-orange-glow/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-            <MaterialIcon name={service.iconName} className="text-primary" />
+        <div className="relative z-10 p-8 flex flex-col h-full">
+          {/* Icon */}
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 via-orange-glow/10 to-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/30">
+            <MaterialIcon name={service.iconName} className="text-primary text-4xl group-hover:scale-110 transition-transform duration-500" />
           </div>
-          <CardTitle className="text-2xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wider">{service.title}</CardTitle>
-          <CardDescription className="text-gray-text text-base leading-relaxed group-hover:text-foreground transition-colors duration-300 font-medium">
+          
+          {/* Title */}
+          <CardTitle className="text-2xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 mb-4 uppercase tracking-wider leading-tight">
+            {service.title}
+          </CardTitle>
+          
+          {/* Description */}
+          <CardDescription className="text-muted-foreground text-base leading-relaxed group-hover:text-foreground transition-colors duration-300 font-medium flex-grow mb-6">
             {service.description}
           </CardDescription>
-          {/* Learn more button effect */}
-          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2">
-              Learn more 
-              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+          
+          {/* Learn more button - always visible but animates on hover */}
+          <div className="mt-auto pt-4 border-t border-border/50 group-hover:border-primary/30 transition-colors duration-300">
+            <span className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2 group-hover:gap-3 transition-all duration-300">
+              Explore Service
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </span>
@@ -105,9 +118,9 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto" role="list">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto items-stretch" role="list">
           {services.map((service, index) => (
-            <div key={index} role="listitem">
+            <div key={index} role="listitem" className="h-full">
               <ServiceCard service={service} index={index} />
             </div>
           ))}
