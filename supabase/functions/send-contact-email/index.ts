@@ -1,5 +1,5 @@
 import { serve } from "@std/http/server";
-import { Resend } from "resend";
+import { Resend } from "npm:resend@^4.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY")!);
 
