@@ -176,7 +176,7 @@ const Hero = () => {
                     style={{
                       backgroundClip: 'text',
                       WebkitBackgroundClip: 'text',
-                      color: 'white',
+                      WebkitTextFillColor: 'transparent',
                       filter: 'brightness(1.1)'
                     }}
                   >
