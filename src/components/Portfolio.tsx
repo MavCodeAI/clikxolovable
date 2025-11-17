@@ -242,10 +242,10 @@ const Portfolio = () => {
               Success Stories
             </span>
           </motion.div>
-          <h2 id="portfolio-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight text-balance">
+          <h2 id="portfolio-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 sm:mb-6 uppercase tracking-tight text-balance px-4">
             Our <span className="text-primary">Work</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed px-4">
             Real results from real projects. See how we've transformed businesses with our innovative digital solutions.
           </p>
         </motion.div>
@@ -256,7 +256,7 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4"
         >
           {categories.map((category) => (
             <button
@@ -274,7 +274,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-12 sm:mb-16 px-4">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
