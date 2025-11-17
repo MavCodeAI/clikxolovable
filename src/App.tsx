@@ -8,7 +8,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 import RouteTransition from "./components/RouteTransition";
-import ErrorTest from "./components/ErrorTest";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -52,25 +51,20 @@ const AnimatedRoutes = () => {
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  const isDevelopment = import.meta.env.DEV;
-
-  return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <AnimatedRoutes />
-            </BrowserRouter>
-            {isDevelopment && <ErrorTest />}
-          </TooltipProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
-  );
-};
+const App = () => (
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AnimatedRoutes />
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
+);
 
 export default App;

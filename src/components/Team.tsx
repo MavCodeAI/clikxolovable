@@ -64,9 +64,9 @@ const Team = () => {
                 <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
 
                 <div className="flex justify-center space-x-3">
-                  <Linkedin className="w-5 h-5 text-primary hover:text-muted-foreground transition-colors cursor-pointer" />
-                  <Twitter className="w-5 h-5 text-primary hover:text-muted-foreground transition-colors cursor-pointer" />
-                  <Mail className="w-5 h-5 text-primary hover:text-muted-foreground transition-colors cursor-pointer" />
+                  <Linkedin className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                  <Twitter className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                  <Mail className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
                 </div>
               </div>
             </motion.div>

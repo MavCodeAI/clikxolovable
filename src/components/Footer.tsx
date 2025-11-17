@@ -150,16 +150,16 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex space-x-3 mb-6">
                 <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                  <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                  <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
                 <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                  <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                  <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
                 <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                  <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                  <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
                 <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                  <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                  <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
               </div>
 
