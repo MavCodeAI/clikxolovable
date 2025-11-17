@@ -80,10 +80,10 @@ const Hero = () => {
 
               <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                 <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold uppercase rounded-full shadow-2xl hover:scale-105 min-w-[220px]" aria-label="Start your project">
-                  <span className="flex items-center gap-2">Start Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
+                  <span className="flex items-center gap-2">Start Your Project <Rocket className="icon-md group-hover:translate-x-1" aria-hidden="true" /></span>
                 </Button>
                 <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold uppercase rounded-full min-w-[220px]" aria-label="View portfolio">
-                  <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-5 h-5" aria-hidden="true" /></span>
+                  <span className="flex items-center gap-2">View Portfolio <ArrowRight className="icon-md" aria-hidden="true" /></span>
                 </Button>
               </motion.div>
             </motion.div>
@@ -94,7 +94,7 @@ const Hero = () => {
                   <motion.div key={currentStat} className="space-y-6" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}}>
                     <div className="flex items-center justify-between">
                       <div className="p-4 bg-gradient-to-br from-primary/20 to-orange-glow/20 rounded-2xl">
-                        {(() => { const Icon = stats[currentStat].icon; return <Icon className="w-8 h-8 text-primary" aria-hidden="true" />; })()}
+                        {(() => { const Icon = stats[currentStat].icon; return <Icon className="icon-primary icon-xl" aria-hidden="true" />; })()}
                       </div>
                       <div className="text-right">
                         <div className="text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-glow">{stats[currentStat].number}</div>
