@@ -8,14 +8,14 @@ interface SEOProps {
   type?: string;
 }
 
-const SEO = ({ 
-  title = "ClikXo - Performance Digital Marketing Agency",
-  description = "Performance-driven digital marketing agency helping businesses grow through innovative strategies and data-driven solutions. Expert team delivering measurable results.",
+const SEO = ({
+  title = "ClikXo Studio | Web Development, Graphics Design & Digital Marketing | Dubai, UAE",
+  description = "ClikXo Studio offers professional Web Development, Graphics Design, and Digital Marketing services in Dubai, UAE. Transform your business with our creative and tech solutions.",
   image = "/og-image.jpg",
   url = "https://clikxo.com",
   type = "website"
 }: SEOProps) => {
-  const fullTitle = title === "ClikXo - Performance Digital Marketing Agency" ? title : `${title} | ClikXo`;
+  const fullTitle = title === "ClikXo Studio | Web Development, Graphics Design & Digital Marketing | Dubai, UAE" ? title : `${title} | ClikXo Studio`;
   
   return (
     <Helmet>

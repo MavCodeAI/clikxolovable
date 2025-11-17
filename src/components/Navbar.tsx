@@ -109,12 +109,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 relative">
           {/* Left Side - Logo */}
           <Link to="/" className="flex items-center z-10" onClick={() => setIsOpen(false)}>
-            <div className="flex items-center space-x-1">
-              <div className="w-6 h-6 rounded-full bg-primary"></div>
-              <div className="w-6 h-6 rounded-full bg-orange-glow"></div>
-            </div>
-            <span className="ml-2 text-xl font-black font-heading text-foreground hover:text-primary transition-colors tracking-tight">
-              ClikXo
+            <i className="material-icons text-3xl text-primary">touch_app</i>
+            <span className="ml-3 text-2xl lg:text-3xl font-black font-heading text-foreground hover:text-primary transition-colors tracking-tight drop-shadow-sm">
+              ClikXo Studio
             </span>
           </Link>
 

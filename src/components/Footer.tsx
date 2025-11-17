@@ -61,12 +61,9 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="flex items-center space-x-1">
-                  <div className="w-8 h-8 rounded-full bg-primary"></div>
-                  <div className="w-8 h-8 rounded-full bg-orange-glow"></div>
-                </div>
-                <span className="text-2xl font-bold text-foreground">ClikXo</span>
+              <div className="flex items-center space-x-3 mb-6">
+                <i className="material-icons text-3xl text-primary">touch_app</i>
+                <span className="text-3xl lg:text-4xl font-black text-foreground tracking-tight drop-shadow-sm">ClikXo Studio</span>
               </div>
 
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
@@ -185,7 +182,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6">
               <p className="text-muted-foreground text-sm">
-                © {currentYear} ClikXo. All rights reserved.
+                © {currentYear} ClikXo Studio. All rights reserved.
               </p>
             </div>
 

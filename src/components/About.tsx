@@ -36,7 +36,7 @@ const About = () => {
             className="inline-block mb-4"
           >
             <span className="text-primary text-sm font-black font-heading tracking-widest uppercase px-5 py-2 bg-primary/10 rounded-full border-2 border-primary/20">
-              About ClikXo
+              About ClikXo Studio
             </span>
           </motion.div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">

@@ -1,13 +1,16 @@
-import { Code, Smartphone, Palette, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { memo, useMemo } from "react";
 
 interface ServiceType {
-  icon: React.ComponentType<{ className?: string }>;
+  iconName: string;
   title: string;
   description: string;
 }
+
+const MaterialIcon = ({ name, className }: { name: string; className?: string }) => (
+  <i className={`material-icons ${className || ''}`}>{name}</i>
+);
 
 const ServiceCard = memo(function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
   return (
@@ -25,7 +28,7 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
         {/* Content */}
         <div className="relative z-10 p-8">
           <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-orange-glow/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-            <service.icon className="w-8 h-8 text-primary" />
+            <MaterialIcon name={service.iconName} className="text-primary" />
           </div>
           <CardTitle className="text-2xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wider">{service.title}</CardTitle>
           <CardDescription className="text-gray-text text-base leading-relaxed group-hover:text-foreground transition-colors duration-300 font-medium">
@@ -49,22 +52,17 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
 const Services = () => {
   const services = useMemo(() => [
     {
-      icon: Code,
+      iconName: "web",
       title: "Web Development",
       description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
     },
     {
-      icon: Smartphone,
-      title: "App Development",
-      description: "Native and cross-platform mobile apps designed for exceptional user experience across all devices.",
-    },
-    {
-      icon: Palette,
+      iconName: "brush",
       title: "Graphics Designing",
       description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
     },
     {
-      icon: TrendingUp,
+      iconName: "trending_up",
       title: "Digital Marketing",
       description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
     },
@@ -102,7 +100,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" role="list">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto" role="list">
           {services.map((service, index) => (
             <div key={index} role="listitem">
               <ServiceCard service={service} index={index} />
