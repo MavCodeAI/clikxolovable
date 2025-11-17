@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const isMobile = useIsMobile();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);

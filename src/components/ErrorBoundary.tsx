@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Home, RotateCcw } from 'lucide-react';
 
@@ -26,7 +26,7 @@ class ErrorBoundary extends Component<Props, State> {
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log to console in development
     console.error('ErrorBoundary caught an error:', error, errorInfo);
 
@@ -48,7 +48,7 @@ class ErrorBoundary extends Component<Props, State> {
     window.location.href = '/';
   };
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       if (this.props.fallback) {
         return this.props.fallback;
@@ -81,7 +81,7 @@ class ErrorBoundary extends Component<Props, State> {
               </Button>
             </div>
 
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {process.env['NODE_ENV'] === 'development' && this.state.error && (
               <details className="mt-8 text-left">
                 <summary className="cursor-pointer font-medium text-gray-700 mb-2">
                   Error Details (Development Only)
