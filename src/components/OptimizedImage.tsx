@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+
 interface OptimizedImageProps {
   src: string;
   alt: string;
@@ -8,13 +9,14 @@ interface OptimizedImageProps {
   height?: number;
   priority?: boolean;
 }
-const OptimizedImage = ({
-  src,
-  alt,
-  className,
-  width,
+
+const OptimizedImage = ({ 
+  src, 
+  alt, 
+  className, 
+  width, 
   height,
-  priority = false
+  priority = false 
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -32,10 +34,31 @@ const OptimizedImage = ({
     }
     return url;
   };
+
   const optimizedSrc = getOptimizedUrl(src);
-  return <div className={cn("relative overflow-hidden bg-muted", className)}>
-      {!isLoaded && !hasError && <div className="absolute inset-0 animate-pulse bg-muted" />}
-      
-    </div>;
+
+  return (
+    <div className={cn("relative overflow-hidden bg-muted", className)}>
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 animate-pulse bg-muted" />
+      )}
+      <img
+        src={optimizedSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        className={cn(
+          "transition-opacity duration-300",
+          isLoaded ? "opacity-100" : "opacity-0",
+          className
+        )}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
+      />
+    </div>
+  );
 };
+
 export default OptimizedImage;
