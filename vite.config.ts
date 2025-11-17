@@ -41,7 +41,6 @@ export default defineConfig(({ mode }) => ({
       },
     },
     minify: 'esbuild',
-    cssMinify: 'lightningcss',
     drop: ['console', 'debugger'],
     sourcemap: false,
   },
