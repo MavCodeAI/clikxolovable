@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, ArrowRight, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
 
@@ -44,6 +44,15 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -112,7 +121,7 @@ const Navbar = () => {
             onClick={() => setIsOpen(false)}
             aria-label="ClikXo Studio Home"
           >
-            <i className="material-icons text-4xl sm:text-5xl text-primary flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">touch_app</i>
+            <Sparkles className="text-primary w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
             <span className="ml-4 text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-foreground group-hover:text-primary transition-all duration-300 tracking-tight drop-shadow-sm">
               ClikXo Studio
             </span>
@@ -295,11 +304,12 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <nav
-            className="lg:hidden border-t border-border bg-background/95 backdrop-blur-sm mt-4 rounded-lg mx-4 mb-4"
+            className="lg:hidden fixed inset-0 z-40 bg-background/90 backdrop-blur-md"
             role="navigation"
             aria-label="Mobile navigation"
+            onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
           >
-            <div className="px-4 pt-4 pb-4 space-y-2">
+            <div className="px-4 pt-24 pb-8 space-y-2 max-w-3xl mx-auto">
               {isHomePage ? (
                 <>
                   <button
@@ -439,7 +449,7 @@ const Navbar = () => {
               )}
 
               {/* CTA Button in Mobile Menu */}
-              <div className="pt-4 border-t border-border">
+              <div className="pt-6 border-t border-border">
                 <button
                   onClick={() => scrollToSection("contact")}
                   className="group w-full relative px-6 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-base uppercase tracking-wider rounded-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -449,6 +459,15 @@ const Navbar = () => {
                     <span>Get Started</span>
                     <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
+                </button>
+              </div>
+              <div className="text-center pt-3">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm text-muted-foreground hover:text-primary underline"
+                  aria-label="Close mobile menu"
+                >
+                  Close Menu
                 </button>
               </div>
             </div>

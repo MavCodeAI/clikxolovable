@@ -1,16 +1,13 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { memo, useMemo } from "react";
+import { Globe, Smartphone, Brush, TrendingUp } from "lucide-react";
 
 interface ServiceType {
-  iconName: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   title: string;
   description: string;
 }
-
-const MaterialIcon = ({ name, className }: { name: string; className?: string }) => (
-  <i className={`material-icons ${className || ''}`}>{name}</i>
-);
 
 const ServiceCard = memo(function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
   return (
@@ -34,7 +31,7 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
         <div className="relative z-10 p-8 flex flex-col h-full">
           {/* Icon */}
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 via-orange-glow/10 to-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/30">
-            <MaterialIcon name={service.iconName} className="text-primary text-4xl group-hover:scale-110 transition-transform duration-500" />
+            {(() => { const I = service.Icon; return <I className="text-primary w-10 h-10 group-hover:scale-110 transition-transform duration-500" aria-hidden="true" />; })()}
           </div>
           
           {/* Title */}
@@ -65,22 +62,22 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
 const Services = () => {
   const services = useMemo(() => [
     {
-      iconName: "web",
+      Icon: Globe,
       title: "Web Development",
       description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
     },
     {
-      iconName: "phone_iphone",
+      Icon: Smartphone,
       title: "App Development",
       description: "Native iOS & Android apps, Progressive Web Apps (PWA), and cross-platform solutions built with React Native and modern frameworks for seamless user experiences.",
     },
     {
-      iconName: "brush",
+      Icon: Brush,
       title: "Graphics Designing",
       description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
     },
     {
-      iconName: "trending_up",
+      Icon: TrendingUp,
       title: "Digital Marketing",
       description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
     },

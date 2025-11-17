@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock, Sparkles } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -61,8 +61,8 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-               <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8" aria-label="ClikXo Studio Home">
-                <i className="material-icons text-4xl lg:text-5xl text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true">touch_app</i>
+              <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8" aria-label="ClikXo Studio Home">
+                <Sparkles className="w-9 h-9 lg:w-12 lg:h-12 text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
                 <span className="ml-3 text-2xl lg:text-4xl xl:text-5xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight drop-shadow-sm">
                   ClikXo Studio
                 </span>
@@ -93,23 +93,23 @@ const Footer = () => {
             <div>
               <h4 className="text-foreground font-bold text-lg mb-6">Our Services</h4>
               <ul className="space-y-3">
-                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Web Development
                 </a></li>
-                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Graphics Design
                 </a></li>
-                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   UI/UX Design
                 </a></li>
-                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Digital Marketing
                 </a></li>
-                <li><a onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   SEO Optimization
                 </a></li>
@@ -149,17 +149,21 @@ const Footer = () => {
 
               {/* Social Links */}
               <div className="flex gap-3 mb-6">
-                <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
+                <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on Facebook" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
                   <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                  <span className="sr-only">Facebook</span>
                 </a>
-                <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
+                <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on X (Twitter)" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
                   <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                  <span className="sr-only">X (Twitter)</span>
                 </a>
-                <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
+                <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on Instagram" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
                   <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                  <span className="sr-only">Instagram</span>
                 </a>
-                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
+                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on LinkedIn" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
                   <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
+                  <span className="sr-only">LinkedIn</span>
                 </a>
               </div>
 

@@ -268,8 +268,9 @@ html {
 }
 
 .btn-glow:hover {
-  box-shadow: 0 0 25px hsl(var(--primary) / 0.5),
-              0 0 50px hsl(var(--primary) / 0.3);
+  transform: translateZ(0) scale(1.02);
+  outline: 2px solid hsl(var(--primary) / 0.4);
+  outline-offset: 2px;
 }
 
 /* Smooth fade in animation */
@@ -295,7 +296,6 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px -10px hsl(0 0% 0% / 0.3);
 }
 
 /* Gradient border animation */

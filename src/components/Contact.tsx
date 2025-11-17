@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, MessageSquare, Clock, Code, Smartphone, Palette, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { Spinner } from "@/components/ui/spinner";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -470,9 +471,9 @@ const Contact = () => {
 
                       <p className="text-center text-gray-500 text-sm font-medium">
                         By submitting this form, you agree to our{' '}
-                        <button type="button" className="text-primary font-bold hover:underline focus:outline-none">
+                        <Link to="/privacy-policy" className="text-primary font-bold hover:underline focus:outline-none">
                           Privacy Policy
-                        </button>
+                        </Link>
                       </p>
                     </form>
                   </Form>
