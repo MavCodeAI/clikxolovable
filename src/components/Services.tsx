@@ -113,15 +113,15 @@ const Services = () => {
               What We Offer
             </span>
           </motion.div>
-          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight font-heading text-balance">
+          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 sm:mb-6 tracking-tight font-heading text-balance px-4">
             Our <span className="text-primary">Services</span>
           </h2>
-          <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-text text-base sm:text-lg max-w-2xl mx-auto leading-relaxed px-4">
             Comprehensive web development, graphics, and digital marketing solutions for modern businesses
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto items-stretch" role="list">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8 max-w-7xl mx-auto items-stretch px-4" role="list">
           {services.map((service, index) => (
             <div key={index} role="listitem" className="h-full">
               <ServiceCard service={service} index={index} />

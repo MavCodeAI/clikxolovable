@@ -118,17 +118,17 @@ const Navbar = () => {
       </div>
 
       {/* Main Navigation Container */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between min-h-20 lg:min-h-24">
+      <div className="relative z-20 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between min-h-16 sm:min-h-20 lg:min-h-24">
           {/* Left Side - Logo */}
           <Link
             to="/"
-            className="flex items-center z-10 flex-shrink-0 group focus:outline-none focus:ring-4 focus:ring-primary/30 rounded-xl p-2 -m-2 transition-all"
+            className="flex items-center z-10 flex-shrink-0 group focus:outline-none focus:ring-4 focus:ring-primary/30 rounded-xl p-1 sm:p-2 -m-1 sm:-m-2 transition-all"
             onClick={() => setIsOpen(false)}
             aria-label="ClikXo Studio Home"
           >
-            <Sparkles className="text-primary w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
-            <span className="ml-4 text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-foreground group-hover:text-primary transition-all duration-300 tracking-tight drop-shadow-sm">
+            <Sparkles className="text-primary w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
+            <span className="ml-2 sm:ml-3 md:ml-4 text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black font-heading text-foreground group-hover:text-primary transition-all duration-300 tracking-tight drop-shadow-sm">
               ClikXo Studio
             </span>
           </Link>

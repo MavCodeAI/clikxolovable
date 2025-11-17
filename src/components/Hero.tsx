@@ -75,17 +75,17 @@ const Hero = () => {
 
                 <div className="mx-auto lg:mx-0 mt-3 h-1 w-28 rounded-full bg-gradient-to-r from-primary to-orange-glow" />
 
-                <motion.p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <motion.p className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">
                   We craft <span className="text-primary font-bold">game-changing digital solutions</span> that drive real results. From stunning websites to powerful marketing strategies — we turn your vision into reality.
                 </motion.p>
               </div>
 
-              <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold rounded-full shadow-2xl hover:scale-105 min-w-[220px] button-magnetic btn-glow" aria-label="Start your project">
-                  <span className="flex items-center gap-2">Start Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
+              <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4 px-4 sm:px-0">
+                <Button onClick={scrollToServices} size="lg" className="group px-6 sm:px-8 py-5 sm:py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold rounded-full shadow-2xl hover:scale-105 min-w-full sm:min-w-[200px] button-magnetic btn-glow text-sm sm:text-base" aria-label="Start your project">
+                  <span className="flex items-center gap-2">Start Your Project <Rocket className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
                 </Button>
-                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold rounded-full min-w-[220px] button-magnetic" aria-label="View portfolio">
-                  <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-5 h-5" aria-hidden="true" /></span>
+                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-6 sm:px-8 py-5 sm:py-6 border-2 font-bold rounded-full min-w-full sm:min-w-[200px] button-magnetic text-sm sm:text-base" aria-label="View portfolio">
+                  <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" aria-hidden="true" /></span>
                 </Button>
               </motion.div>
             </motion.div>
