@@ -2,11 +2,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { memo, useMemo } from "react";
 import { Globe, Smartphone, Brush, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ServiceType {
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   title: string;
   description: string;
+  to: string;
 }
 
 const ServiceCard = memo(function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
@@ -46,12 +48,12 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
           
           {/* Learn more button - always visible but animates on hover */}
           <div className="mt-auto pt-4 border-t border-border/50 group-hover:border-primary/30 transition-colors duration-300">
-            <span className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2 group-hover:gap-3 transition-all duration-300">
+            <Link to={service.to} className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2 group-hover:gap-3 transition-all duration-300">
               Explore Service
               <svg className="w-4 h-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </span>
+            </Link>
           </div>
         </div>
       </Card>
@@ -65,21 +67,25 @@ const Services = () => {
       Icon: Globe,
       title: "Web Development",
       description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
+      to: "/services/web-development",
     },
     {
       Icon: Smartphone,
       title: "App Development",
       description: "Native iOS & Android apps, Progressive Web Apps (PWA), and cross-platform solutions built with React Native and modern frameworks for seamless user experiences.",
+      to: "/services/app-development",
     },
     {
       Icon: Brush,
-      title: "Graphics Designing",
+      title: "Graphic Design",
       description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
+      to: "/services/graphic-design",
     },
     {
       Icon: TrendingUp,
       title: "Digital Marketing",
       description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
+      to: "/services/digital-marketing",
     },
   ], []);
 

@@ -93,26 +93,26 @@ const Footer = () => {
             <div>
               <h4 className="text-foreground font-bold text-lg mb-6">Our Services</h4>
               <ul className="space-y-3">
-                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                <li><Link to="/services/web-development" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Web Development
-                </a></li>
-                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                </Link></li>
+                <li><Link to="/services/app-development" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
-                  Graphics Design
-                </a></li>
-                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                  App Development
+                </Link></li>
+                <li><Link to="/services/graphic-design" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
-                  UI/UX Design
-                </a></li>
-                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                  Graphic Design
+                </Link></li>
+                <li><Link to="/services/digital-marketing" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Digital Marketing
-                </a></li>
-                <li><a href="/#services" onClick={navigateToServices} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group cursor-pointer">
+                </Link></li>
+                <li><Link to="/services/seo" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
-                  SEO Optimization
-                </a></li>
+                  SEO Services
+                </Link></li>
               </ul>
             </div>
 

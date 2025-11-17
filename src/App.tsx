@@ -21,6 +21,11 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const AIVideoGenerator = lazy(() => import("./pages/AIVideoGenerator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const WebDevService = lazy(() => import("./pages/services/WebDevelopment"));
+const AppDevService = lazy(() => import("./pages/services/AppDevelopment"));
+const DigitalMarketingService = lazy(() => import("./pages/services/DigitalMarketing"));
+const GraphicDesignService = lazy(() => import("./pages/services/GraphicDesign"));
+const SEOService = lazy(() => import("./pages/services/SEOService"));
 
 // Loading fallback component
 import { SpinnerFullScreen } from "@/components/ui/spinner";
@@ -44,6 +49,11 @@ const AnimatedRoutes = () => {
           <Route path="/privacy-policy" element={<RouteTransition><PrivacyPolicy /></RouteTransition>} />
           <Route path="/terms-of-service" element={<RouteTransition><TermsOfService /></RouteTransition>} />
           <Route path="/cookie-policy" element={<RouteTransition><CookiePolicy /></RouteTransition>} />
+          <Route path="/services/web-development" element={<RouteTransition><WebDevService /></RouteTransition>} />
+          <Route path="/services/app-development" element={<RouteTransition><AppDevService /></RouteTransition>} />
+          <Route path="/services/digital-marketing" element={<RouteTransition><DigitalMarketingService /></RouteTransition>} />
+          <Route path="/services/graphic-design" element={<RouteTransition><GraphicDesignService /></RouteTransition>} />
+          <Route path="/services/seo" element={<RouteTransition><SEOService /></RouteTransition>} />
           <Route path="*" element={<RouteTransition><NotFound /></RouteTransition>} />
         </Routes>
       </Suspense>

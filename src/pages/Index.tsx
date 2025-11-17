@@ -53,7 +53,13 @@ const LazyMount = ({
 const Index = () => {
   return (
     <>
-      <SEO />
+      <SEO 
+        title="Top Digital Agency in Dubai | Web & App Development | ClikXo"
+        description="Dubai's leading digital solutions provider offering custom web development, mobile apps, and result-driven marketing strategies for UAE businesses."
+        url="https://clikxo.com/"
+        image="https://clikxo.com/og-image-dubai.jpg"
+        alternateHreflangs={[{ hreflang: 'ar-AE', href: 'https://clikxo.com/ar' }]}
+      />
       <StructuredData />
       <SkipToContent />
       <div className="min-h-screen bg-background">
