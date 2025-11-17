@@ -61,10 +61,12 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <div className="flex items-center space-x-4 mb-8">
-                <i className="material-icons text-4xl lg:text-5xl text-primary">touch_app</i>
-                <span className="text-4xl lg:text-6xl font-black text-foreground tracking-tight drop-shadow-sm">ClikXo Studio</span>
-              </div>
+              <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8">
+                <i className="material-icons text-5xl lg:text-6xl text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110">touch_app</i>
+                <span className="ml-4 text-3xl lg:text-5xl xl:text-6xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight drop-shadow-sm">
+                  ClikXo Studio
+                </span>
+              </Link>
 
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
                 Your trusted digital marketing partner driving growth, engagement, and measurable results for businesses worldwide.
