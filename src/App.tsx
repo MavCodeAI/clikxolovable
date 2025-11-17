@@ -8,7 +8,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 import RouteTransition from "./components/RouteTransition";
-import ErrorBoundary from "./components/ErrorBoundary";
 import ErrorTest from "./components/ErrorTest";
 
 // Lazy load pages for better performance
@@ -57,22 +56,20 @@ const App = () => {
   const isDevelopment = import.meta.env.DEV;
 
   return (
-    <ErrorBoundary>
-      <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <AnimatedRoutes />
-              </BrowserRouter>
-              {isDevelopment && <ErrorTest />}
-            </TooltipProvider>
-          </ThemeProvider>
-        </QueryClientProvider>
-      </HelmetProvider>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <AnimatedRoutes />
+            </BrowserRouter>
+            {isDevelopment && <ErrorTest />}
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 
