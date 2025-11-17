@@ -22,11 +22,9 @@ const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback component
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="animate-pulse text-primary text-lg font-bold">Loading...</div>
-  </div>
-);
+import { SpinnerFullScreen } from "@/components/ui/spinner";
+
+const PageLoader = () => <SpinnerFullScreen />;
 
 const AnimatedRoutes = () => {
   const location = useLocation();
