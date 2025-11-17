@@ -72,11 +72,11 @@ const Contact = () => {
       });
       
       form.reset();
-    } catch (error: any) {
+    } catch (error) {
       console.error("Failed to send message:", error);
       toast({
         title: "✗ Error",
-        description: error.message || "Failed to send message. Please try again or email us directly.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again or email us directly.",
         variant: "destructive",
       });
     }

@@ -4,14 +4,15 @@ import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
 
-// Throttle utility function
-const throttle = (func: Function, limit: number) => {
+const throttle = (func: () => void, limit: number) => {
   let inThrottle: boolean;
-  return function(this: any, ...args: any[]) {
+  let lastRan: number;
+  return function(this: unknown) {
     if (!inThrottle) {
-      func.apply(this, args);
+      func.apply(this);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      lastRan = Date.now();
+      setTimeout(() => inThrottle = false, Math.max(limit - (Date.now() - lastRan), 0));
     }
   };
 };
@@ -25,7 +26,7 @@ const Navbar = () => {
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
 
   // Improved scroll handler with better performance
-  const handleScroll = useCallback(throttle(() => {
+  const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY;
     if (isHomePage) {
       // Dynamic styling based on content sections for optimal contrast
@@ -35,7 +36,7 @@ const Navbar = () => {
       // On other pages, always use scrolled styling for consistency
       setIsScrolled(true);
     }
-  }, 50), [activeSection, isHomePage]);
+  }, [activeSection, isHomePage]);
 
   // Handle navbar dynamic styling with optimized event listeners
   useEffect(() => {

@@ -28,14 +28,14 @@ const Hero = () => {
       setCurrentWord((prev) => (prev + 1) % powerWords.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [powerWords.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStat((prev) => (prev + 1) % stats.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [stats.length]);
 
   const scrollToServices = () => {
     const element = document.getElementById("services");
