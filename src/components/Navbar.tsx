@@ -307,6 +307,7 @@ const Navbar = () => {
             <button
               className="lg:hidden p-3 rounded-lg text-foreground/80 hover:text-primary hover:bg-primary/10 transition-colors duration-200 min-w-[48px] min-h-[48px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/50"
               onClick={() => setIsOpen(!isOpen)}
+              onTouchStart={() => setIsOpen(!isOpen)}
               aria-label="Toggle mobile menu"
               aria-expanded={isOpen}
             >

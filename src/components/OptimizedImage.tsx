@@ -8,6 +8,7 @@ interface OptimizedImageProps {
   width?: number;
   height?: number;
   priority?: boolean;
+  sizes?: string;
 }
 
 const OptimizedImage = ({ 
@@ -16,18 +17,19 @@ const OptimizedImage = ({
   className, 
   width, 
   height,
-  priority = false 
+  priority = false,
+  sizes,
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   // Generate optimized URL for Unsplash images with better compression
-  const getOptimizedUrl = (url: string) => {
+  const getOptimizedUrl = (url: string, w?: number, h?: number) => {
     if (url.includes('unsplash.com')) {
       try {
         const u = new URL(url);
-        if (width) u.searchParams.set('w', Math.min(width, 1200).toString()); // Cap max width for performance
-        if (height) u.searchParams.set('h', Math.min(height, 1200).toString());
+        if (w) u.searchParams.set('w', Math.min(w, 1200).toString()); // Cap max width for performance
+        if (h) u.searchParams.set('h', Math.min(h, 1200).toString());
         u.searchParams.set('q', '75'); // Reduced quality for better compression
         u.searchParams.set('fm', 'webp');
         u.searchParams.set('fit', 'crop');
@@ -36,8 +38,8 @@ const OptimizedImage = ({
         return u.toString();
       } catch {
         const params = new URLSearchParams();
-        if (width) params.set('w', Math.min(width, 1200).toString());
-        if (height) params.set('h', Math.min(height, 1200).toString());
+        if (w) params.set('w', Math.min(w, 1200).toString());
+        if (h) params.set('h', Math.min(h, 1200).toString());
         params.set('q', '75');
         params.set('fm', 'webp');
         params.set('fit', 'crop');
@@ -50,10 +52,20 @@ const OptimizedImage = ({
     return url;
   };
 
-  const optimizedSrc = getOptimizedUrl(src);
+  const optimizedSrc = getOptimizedUrl(src, width, height);
+
+  const defaultSizes = sizes || '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
+
+  const srcSet = (() => {
+    if (!src.includes('unsplash.com')) return undefined;
+    const candidates = [320, 480, 640, 768, 1024, 1280];
+    return candidates
+      .map(w => `${getOptimizedUrl(src, w, height)} ${w}w`)
+      .join(', ');
+  })();
 
   return (
-    <div className={cn("relative overflow-hidden bg-muted", className)}>
+    <div className={cn("relative overflow-hidden bg-muted", className)} style={{ contentVisibility: 'auto' }}>
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 animate-pulse bg-muted" />
       )}
@@ -64,8 +76,11 @@ const OptimizedImage = ({
         height={height}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
+        sizes={srcSet ? defaultSizes : undefined}
+        srcSet={srcSet}
         className={cn(
           "transition-opacity duration-300",
           isLoaded ? "opacity-100" : "opacity-0",

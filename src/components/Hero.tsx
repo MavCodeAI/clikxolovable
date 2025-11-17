@@ -66,7 +66,7 @@ const Hero = () => {
               </motion.div>
 
               <div className="space-y-4">
-                <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+                <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-balance">
                   <span className="block text-foreground mb-2">LET'S</span>
                   <AnimatePresence mode="wait">
                     <motion.span key={currentWord} className={`block text-transparent bg-clip-text bg-gradient-to-r ${powerWords[currentWord].color} mb-2 animate-gradient glow-text`} style={{ backgroundSize: '200% 200%' }} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{duration: 0.5}}>

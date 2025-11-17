@@ -84,6 +84,10 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+
+  .text-balance {
+    text-wrap: balance;
+  }
   
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -312,6 +316,17 @@ html {
   background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)));
   background-size: 200% 200%;
   animation: gradient-border 3s ease infinite;
+}
+
+@media (max-width: 640px) {
+  .float-blob-1,
+  .float-blob-2,
+  .float-blob-3,
+  .glow-pulse,
+  .animated-border,
+  .animate-gradient {
+    animation: none !important;
+  }
 }
 
 /* Geometric shapes background similar to DigitalOrks */

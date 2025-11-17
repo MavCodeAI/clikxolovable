@@ -242,7 +242,7 @@ const Portfolio = () => {
               Success Stories
             </span>
           </motion.div>
-          <h2 id="portfolio-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+          <h2 id="portfolio-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight text-balance">
             Our <span className="text-primary">Work</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">

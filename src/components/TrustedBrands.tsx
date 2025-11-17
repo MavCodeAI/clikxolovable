@@ -24,7 +24,7 @@ const TrustedBrands = () => {
               Our Partners
             </span>
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1] text-balance">
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary">Leading Brands</span>
           </h2>
           <p className="text-gray-textDark text-lg md:text-xl font-medium">
