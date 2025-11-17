@@ -1,138 +1,238 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import { memo, useMemo } from "react";
-import { ArrowRight } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import ServiceCard from './ServiceCard';
+import { servicesData, additionalServices } from '@/data/services-data';
 
-interface ServiceType {
-  iconName: string;
-  title: string;
-  description: string;
-}
+const Services: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-// SVG-based icons for reliability
-const MaterialIcon = ({ name, className }: { name: string; className?: string }) => (
-  <i className={`material-icons ${className || ''}`}>{name}</i>
-);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
 
-const ServiceCard = memo(function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-      className="group h-full relative"
+    <section
+      id="services"
+      className="relative py-24 lg:py-32 bg-gradient-to-br from-background via-background/95 to-primary/5 overflow-hidden"
+      aria-labelledby="services-title"
+      role="region"
     >
-      <Card className="relative h-full flex flex-col border-2 border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
-        {/* Overlay */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/0 via-transparent to-orange-glow/0 group-hover:from-primary/8 group-hover:via-orange-glow/5 group-hover:to-primary/5 rounded-lg transition-all duration-500"></div>
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Primary gradient orbs */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-orange-glow/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
 
-        <div className="relative z-10 p-6 flex flex-col h-full">
-          {/* Icon */}
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-2xl bg-gradient-to-br from-primary/30 via-primary/20 to-orange-glow/30 flex items-center justify-center group-hover:scale-105 group-hover:rotate-3 transition-transform duration-500 shadow-xl shadow-primary/20 group-hover:shadow-2xl group-hover:shadow-primary/30">
-              <MaterialIcon name={service.iconName} className="text-2xl sm:text-3xl lg:text-4xl text-primary" />
-            </div>
-          </div>
+        {/* Subtle geometric patterns */}
+        <div className="absolute top-1/4 left-1/3 w-64 h-64 bg-gradient-to-r from-primary/5 to-transparent transform rotate-45 blur-2xl" />
+        <div className="absolute bottom-1/4 right-1/3 w-48 h-48 bg-gradient-to-l from-orange-glow/5 to-transparent transform -rotate-45 blur-2xl" />
 
-          {/* Title */}
-          <div className="text-center mb-4 flex-shrink-0">
-            <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 uppercase tracking-wider leading-tight">
-              {service.title}
-            </CardTitle>
-          </div>
+        {/* Floating particles */}
+        <div className="absolute top-16 left-16 w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute top-32 right-32 w-1.5 h-1.5 bg-orange-glow/70 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-24 left-24 w-1 h-1 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute bottom-32 right-16 w-2.5 h-2.5 bg-orange-glow/60 rounded-full animate-bounce" style={{ animationDelay: '2s' }} />
+      </div>
 
-          {/* Description */}
-          <div className="flex-grow flex items-center justify-center mb-6">
-            <CardDescription className="text-gray-text text-sm sm:text-base leading-relaxed sm:leading-loose group-hover:text-foreground transition-colors duration-300 font-medium text-center px-4 sm:px-6">
-              {service.description}
-            </CardDescription>
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex justify-center mt-auto">
-            <button
-              className="bg-gradient-to-r from-primary to-orange-glow p-[1px] rounded-full shadow-lg shadow-primary/20 transition-transform duration-300 group-hover:scale-105"
-              aria-label={`Learn more about ${service.title}`}
-            >
-              <div className="bg-background px-6 py-3 rounded-full transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-orange-glow">
-                <span className="inline-flex items-center text-primary group-hover:text-white text-sm sm:text-base font-black font-heading uppercase tracking-widest gap-2 transition-colors duration-300">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 text-primary group-hover:text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110" />
-                </span>
-              </div>
-            </button>
-          </div>
-        </div>
-      </Card>
-    </motion.div>
-  );
-});
-
-const Services = () => {
-  const services = useMemo(() => [
-    {
-      iconName: "web",
-      title: "Web Development",
-      description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
-    },
-    {
-      iconName: "smartphone",
-      title: "App Development",
-      description: "Native and cross-platform mobile applications that deliver exceptional user experiences on iOS and Android.",
-    },
-    {
-      iconName: "brush",
-      title: "Graphics Designing",
-      description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
-    },
-    {
-      iconName: "trending_up",
-      title: "Digital Marketing",
-      description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
-    },
-  ], []);
-
-  return (
-    <section id="services" className="py-24 bg-background relative overflow-hidden" aria-labelledby="services-heading">
-      {/* Background Decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl" aria-hidden="true"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {/* Badge */}
           <motion.div
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/20 to-orange-glow/20 rounded-full border border-primary/30 shadow-lg backdrop-blur-sm mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block mb-4"
+            transition={{ delay: 0.2, duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <span className="text-primary text-sm sm:text-base font-bold tracking-widest uppercase px-4 py-2 border border-primary/30 rounded-full">
-              What We Offer
+            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-sm font-bold text-primary uppercase tracking-wider">
+              Our Premium Services
             </span>
           </motion.div>
-          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
-            Our <span className="text-primary">Services</span>
-          </h2>
-          <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed sm:leading-loose">
-            Comprehensive web development, mobile app development, graphics, and digital marketing solutions for modern businesses
-          </p>
+
+          {/* Main heading */}
+          <motion.h2
+            id="services-title"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-foreground mb-8 leading-[1.1]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <span className="block mb-4">Transforming Ideas</span>
+            <span className="block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-glow to-primary">
+                Into Digital
+              </span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-glow to-red-500">
+                Excellence
+              </span>
+            </span>
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p
+            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-medium max-w-4xl mx-auto leading-relaxed mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            From concept to launch, we deliver cutting-edge digital solutions that drive growth,
+            engage audiences, and position your brand as an industry leader.
+          </motion.p>
+
+          {/* Statistics */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-8 mt-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              { number: '500+', label: 'Projects Completed', suffix: '' },
+              { number: '98%', label: 'Client Satisfaction', suffix: '%' },
+              { number: '99.9%', label: 'Uptime Guarantee', suffix: '%' },
+              { number: '24/7', label: 'Expert Support', suffix: '' }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                variants={itemVariants}
+                className="text-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-glow mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto" role="list">
-          {services.map((service, index) => (
-            <div key={index} role="listitem">
+        {/* Services Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          role="list"
+          aria-label="Services offered"
+        >
+          {servicesData.map((service, index) => (
+            <div
+              key={service.id}
+              role="listitem"
+              className="min-h-[500px]"
+            >
               <ServiceCard service={service} index={index} />
             </div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Additional Services Preview */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <motion.h3
+            className="text-2xl sm:text-3xl font-bold text-foreground mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1 }}
+          >
+            And So Much More...
+          </motion.h3>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {additionalServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.2 + index * 0.1 }}
+                className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-card to-card/80 backdrop-blur-sm rounded-full border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+              >
+                <div className={`p-2 rounded-full bg-gradient-to-r ${service.gradient} group-hover:scale-110 transition-transform duration-300`}>
+                  <service.icon className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  {service.title}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.5 }}
+          >
+            <motion.button
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-lg uppercase tracking-wider rounded-full shadow-2xl shadow-primary/30 hover:shadow-3xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              aria-label="Start your digital transformation project"
+            >
+              <span>Start Your Project</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </motion.button>
+
+            <motion.button
+              className="inline-flex items-center gap-3 px-8 py-4 border-2 border-primary/30 text-primary font-bold text-lg uppercase tracking-wider rounded-full hover:bg-primary/10 transition-all duration-300 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/20"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              aria-label="Explore all our services"
+            >
+              <span>Explore All Services</span>
+              <motion.div
+                className="w-2 h-2 bg-primary rounded-full"
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Bottom decorative gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
