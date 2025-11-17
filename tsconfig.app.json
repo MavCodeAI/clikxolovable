@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -14,7 +14,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Type Checking */
+    /* Type Checking - Strict Mode */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -24,10 +24,48 @@
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
 
+    /* Additional Strict Type Checking */
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": false, // Allow undefined properties in classes
+    "useUnknownInCatchVariables": true,
+
+    /* Code Quality */
+
+    /* Module and Path Resolution */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/integrations/*": ["./src/integrations/*"],
+      "@/utils": ["./src/lib/utils.ts"],
+      "@/types": ["./src/types.d.ts"]
+    },
+
+    /* Import/Export */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+
+    /* Source Maps and Debugging */
+    "sourceMap": true,
+    "removeComments": false,
+    "importHelpers": false,
+    "downlevelIteration": false,
+    "experimentalDecorators": false,
+    "emitDecoratorMetadata": false
   },
-  "include": ["src"]
+  "include": ["src", "types.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.*", "**/*.spec.*"],
+  "ts-node": {
+    "esm": true
+  }
 }
