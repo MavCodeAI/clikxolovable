@@ -46,13 +46,27 @@ const Navbar = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (isOpen) {
+      // Only hide overflow on desktop, allow natural scrolling on mobile
+      document.body.style.overflow = isMobile ? 'auto' : 'hidden';
+
+      // Add mobile-specific fixes
+      if (isMobile) {
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) setIsOpen(false);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -304,12 +318,12 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <nav
-            className="lg:hidden fixed inset-0 z-40 bg-background/90 backdrop-blur-md"
+            className="lg:hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto"
             role="navigation"
             aria-label="Mobile navigation"
             onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
           >
-            <div className="px-4 pt-24 pb-8 space-y-2 max-w-3xl mx-auto">
+            <div className="px-4 pt-20 pb-8 space-y-2 max-w-3xl mx-auto min-h-full">
               {isHomePage ? (
                 <>
                   <button
