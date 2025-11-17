@@ -54,9 +54,20 @@ All colors MUST be HSL.
     --white-section: 0 0% 98%;
     --light-grey: 0 0% 95%;
     
+    /* Icon System */
+    --icon-primary: 36 100% 50%;
+    --icon-secondary: 0 0% 85%;
+    --icon-muted: 0 0% 60%;
+    --icon-accent: 36 100% 60%;
+    --icon-size-sm: 1rem;
+    --icon-size-md: 1.25rem;
+    --icon-size-lg: 1.5rem;
+    --icon-size-xl: 2rem;
+    
     /* Shadow & Glow Effects */
     --shadow-glow: 0 10px 40px -10px hsl(36 100% 50% / 0.3);
     --shadow-dark: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
+    --shadow-icon: 0 4px 12px hsl(36 100% 50% / 0.2);
   }
 }
 
@@ -235,6 +246,36 @@ html {
   -webkit-background-clip: text;
   color: transparent;
 }
+
+/* Icon Utilities - Consistent icon styling throughout the site */
+.icon-primary {
+  @apply text-[hsl(var(--icon-primary))] transition-all duration-300;
+}
+
+.icon-primary:hover {
+  @apply text-[hsl(var(--icon-accent))] drop-shadow-[0_0_8px_hsl(var(--icon-primary)/0.4)];
+}
+
+.icon-secondary {
+  @apply text-[hsl(var(--icon-secondary))] transition-all duration-300;
+}
+
+.icon-secondary:hover {
+  @apply text-[hsl(var(--icon-primary))];
+}
+
+.icon-muted {
+  @apply text-[hsl(var(--icon-muted))] transition-all duration-300;
+}
+
+.icon-muted:hover {
+  @apply text-[hsl(var(--icon-secondary))];
+}
+
+.icon-sm { width: var(--icon-size-sm); height: var(--icon-size-sm); }
+.icon-md { width: var(--icon-size-md); height: var(--icon-size-md); }
+.icon-lg { width: var(--icon-size-lg); height: var(--icon-size-lg); }
+.icon-xl { width: var(--icon-size-xl); height: var(--icon-size-xl); }
 
 /* Animated gradient for text */
 @keyframes gradient {

@@ -73,6 +73,12 @@ export default {
           pure: "hsl(var(--pure-white))",
           section: "hsl(var(--white-section))",
         },
+        icon: {
+          primary: "hsl(var(--icon-primary))",
+          secondary: "hsl(var(--icon-secondary))",
+          muted: "hsl(var(--icon-muted))",
+          accent: "hsl(var(--icon-accent))",
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
