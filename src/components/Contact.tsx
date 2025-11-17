@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Loader2, MessageSquare, Clock, Code, Smartphone, Palette, TrendingUp } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquare, Clock, Code, Smartphone, Palette, TrendingUp } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -470,7 +471,7 @@ const Contact = () => {
                         <span className="relative z-10 flex items-center justify-center gap-3">
                           {form.formState.isSubmitting ? (
                             <>
-                              <Loader2 className="h-5 w-5 animate-spin" />
+                              <Spinner size="sm" className="border-primary-foreground border-t-transparent" />
                               <span>Sending Message...</span>
                             </>
                           ) : (
