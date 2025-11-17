@@ -18,16 +18,32 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'motion': ['framer-motion'],
-          'ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          'form': ['react-hook-form', '@hookform/resolvers', 'zod'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'motion';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            if (id.includes('react-hook-form') || id.includes('zod')) {
+              return 'form';
+            }
+            if (id.includes('lucide-react')) {
+              return 'icons';
+            }
+            return 'vendor';
+          }
         },
       },
     },
     minify: 'esbuild',
+    cssMinify: 'lightningcss',
     drop: ['console', 'debugger'],
+    sourcemap: false,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
