@@ -57,6 +57,11 @@ const Services = () => {
       description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
     },
     {
+      iconName: "smartphone",
+      title: "App Development",
+      description: "Native and cross-platform mobile applications that deliver exceptional user experiences on iOS and Android.",
+    },
+    {
       iconName: "brush",
       title: "Graphics Designing",
       description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
@@ -96,7 +101,7 @@ const Services = () => {
             Our <span className="text-primary">Services</span>
           </h2>
           <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
-            Comprehensive web development, graphics, and digital marketing solutions for modern businesses
+            Comprehensive web development, mobile app development, graphics, and digital marketing solutions for modern businesses
           </p>
         </motion.div>
 
