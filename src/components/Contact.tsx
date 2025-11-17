@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, MessageSquare, Clock, Code, Smartphone, Palette, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
 import { Spinner } from "@/components/ui/spinner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -92,34 +93,22 @@ const Contact = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-20 px-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-sm mb-6">
+        <motion.div className="text-center mb-20 px-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-md mb-6" initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1, duration: 0.4 }}>
             <MessageSquare className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Get In Touch</span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
-            Let's Build <span
-              className="text-background"
-              style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)))',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                filter: 'brightness(1.1)',
-                textShadow: '0 0 30px hsl(var(--primary) / 0.3)',
-                fontWeight: 900
-              }}
-            >
-              Something Extraordinary
-            </span> Together
-          </h1>
+          <motion.h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
+            Let's Build <span className="bg-gradient-to-r from-primary to-orange-glow bg-clip-text text-transparent animate-gradient glow-text" style={{ backgroundSize: '200% 200%' }}>Something Extraordinary</span> Together
+          </motion.h1>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2">
+          <motion.p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}>
             Ready to transform your digital presence? We're here to turn your vision into reality.
-          </p>
-        </div>
+          </motion.p>
+
+          <div className="mx-auto mt-4 h-1 w-28 rounded-full bg-gradient-to-r from-primary to-orange-glow" />
+        </motion.div>
 
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">

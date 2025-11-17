@@ -69,6 +69,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     overflow-x: hidden;
   }
+  img, video, canvas, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
   
   /* Enhanced Focus Styles for Accessibility */
   *:focus-visible {

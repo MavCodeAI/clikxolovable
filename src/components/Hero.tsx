@@ -60,7 +60,7 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div className="space-y-8 text-center lg:text-left" initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={{duration: 0.8}}>
-              <motion.div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/30 shadow-lg" whileHover={{scale: 1.05}}>
+              <motion.div className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/30 shadow-lg animated-border" whileHover={{scale: 1.06}}>
                 <Sparkles className="w-4 h-4 text-primary animate-pulse" aria-hidden="true" />
                 <span className="text-sm font-bold text-foreground uppercase tracking-wider">#1 Digital Innovation Partner</span>
               </motion.div>
@@ -69,12 +69,14 @@ const Hero = () => {
                 <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
                   <span className="block text-foreground mb-2">LET'S</span>
                   <AnimatePresence mode="wait">
-                    <motion.span key={currentWord} className={`block text-transparent bg-clip-text bg-gradient-to-r ${powerWords[currentWord].color} mb-2`} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{duration: 0.5}}>
+                    <motion.span key={currentWord} className={`block text-transparent bg-clip-text bg-gradient-to-r ${powerWords[currentWord].color} mb-2 animate-gradient glow-text`} style={{ backgroundSize: '200% 200%' }} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{duration: 0.5}}>
                       {powerWords[currentWord].text}
                     </motion.span>
                   </AnimatePresence>
                   <span className="block text-foreground">YOUR BUSINESS</span>
                 </motion.h1>
+
+                <div className="mx-auto lg:mx-0 mt-3 h-1 w-28 rounded-full bg-gradient-to-r from-primary to-orange-glow" />
 
                 <motion.p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
                   We craft <span className="text-primary font-bold">game-changing digital solutions</span> that drive real results. From stunning websites to powerful marketing strategies — we turn your vision into reality.
@@ -82,10 +84,10 @@ const Hero = () => {
               </div>
 
               <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold uppercase rounded-full shadow-2xl hover:scale-105 min-w-[220px]" aria-label="Start your project">
+                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold uppercase rounded-full shadow-2xl hover:scale-105 min-w-[220px] button-magnetic btn-glow" aria-label="Start your project">
                   <span className="flex items-center gap-2">Start Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
                 </Button>
-                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold uppercase rounded-full min-w-[220px]" aria-label="View portfolio">
+                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold uppercase rounded-full min-w-[220px] button-magnetic" aria-label="View portfolio">
                   <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-5 h-5" aria-hidden="true" /></span>
                 </Button>
               </motion.div>
