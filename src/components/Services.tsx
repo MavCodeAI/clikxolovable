@@ -57,6 +57,11 @@ const Services = () => {
       description: "Custom web applications built with modern technologies and responsive design for optimal performance.",
     },
     {
+      iconName: "phone_iphone",
+      title: "App Development",
+      description: "Native iOS & Android apps, Progressive Web Apps (PWA), and cross-platform solutions built with React Native and modern frameworks for seamless user experiences.",
+    },
+    {
       iconName: "brush",
       title: "Graphics Designing",
       description: "Professional branding, logos, and marketing materials designed to make your business stand out.",
