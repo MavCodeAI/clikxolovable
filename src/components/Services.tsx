@@ -50,11 +50,11 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
 
           {/* CTA Button */}
           <div className="flex justify-center mt-auto">
-            <div className="bg-gradient-to-r from-primary to-orange-glow p-[1px] rounded-full group-hover:scale-105 transition-all duration-300">
-              <div className="bg-background group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-orange-glow px-6 py-3 rounded-full transition-all duration-300">
+            <div className="bg-gradient-to-r from-primary to-orange-glow p-[1px] rounded-full group-hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/20">
+              <div className="bg-background px-6 py-3 rounded-full transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-orange-glow">
                 <span className="inline-flex items-center text-primary group-hover:text-white text-sm font-black font-heading uppercase tracking-widest gap-2 transition-colors duration-300">
                   Learn more
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <svg className="w-4 h-4 text-primary group-hover:text-white transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
