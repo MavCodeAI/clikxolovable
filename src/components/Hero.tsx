@@ -1,8 +1,8 @@
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ArrowRight, ChevronDown } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -13,9 +13,6 @@ const Hero = () => {
     "Graphics Design",
     "Digital Marketing"
   ];
-
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Simplified button component for better performance
   const MagneticButton = ({ children, onClick, className, variant = "default", ...props }: any) => {

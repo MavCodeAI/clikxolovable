@@ -1,9 +1,9 @@
-import { Code, Smartphone, Palette, TrendingUp } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Code, Smartphone, Palette, TrendingUp, type LucideIcon } from "lucide-react";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 interface ServiceType {
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
   title: string;
   description: string;
 }
