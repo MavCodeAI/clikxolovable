@@ -27,6 +27,10 @@ const About = () => {
 
   return (
     <section id="about" className="py-24 bg-white-section relative overflow-hidden" aria-label="About section">
+      {/* Background decorations */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" aria-hidden="true"></div>
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} aria-hidden="true"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <motion.div
@@ -60,27 +64,38 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex items-center justify-center min-h-[120px] p-6 bg-white rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-md border-2 border-gray-textDark/20 hover:border-primary/40 group focus-within:ring-4 focus-within:ring-primary/20"
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -10, scale: 1.08 }}
+              className="relative flex items-center justify-center min-h-[160px] p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-textDark/10 hover:border-primary/50 group focus-within:ring-4 focus-within:ring-primary/30 transition-all duration-500 overflow-hidden"
             >
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                  <stat.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-black text-background mb-2 group-hover:text-primary transition-colors duration-300">
+              {/* Background Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-orange-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="text-center relative z-10">
+                <motion.div 
+                  className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-500"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <stat.icon className="w-8 h-8 text-primary" />
+                </motion.div>
+                <h3 className="text-3xl md:text-4xl font-black text-background mb-2 group-hover:text-primary transition-colors duration-300">
                   {stat.value}
                 </h3>
-                <p className="text-gray-textDark font-medium uppercase text-sm tracking-tight">
+                <p className="text-gray-textDark font-bold uppercase text-xs md:text-sm tracking-wide">
                   {stat.label}
                 </p>
               </div>
+              
+              {/* Corner Accent */}
+              <div className="absolute bottom-2 left-2 w-4 h-4 bg-orange-glow/20 rounded-full group-hover:scale-150 group-hover:bg-orange-glow/40 transition-all duration-500"></div>
             </motion.div>
           ))}
         </div>

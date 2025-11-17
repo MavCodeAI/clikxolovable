@@ -20,6 +20,10 @@ const Team = () => {
 
   return (
     <section id="team" className="py-24 bg-background relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" aria-hidden="true"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}} aria-hidden="true"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <motion.div
@@ -32,43 +36,67 @@ const Team = () => {
               Our Team
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
-            Meet the <span className="text-primary">Experts</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+            Meet the <span className="text-primary">Dream Team</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our diverse team of specialists brings together expertise from various fields
-            to deliver exceptional results for our clients.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Passionate innovators combining creativity and technical excellence to bring your vision to life
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-card rounded-2xl p-6 border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg group"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
+              className="relative bg-card rounded-3xl p-8 border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group overflow-hidden"
             >
-              <div className="text-center">
-                <OptimizedImage
-                  src={member.image}
-                  alt={`${member.name} - ${member.role} at ClikXo`}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  width={96}
-                  height={96}
-                />
-                <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
-                <p className="text-primary font-medium text-sm mb-3">{member.role}</p>
-                <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
+              {/* Background Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-orange-glow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                {/* Image with enhanced styling */}
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-orange-glow/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <OptimizedImage
+                    src={member.image}
+                    alt={`${member.name} - ${member.role} at ClikXo`}
+                    className="relative w-full h-full rounded-full object-cover border-4 border-background shadow-xl group-hover:scale-105 transition-transform duration-500"
+                    width={128}
+                    height={128}
+                  />
+                  {/* Status Indicator */}
+                  <div className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 rounded-full border-4 border-background shadow-lg"></div>
+                </div>
 
-                <div className="flex justify-center space-x-3">
-                  <Linkedin className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                  <Twitter className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                  <Mail className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                {/* Text Content */}
+                <div className="text-center">
+                  <h3 className="text-2xl font-black text-foreground mb-2 group-hover:text-primary transition-colors duration-300">{member.name}</h3>
+                  <p className="text-primary font-bold text-base mb-4 uppercase tracking-wider">{member.role}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">{member.bio}</p>
+
+                  {/* Social Links with enhanced styling */}
+                  <div className="flex justify-center gap-4">
+                    {[Linkedin, Twitter, Mail].map((Icon, idx) => (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ scale: 1.2, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center transition-all duration-300 cursor-pointer group/icon border border-border hover:border-primary/30"
+                      >
+                        <Icon className="w-5 h-5 text-muted-foreground group-hover/icon:text-primary transition-colors" />
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Corner Accent */}
+              <div className="absolute top-4 right-4 w-4 h-4 bg-primary/20 rounded-full group-hover:scale-150 group-hover:bg-primary/40 transition-all duration-500"></div>
             </motion.div>
           ))}
         </div>

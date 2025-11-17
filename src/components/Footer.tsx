@@ -61,15 +61,15 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8" aria-label="ClikXo Studio Home">
-                <i className="material-icons text-5xl lg:text-6xl text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">touch_app</i>
-                <span className="ml-4 text-3xl lg:text-5xl xl:text-6xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight drop-shadow-sm">
+               <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8" aria-label="ClikXo Studio Home">
+                <i className="material-icons text-4xl lg:text-5xl text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true">touch_app</i>
+                <span className="ml-3 text-2xl lg:text-4xl xl:text-5xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight drop-shadow-sm">
                   ClikXo Studio
                 </span>
               </Link>
 
-              <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                Your trusted digital marketing partner driving growth, engagement, and measurable results for businesses worldwide.
+              <p className="text-muted-foreground text-sm mb-6 leading-relaxed font-medium">
+                Transforming ideas into exceptional digital experiences. Your growth is our mission.
               </p>
 
               {/* Contact Info */}
@@ -148,17 +148,17 @@ const Footer = () => {
               <h4 className="text-foreground font-bold text-lg mb-6">Connect With Us</h4>
 
               {/* Social Links */}
-              <div className="flex space-x-3 mb-6">
-                <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+              <div className="flex gap-3 mb-6">
+                <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
                   <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
-                <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                <a href="https://twitter.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
                   <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
-                <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
                   <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
-                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg">
+                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/20 border border-border hover:border-primary">
                   <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                 </a>
               </div>

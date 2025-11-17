@@ -44,13 +44,16 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-orange-glow/10">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
-        <div className="absolute inset-0" style={{backgroundImage: 'linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)', backgroundSize: '50px 50px'}} />
+      {/* Enhanced Grid Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30" aria-hidden="true">
+        <div className="absolute inset-0" style={{backgroundImage: 'linear-gradient(hsl(var(--primary) / 0.15) 2px, transparent 2px), linear-gradient(90deg, hsl(var(--primary) / 0.15) 2px, transparent 2px)', backgroundSize: '60px 60px'}} />
       </div>
 
+      {/* Enhanced Animated Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <motion.div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" animate={{scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3]}} transition={{duration: 8, repeat: Infinity, ease: "easeInOut"}} />
-        <motion.div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-glow/20 to-transparent blur-3xl" animate={{scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2}} />
+        <motion.div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-primary/30 to-transparent blur-3xl" animate={{scale: [1, 1.3, 1], opacity: [0.4, 0.6, 0.4], x: [0, 50, 0]}} transition={{duration: 8, repeat: Infinity, ease: "easeInOut"}} />
+        <motion.div className="absolute bottom-20 left-20 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-orange-glow/30 to-transparent blur-3xl" animate={{scale: [1, 1.4, 1], opacity: [0.4, 0.7, 0.4], y: [0, -50, 0]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2}} />
+        <motion.div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 via-orange-glow/20 to-transparent blur-3xl" animate={{rotate: [0, 360], scale: [1, 1.2, 1]}} transition={{duration: 15, repeat: Infinity, ease: "linear"}} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
