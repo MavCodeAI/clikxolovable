@@ -100,7 +100,7 @@ const Contact = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
-            Let's Create <span
+            Let's Build <span
               className="text-background"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)))',
@@ -108,12 +108,12 @@ const Contact = () => {
                 WebkitBackgroundClip: 'text',
                 color: 'transparent',
                 filter: 'brightness(1.1)',
-                textShadow: '0 0 20px hsl(var(--primary) / 0.2)',
+                textShadow: '0 0 30px hsl(var(--primary) / 0.3)',
                 fontWeight: 900
               }}
             >
-              Something Amazing
-            </span>
+              Something Extraordinary
+            </span> Together
           </h1>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2">

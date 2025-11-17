@@ -108,12 +108,12 @@ const Navbar = () => {
           {/* Left Side - Logo */}
           <Link
             to="/"
-            className="flex items-center z-10 flex-shrink-0 group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2"
+            className="flex items-center z-10 flex-shrink-0 group focus:outline-none focus:ring-4 focus:ring-primary/30 rounded-xl p-2 -m-2 transition-all"
             onClick={() => setIsOpen(false)}
             aria-label="ClikXo Studio Home"
           >
-            <i className="material-icons text-4xl sm:text-5xl text-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110">touch_app</i>
-            <span className="ml-4 text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-foreground group-hover:text-primary transition-colors tracking-tight drop-shadow-sm">
+            <i className="material-icons text-4xl sm:text-5xl text-primary flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">touch_app</i>
+            <span className="ml-4 text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-foreground group-hover:text-primary transition-all duration-300 tracking-tight drop-shadow-sm">
               ClikXo Studio
             </span>
           </Link>
