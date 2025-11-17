@@ -1,5 +1,6 @@
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface BlogPost {
   id: number;
@@ -92,6 +93,69 @@ const Blog = () => {
     }
   ];
 
+  // Generate structured data for blog posts
+  const generateBlogSchema = () => {
+    if (selectedPost) {
+      return {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": selectedPost.title,
+        "description": selectedPost.excerpt,
+        "image": selectedPost.image !== "/placeholder.svg" ? selectedPost.image : "https://clikxo.com/placeholder.svg",
+        "author": {
+          "@type": "Person",
+          "name": selectedPost.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ClikXo",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://clikxo.com/logo.png"
+          }
+        },
+        "datePublished": selectedPost.date,
+        "dateModified": selectedPost.date,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://clikxo.com/blog/${selectedPost.id}`
+        },
+        "articleSection": selectedPost.category,
+        "wordCount": selectedPost.content.split(' ').length,
+        "timeRequired": `PT${selectedPost.readTime.split(' ')[0]}M`
+      };
+    }
+
+    // Schema for blog listing page
+    return {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "ClikXo Blog",
+      "description": "Stay updated with the latest insights, trends, and strategies in digital marketing and technology.",
+      "url": "https://clikxo.com/blog",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ClikXo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://clikxo.com/logo.png"
+        }
+      },
+      "blogPost": blogPosts.map(post => ({
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "url": `https://clikxo.com/blog/${post.id}`,
+        "datePublished": post.date,
+        "author": {
+          "@type": "Person",
+          "name": post.author
+        },
+        "articleSection": post.category
+      }))
+    };
+  };
+
   const categories = ["All", "Digital Marketing", "SEO", "Social Media"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -100,8 +164,21 @@ const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
-    <section id="blog" className="py-20 bg-secondary">
-      <div className="container mx-auto px-4">
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(generateBlogSchema())}
+        </script>
+        {selectedPost && (
+          <title>{selectedPost.title} | ClikXo Blog</title>
+        )}
+        {!selectedPost && (
+          <title>Digital Marketing Blog | Latest Insights & Strategies | ClikXo</title>
+        )}
+        <meta name="description" content={selectedPost ? selectedPost.excerpt : "Stay updated with the latest insights, trends, and strategies in digital marketing and technology."} />
+      </Helmet>
+      <section id="blog" className="py-20 bg-secondary">
+        <div className="container mx-auto px-4">
         {selectedPost ? (
           // Blog Post Detail View
           <div className="max-w-4xl mx-auto">
@@ -232,8 +309,9 @@ const Blog = () => {
             )}
           </>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 

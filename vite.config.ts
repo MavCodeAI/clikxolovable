@@ -22,10 +22,12 @@ export default defineConfig(({ mode }) => ({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'motion': ['framer-motion'],
           'ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'form': ['react-hook-form', '@hookform/resolvers', 'zod'],
         },
       },
     },
     minify: 'esbuild',
+    drop: ['console', 'debugger'],
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],

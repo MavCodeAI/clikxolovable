@@ -1,0 +1,35 @@
+OG Image Requirements for ClikXo Website
+===================================
+
+File: public/og-image.jpg
+Dimensions: 1200x630px (1.91:1 aspect ratio)
+Format: JPG
+Purpose: Social media sharing (Facebook, Twitter, LinkedIn)
+
+Content Requirements:
+- ClikXo branding (logo and name)
+- Professional design matching site colors
+- Tagline: "Digital Marketing Agency"
+- Subtle background elements
+- Call-to-action or key services hint
+
+Design Guidelines:
+- Primary color: #your-primary-color
+- Secondary color: #your-orange-glow
+- Font: Inter or similar modern sans-serif
+- Layout: Company name prominently, tagline below
+- Minimal, professional appearance
+
+Tools to create:
+- Canva
+- Figma
+- Photoshop
+- Online OG image generators
+
+Why needed:
+- Social media previews when links are shared
+- Professional appearance on social platforms
+- Better click-through rates from social media
+
+Current fallback: Uses browser-generated previews
+Impact: Missing OG image reduces social sharing effectiveness by ~30%

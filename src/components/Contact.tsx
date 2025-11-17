@@ -58,18 +58,13 @@ const Contact = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      console.log("Submitting contact form:", data);
-      
       const { data: responseData, error } = await supabase.functions.invoke('send-contact-email', {
         body: data
       });
 
       if (error) {
-        console.error("Error sending email:", error);
         throw error;
       }
-
-      console.log("Email sent successfully:", responseData);
       
       toast({
         title: "✓ Message Sent Successfully!",

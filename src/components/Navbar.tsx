@@ -1,8 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
+
+// Throttle utility function
+const throttle = (func: Function, limit: number) => {
+  let inThrottle: boolean;
+  return function(this: any, ...args: any[]) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,23 +24,24 @@ const Navbar = () => {
   const isHomePage = location.pathname === '/';
   const activeSection = useScrollSpy(['home', 'services', 'about', 'team', 'portfolio', 'contact'], 150);
 
+  // Throttled scroll handler to prevent excessive re-renders
+  const handleScroll = useCallback(throttle(() => {
+    if (isHomePage) {
+      // Sections that have lighter backgrounds (where navbar should be dark)
+      const lightSections = activeSection === 'about' || activeSection === 'team';
+      setIsScrolled(lightSections);
+    } else {
+      // On other pages, use dark navbar
+      setIsScrolled(true);
+    }
+  }, 100), [activeSection, isHomePage]);
+
   // Handle navbar dynamic styling based on scroll position
   useEffect(() => {
-    const handleScroll = () => {
-      if (isHomePage) {
-        // Sections that have lighter backgrounds (where navbar should be dark)
-        const lightSections = activeSection === 'about' || activeSection === 'team';
-        setIsScrolled(lightSections);
-      } else {
-        // On other pages, use dark navbar
-        setIsScrolled(true);
-      }
-    };
-
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection, isHomePage]);
+  }, [handleScroll]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

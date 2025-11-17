@@ -1,6 +1,7 @@
 import { Code, Smartphone, Palette, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { memo, useMemo } from "react";
 
 interface ServiceType {
   icon: React.ComponentType<{ className?: string }>;
@@ -8,7 +9,7 @@ interface ServiceType {
   description: string;
 }
 
-function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
+const ServiceCard = memo(function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -43,10 +44,10 @@ function ServiceCard({ service, index }: { service: ServiceType; index: number }
       </Card>
     </motion.div>
   );
-}
+});
 
 const Services = () => {
-  const services = [
+  const services = useMemo(() => [
     {
       icon: Code,
       title: "Web Development",
@@ -67,7 +68,7 @@ const Services = () => {
       title: "Digital Marketing",
       description: "Data-driven marketing strategies to increase visibility and drive growth for your business online.",
     },
-  ];
+  ], []);
 
   return (
     <section id="services" className="py-24 bg-background relative overflow-hidden" aria-labelledby="services-heading">
