@@ -1,21 +1,11 @@
 /* Critical above-the-fold CSS - Inlined for faster FCP */
 :root {
-  --primary: 222.2 47.4% 45.1%;
-  --primary-foreground: 210 40% 98%;
-  --background: 0 0% 100%;
-  --foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: 217.2 91.2% 59.8%;
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-  }
+  --background: 0 0% 14%;
+  --foreground: 0 0% 100%;
+  --primary: 36 100% 50%;
+  --primary-foreground: 0 0% 14%;
+  --muted: 0 0% 28%;
+  --muted-foreground: 0 0% 85%;
 }
 
 * {

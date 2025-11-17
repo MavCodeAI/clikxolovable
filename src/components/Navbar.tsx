@@ -47,18 +47,12 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isOpen) {
-      // Only hide overflow on desktop, allow natural scrolling on mobile
-      document.body.style.overflow = isMobile ? 'auto' : 'hidden';
-
-      // Add mobile-specific fixes
-      if (isMobile) {
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-      }
+      // Disable page scroll when mobile menu is open (consistent across devices)
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
     } else {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
     }
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -107,7 +101,7 @@ const Navbar = () => {
       className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? 'bg-background/98 backdrop-blur-lg border-b border-border/50 shadow-xl shadow-background/10'
-          : 'bg-gradient-to-r from-hero-bg/95 via-background/90 to-hero-accent/95 backdrop-blur-md border-b border-primary/25 shadow-2xl shadow-primary/10'
+          : 'bg-background/96 backdrop-blur-md border-b border-border/40 shadow-2xl shadow-background/10'
       }`}
     >
       {/* Enhanced Background Effects */}
@@ -119,10 +113,7 @@ const Navbar = () => {
             : 'bg-gradient-to-r from-primary/5 via-transparent to-orange-glow/5'
         }`} />
 
-        {/* Subtle Animated Elements */}
-        <div className="absolute top-3 left-12 w-2 h-2 bg-primary/40 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
-        <div className="absolute top-2 right-20 w-1.5 h-1.5 bg-orange-glow/50 rounded-full animate-bounce" style={{animationDuration: '4s'}}></div>
-        <div className="absolute bottom-1 left-1/3 w-3 h-0.5 bg-primary/30 transform rotate-45 animate-pulse" style={{animationDuration: '5s'}}></div>
+        
       </div>
 
       {/* Main Navigation Container */}
@@ -307,7 +298,6 @@ const Navbar = () => {
             <button
               className="lg:hidden p-3 rounded-lg text-foreground/80 hover:text-primary hover:bg-primary/10 transition-colors duration-200 min-w-[48px] min-h-[48px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/50"
               onClick={() => setIsOpen(!isOpen)}
-              onTouchStart={() => setIsOpen(!isOpen)}
               aria-label="Toggle mobile menu"
               aria-expanded={isOpen}
             >
@@ -467,7 +457,7 @@ const Navbar = () => {
               <div className="pt-6 border-t border-border">
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="group w-full relative px-6 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-base uppercase tracking-wider rounded-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="group w-full relative px-6 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-base rounded-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   aria-label="Get Started with ClikXo Studio - Scroll to Contact section"
                 >
                   <span className="flex items-center justify-center gap-3">

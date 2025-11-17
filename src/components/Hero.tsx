@@ -10,10 +10,10 @@ const Hero = () => {
   const [currentStat, setCurrentStat] = useState(0);
   
   const powerWords = [
-    { text: "INNOVATE", color: "from-primary to-blue-400" },
-    { text: "DOMINATE", color: "from-orange-glow to-red-400" },
-    { text: "TRANSFORM", color: "from-primary to-purple-400" },
-    { text: "ACCELERATE", color: "from-orange-glow to-yellow-400" }
+    { text: "INNOVATE", color: "from-primary to-orange-glow" },
+    { text: "DOMINATE", color: "from-primary to-orange-glow" },
+    { text: "TRANSFORM", color: "from-primary to-orange-glow" },
+    { text: "ACCELERATE", color: "from-primary to-orange-glow" }
   ];
 
   const stats = [
@@ -49,11 +49,8 @@ const Hero = () => {
         <div className="absolute inset-0" style={{backgroundImage: 'linear-gradient(hsl(var(--primary) / 0.15) 2px, transparent 2px), linear-gradient(90deg, hsl(var(--primary) / 0.15) 2px, transparent 2px)', backgroundSize: '60px 60px'}} />
       </div>
 
-      {/* Enhanced Animated Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <motion.div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-primary/30 to-transparent blur-3xl" animate={{scale: [1, 1.3, 1], opacity: [0.4, 0.6, 0.4], x: [0, 50, 0]}} transition={{duration: 8, repeat: Infinity, ease: "easeInOut"}} />
-        <motion.div className="absolute bottom-20 left-20 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-orange-glow/30 to-transparent blur-3xl" animate={{scale: [1, 1.4, 1], opacity: [0.4, 0.7, 0.4], y: [0, -50, 0]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2}} />
-        <motion.div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 via-orange-glow/20 to-transparent blur-3xl" animate={{rotate: [0, 360], scale: [1, 1.2, 1]}} transition={{duration: 15, repeat: Infinity, ease: "linear"}} />
+        <motion.div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" animate={{scale: [1, 1.2, 1], opacity: [0.3, 0.45, 0.3], x: [0, 30, 0]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut"}} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
@@ -66,7 +63,7 @@ const Hero = () => {
               </motion.div>
 
               <div className="space-y-4">
-                <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-balance">
+                <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-balance font-heading">
                   <span className="block text-foreground mb-2">LET'S</span>
                   <AnimatePresence mode="wait">
                     <motion.span key={currentWord} className={`block text-transparent bg-clip-text bg-gradient-to-r ${powerWords[currentWord].color} mb-2 animate-gradient glow-text`} style={{ backgroundSize: '200% 200%' }} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{duration: 0.5}}>
@@ -84,10 +81,10 @@ const Hero = () => {
               </div>
 
               <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold uppercase rounded-full shadow-2xl hover:scale-105 min-w-[220px] button-magnetic btn-glow" aria-label="Start your project">
+                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold rounded-full shadow-2xl hover:scale-105 min-w-[220px] button-magnetic btn-glow" aria-label="Start your project">
                   <span className="flex items-center gap-2">Start Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
                 </Button>
-                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold uppercase rounded-full min-w-[220px] button-magnetic" aria-label="View portfolio">
+                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold rounded-full min-w-[220px] button-magnetic" aria-label="View portfolio">
                   <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-5 h-5" aria-hidden="true" /></span>
                 </Button>
               </motion.div>

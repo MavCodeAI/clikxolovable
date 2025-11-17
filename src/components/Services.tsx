@@ -90,7 +90,7 @@ const Services = () => {
   ], []);
 
   return (
-    <section id="services" className="py-24 bg-background relative overflow-hidden" aria-labelledby="services-heading">
+    <section id="services" className="py-24 bg-background relative overflow-hidden scroll-mt-20 md:scroll-mt-24" aria-labelledby="services-heading">
       {/* Background Decorations */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" aria-hidden="true"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl" aria-hidden="true"></div>
@@ -113,7 +113,7 @@ const Services = () => {
               What We Offer
             </span>
           </motion.div>
-          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+          <h2 id="services-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight font-heading text-balance">
             Our <span className="text-primary">Services</span>
           </h2>
           <p className="text-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
