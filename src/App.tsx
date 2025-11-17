@@ -19,6 +19,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
+const AIVideoGenerator = lazy(() => import("./pages/AIVideoGenerator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback component
@@ -39,6 +40,7 @@ const AnimatedRoutes = () => {
           <Route path="/portfolio" element={<RouteTransition><Portfolio /></RouteTransition>} />
           <Route path="/contact" element={<RouteTransition><Contact /></RouteTransition>} />
           <Route path="/blog" element={<RouteTransition><Blog /></RouteTransition>} />
+          <Route path="/ai-video-generator" element={<RouteTransition><AIVideoGenerator /></RouteTransition>} />
           <Route path="/privacy-policy" element={<RouteTransition><PrivacyPolicy /></RouteTransition>} />
           <Route path="/terms-of-service" element={<RouteTransition><TermsOfService /></RouteTransition>} />
           <Route path="/cookie-policy" element={<RouteTransition><CookiePolicy /></RouteTransition>} />

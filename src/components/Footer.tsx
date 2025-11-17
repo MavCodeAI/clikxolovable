@@ -58,7 +58,7 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="py-16 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
               <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-2 -m-2 mb-8" aria-label="ClikXo Studio Home">
@@ -139,6 +139,17 @@ const Footer = () => {
                 <li><Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
                   <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
                   Blog & Insights
+                </Link></li>
+              </ul>
+            </div>
+
+            {/* Tools Section */}
+            <div>
+              <h4 className="text-foreground font-bold text-lg mb-6">Tools</h4>
+              <ul className="space-y-3">
+                <li><Link to="/ai-video-generator" className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center group">
+                  <span className="w-0 group-hover:w-2 bg-primary transition-all duration-300 h-0.5 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100"></span>
+                  AI Video Generator
                 </Link></li>
               </ul>
             </div>

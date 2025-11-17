@@ -4,6 +4,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { motion } from "framer-motion";
 import { memo, useState, useMemo } from "react";
 import { ExternalLink, TrendingUp, Users, Award } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -104,10 +105,20 @@ const ProjectCard = memo(function ProjectCard({ project, index }: { project: Pro
 
           {/* View project link */}
           <div className="pt-4 border-t border-border">
-            <span className="inline-flex items-center text-primary text-sm font-black uppercase tracking-wider gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer">
-              View Case Study
-              <ExternalLink className="w-4 h-4" />
-            </span>
+            {project.id === 7 ? (
+              <Link
+                to="/ai-video-generator"
+                className="inline-flex items-center text-primary text-sm font-black uppercase tracking-wider gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer hover:text-primary/80"
+              >
+                Try AI Generator
+                <ExternalLink className="w-4 h-4" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center text-primary text-sm font-black uppercase tracking-wider gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer">
+                View Case Study
+                <ExternalLink className="w-4 h-4" />
+              </span>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -184,10 +195,21 @@ const Portfolio = () => {
       category: "Digital Marketing",
       description: "Comprehensive SEO overhaul with technical optimization, quality content creation, and strategic link building campaign.",
       tags: ["SEO", "Content", "Analytics", "Backlinks"]
+    },
+    {
+      id: 7,
+      title: "AI Video Generator",
+      client: "Digital Offshores",
+      image: "/fynix ai.png",
+      result: "Generated 1000+ AI videos with unlimited free access",
+      metric: "1000+ Videos",
+      category: "AI/ML Development",
+      description: "Built a cutting-edge AI-powered video generation platform with advanced download capabilities, ASMR prompt system, and seamless user experience.",
+      tags: ["AI/ML", "React", "Next.js", "Video Generation", "ASMR"]
     }
   ], []);
 
-  const categories = useMemo(() => ["All", "Web Development", "App Development", "Digital Marketing", "Graphics Design"], []);
+  const categories = useMemo(() => ["All", "Web Development", "App Development", "Digital Marketing", "Graphics Design", "AI/ML Development"], []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All") return projects;
