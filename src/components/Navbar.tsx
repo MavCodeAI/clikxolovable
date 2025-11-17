@@ -51,6 +51,7 @@ const Navbar = () => {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     } else {
+      // Re-enable page scroll when mobile menu is closed
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
