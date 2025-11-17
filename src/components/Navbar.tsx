@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, Phone, ArrowRight, Sparkles, Home, Briefcase, Users, FolderOpen, Mail } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useScrollSpy from "@/hooks/use-scroll-spy";
+import { motion, AnimatePresence } from "framer-motion";
 
 const throttle = (func: () => void, limit: number) => {
   let inThrottle: boolean;
@@ -89,12 +90,28 @@ const Navbar = () => {
 
   const getMobileButtonClasses = (sectionId: string) => {
     const isActive = activeSection === sectionId;
-    return `flex items-center w-full text-left px-4 py-4 transition-all duration-200 font-medium rounded-lg ${
+    return `flex items-center gap-4 w-full text-left px-5 py-4 transition-all duration-200 font-bold text-lg rounded-xl ${
       isActive
-        ? 'text-primary bg-primary/10'
-        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+        ? 'text-primary bg-primary/10 shadow-md'
+        : 'text-foreground hover:text-primary hover:bg-primary/5'
     }`;
   };
+
+  const menuItems = isHomePage ? [
+    { id: 'home', label: 'Home', icon: Home, action: () => scrollToSection('home') },
+    { id: 'services', label: 'Services', icon: Briefcase, action: () => scrollToSection('services') },
+    { id: 'about', label: 'About', to: '/about', icon: Users },
+    { id: 'team', label: 'Team', to: '/team', icon: Users },
+    { id: 'portfolio', label: 'Portfolio', to: '/portfolio', icon: FolderOpen },
+    { id: 'contact', label: 'Contact', to: '/contact', icon: Mail },
+  ] : [
+    { id: 'home', label: 'Home', to: '/', icon: Home },
+    { id: 'services', label: 'Services', to: '/#services', icon: Briefcase },
+    { id: 'about', label: 'About', to: '/about', icon: Users },
+    { id: 'team', label: 'Team', to: '/team', icon: Users },
+    { id: 'portfolio', label: 'Portfolio', to: '/portfolio', icon: FolderOpen },
+    { id: 'contact', label: 'Contact', to: '/contact', icon: Mail },
+  ];
 
   return (
     <header
@@ -307,178 +324,138 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <nav
-            className="lg:hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto"
-            role="navigation"
-            aria-label="Mobile navigation"
-            onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
-          >
-            <div className="px-4 pt-20 pb-8 space-y-2 max-w-3xl mx-auto min-h-full">
-              {isHomePage ? (
-                <>
+        {/* Enhanced Mobile Menu with Animations */}
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="lg:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-md"
+                onClick={() => setIsOpen(false)}
+                aria-hidden="true"
+              />
+
+              {/* Slide-in menu */}
+              <motion.nav
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                className="lg:hidden fixed right-0 top-0 bottom-0 z-50 w-[85%] max-w-sm bg-background border-l border-border shadow-2xl overflow-y-auto"
+                role="navigation"
+                aria-label="Mobile navigation"
+              >
+                {/* Close button at top */}
+                <div className="flex items-center justify-between p-4 border-b border-border sticky top-0 bg-background/95 backdrop-blur-sm z-10">
+                  <span className="text-lg font-bold text-foreground">Menu</span>
                   <button
-                    onClick={() => scrollToSection("home")}
-                    className={getMobileButtonClasses("home")}
-                    aria-label="Scroll to Home section"
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    aria-label="Close menu"
                   >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Home
+                    <X className="w-6 h-6" />
                   </button>
+                </div>
 
-                  <button
-                    onClick={() => scrollToSection("services")}
-                    className={getMobileButtonClasses("services")}
-                    aria-label="Scroll to Services section"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Services
-                  </button>
+                {/* Menu items with stagger animation */}
+                <div className="px-4 py-6 space-y-2">
+                  {menuItems.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 + 0.1 }}
+                      >
+                        {item.to ? (
+                          <Link
+                            to={item.to}
+                            className={getMobileButtonClasses(item.id)}
+                            onClick={(e) => {
+                              setIsOpen(false);
+                              if (item.to === '/#services') {
+                                e.preventDefault();
+                                if (window.location.pathname !== '/') {
+                                  window.location.href = '/#services';
+                                } else {
+                                  setTimeout(() => {
+                                    const element = document.getElementById('services');
+                                    if (element) {
+                                      element.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                  }, 100);
+                                }
+                              }
+                            }}
+                            aria-label={`Go to ${item.label}`}
+                          >
+                            <Icon className="w-5 h-5 flex-shrink-0" />
+                            <span>{item.label}</span>
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              if (item.action) item.action();
+                            }}
+                            className={getMobileButtonClasses(item.id)}
+                            aria-label={`Scroll to ${item.label}`}
+                          >
+                            <Icon className="w-5 h-5 flex-shrink-0" />
+                            <span>{item.label}</span>
+                          </button>
+                        )}
+                      </motion.div>
+                    );
+                  })}
 
-                  <Link
-                    to="/about"
-                    className={getMobileButtonClasses("about")}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to About page"
+                  {/* CTA Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="pt-6 border-t border-border mt-4"
                   >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    About
-                  </Link>
+                    <button
+                      onClick={() => {
+                        scrollToSection("contact");
+                        setIsOpen(false);
+                      }}
+                      className="group w-full relative px-6 py-5 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-lg rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300"
+                      aria-label="Get Started"
+                    >
+                      <span className="flex items-center justify-center gap-3">
+                        <span>Get Started</span>
+                        <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </button>
+                  </motion.div>
 
-                  <Link
-                    to="/team"
-                    className={getMobileButtonClasses("team")}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Team page"
+                  {/* Contact info */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="pt-6 text-center"
                   >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Team
-                  </Link>
-
-                  <Link
-                    to="/portfolio"
-                    className={getMobileButtonClasses("portfolio")}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Portfolio page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Portfolio
-                  </Link>
-
-                  <Link
-                    to="/contact"
-                    className={getMobileButtonClasses("contact")}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Contact page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Contact
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/"
-                    className={getMobileButtonClasses("home")}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Home page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Home
-                  </Link>
-
-                  <Link
-                    to="/#services"
-                    className={getMobileButtonClasses("services")}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsOpen(false);
-                      // Navigate to home page first, then scroll to services
-                      if (window.location.pathname !== '/') {
-                        window.location.href = '/#services';
-                      } else {
-                        setTimeout(() => {
-                          const element = document.getElementById('services');
-                          if (element) {
-                            element.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }, 100);
-                      }
-                    }}
-                    aria-label="Go to Services section"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Services
-                  </Link>
-
-                  <Link
-                    to="/about"
-                    className={`${getMobileButtonClasses("about")} ${location.pathname === '/about' ? 'text-primary bg-primary/10' : ''}`}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to About page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    About
-                  </Link>
-
-                  <Link
-                    to="/team"
-                    className={`${getMobileButtonClasses("team")} ${location.pathname === '/team' ? 'text-primary bg-primary/10' : ''}`}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Team page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Team
-                  </Link>
-
-                  <Link
-                    to="/portfolio"
-                    className={`${getMobileButtonClasses("portfolio")} ${location.pathname === '/portfolio' ? 'text-primary bg-primary/10' : ''}`}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Portfolio page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Portfolio
-                  </Link>
-
-                  <Link
-                    to="/contact"
-                    className={`${getMobileButtonClasses("contact")} ${location.pathname === '/contact' ? 'text-primary bg-primary/10' : ''}`}
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Go to Contact page"
-                  >
-                    <span className="w-6" /> {/* Spacer for alignment */}
-                    Contact
-                  </Link>
-                </>
-              )}
-
-              {/* CTA Button in Mobile Menu */}
-              <div className="pt-6 border-t border-border">
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="group w-full relative px-6 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-base rounded-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                  aria-label="Get Started with ClikXo Studio - Scroll to Contact section"
-                >
-                  <span className="flex items-center justify-center gap-3">
-                    <span>Get Started</span>
-                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </button>
-              </div>
-              <div className="text-center pt-3">
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-primary underline"
-                  aria-label="Close mobile menu"
-                >
-                  Close Menu
-                </button>
-              </div>
-            </div>
-          </nav>
-        )}
+                    <a
+                      href="tel:+97144318653"
+                      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors min-h-[44px]"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span className="font-medium">+971 44318653</span>
+                    </a>
+                  </motion.div>
+                </div>
+              </motion.nav>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
