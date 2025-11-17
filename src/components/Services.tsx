@@ -9,71 +9,29 @@ interface ServiceType {
 }
 
 function ServiceCard({ service, index }: { service: ServiceType; index: number }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      style={{
-        rotateY,
-        rotateX,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
       className="group cursor-pointer"
     >
-      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 relative overflow-hidden h-full min-h-[300px] group-hover:scale-[1.02]">
+      <Card className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl h-full min-h-[300px]">
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/5 group-hover:via-orange-glow/5 group-hover:to-primary/5 transition-all duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-orange-glow/0 group-hover:from-primary/5 group-hover:via-orange-glow/5 group-hover:to-primary/5 transition-all duration-300"></div>
         
-        {/* Animated corner accent */}
-        <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 blur-2xl group-hover:w-32 group-hover:h-32 transition-all duration-500"></div>
-
         {/* Content */}
         <div className="relative z-10 p-8">
-          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-orange-glow/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative shadow-lg">
-            <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-all duration-500" />
-            {/* Pulse ring effect */}
-            <div className="absolute inset-0 rounded-xl bg-primary/30 scale-0 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700"></div>
+          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-orange-glow/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <service.icon className="w-8 h-8 text-primary" />
           </div>
           <CardTitle className="text-2xl font-black font-heading text-foreground group-hover:text-primary transition-colors duration-300 mb-3 uppercase tracking-wider">{service.title}</CardTitle>
           <CardDescription className="text-gray-text text-base leading-relaxed group-hover:text-foreground transition-colors duration-300 font-medium">
             {service.description}
           </CardDescription>
           {/* Learn more button effect */}
-          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span className="inline-flex items-center text-primary text-sm font-black font-heading uppercase tracking-widest gap-2">
               Learn more 
               <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>

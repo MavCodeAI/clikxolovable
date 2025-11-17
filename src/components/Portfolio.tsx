@@ -1,4 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const Portfolio = () => {
   const projects = [
@@ -52,10 +53,12 @@ const Portfolio = () => {
           {projects.map((project) => (
             <Card key={project.id} className="overflow-hidden">
               <CardContent className="p-0">
-                <img
+                <OptimizedImage
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - ${project.client} project showcase`}
                   className="w-full h-48 object-cover"
+                  width={500}
+                  height={192}
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
