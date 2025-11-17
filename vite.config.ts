@@ -19,15 +19,27 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'react-vendor': ['react', 'react-dom'],
+          'router': ['react-router-dom'],
           'motion': ['framer-motion'],
-          'ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'radix': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'ui': ['lucide-react', 'clsx', 'tailwind-merge'],
         },
       },
     },
     minify: 'esbuild',
+    cssCodeSplit: true,
+    sourcemap: mode === 'development',
+    target: 'esnext',
+    chunkSizeWarningLimit: 500,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+      'lucide-react'
+    ],
   },
 }));

@@ -104,7 +104,7 @@ const Contact = () => {
             <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Get In Touch</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
             Let's Create <span
               className="text-background"
               style={{
@@ -119,7 +119,7 @@ const Contact = () => {
             >
               Something Amazing
             </span>
-          </h1>
+          </h2>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium pt-2">
             Ready to transform your digital presence? We're here to turn your vision into reality.
@@ -148,6 +148,7 @@ const Contact = () => {
                         <a
                           href="mailto:contact@clikxo.com"
                           className="text-gray-700 hover:text-primary font-semibold text-lg transition-colors group-hover:underline block mb-1"
+                          aria-label="Send email to contact@clikxo.com"
                         >
                           contact@clikxo.com
                         </a>
@@ -169,6 +170,7 @@ const Contact = () => {
                         <a
                           href="tel:+97144318653"
                           className="text-gray-700 hover:text-primary font-semibold text-lg transition-colors group-hover:underline block mb-1"
+                          aria-label="Call us at +971 44 318 653"
                         >
                           +971 44 318 653
                         </a>
@@ -486,7 +488,7 @@ const Contact = () => {
 
                       <p className="text-center text-gray-500 text-sm font-medium">
                         By submitting this form, you agree to our{' '}
-                        <button type="button" className="text-primary font-bold hover:underline focus:outline-none">
+                        <button type="button" onClick={() => window.open('/privacy-policy', '_blank')} className="text-primary font-bold hover:underline focus:outline-none focus:ring-2 focus:ring-primary/20 rounded" aria-label="Read our Privacy Policy">
                           Privacy Policy
                         </button>
                       </p>
