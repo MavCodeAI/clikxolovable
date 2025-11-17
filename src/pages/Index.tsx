@@ -96,6 +96,7 @@ const Index = () => {
     <>
       <SEO />
       <StructuredData />
+      <BreadcrumbSchema />
       <SkipToContent />
       <div className="min-h-screen bg-background">
         <AboveFoldLoader />

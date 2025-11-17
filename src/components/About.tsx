@@ -39,7 +39,7 @@ const About = () => {
               About ClikXo Studio
             </span>
           </motion.div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-background mb-6 uppercase tracking-tighter leading-[1.1] max-w-4xl mx-auto">
             Driving Digital <span
               className="text-background"
               style={{
