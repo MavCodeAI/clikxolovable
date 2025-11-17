@@ -24,13 +24,24 @@ const OptimizedImage = ({
   // Generate optimized URL for Unsplash images
   const getOptimizedUrl = (url: string) => {
     if (url.includes('unsplash.com')) {
-      const params = new URLSearchParams();
-      if (width) params.append('w', width.toString());
-      if (height) params.append('h', height.toString());
-      params.append('q', '80');
-      params.append('fm', 'webp');
-      params.append('fit', 'crop');
-      return `${url}&${params.toString()}`;
+      try {
+        const u = new URL(url);
+        if (width) u.searchParams.set('w', width.toString());
+        if (height) u.searchParams.set('h', height.toString());
+        u.searchParams.set('q', '80');
+        u.searchParams.set('fm', 'webp');
+        u.searchParams.set('fit', 'crop');
+        return u.toString();
+      } catch {
+        const params = new URLSearchParams();
+        if (width) params.set('w', width.toString());
+        if (height) params.set('h', height.toString());
+        params.set('q', '80');
+        params.set('fm', 'webp');
+        params.set('fit', 'crop');
+        const sep = url.includes('?') ? '&' : '?';
+        return `${url}${sep}${params.toString()}`;
+      }
     }
     return url;
   };
