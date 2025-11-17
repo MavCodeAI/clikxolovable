@@ -61,9 +61,9 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <div className="flex items-center space-x-3 mb-6">
-                <i className="material-icons text-3xl text-primary">touch_app</i>
-                <span className="text-3xl lg:text-4xl font-black text-foreground tracking-tight drop-shadow-sm">ClikXo Studio</span>
+              <div className="flex items-center space-x-4 mb-8">
+                <i className="material-icons text-4xl lg:text-5xl text-primary">touch_app</i>
+                <span className="text-4xl lg:text-6xl font-black text-foreground tracking-tight drop-shadow-sm">ClikXo Studio</span>
               </div>
 
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
