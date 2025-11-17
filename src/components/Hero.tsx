@@ -1,17 +1,13 @@
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ArrowRight, Zap, Target, Rocket, TrendingUp, Play, Pause } from "lucide-react";
+import { Sparkles, ArrowRight, Zap, Target, Rocket, TrendingUp } from "lucide-react";
 
 const Hero = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const [currentStat, setCurrentStat] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [showVideoControls, setShowVideoControls] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   
   const powerWords = [
     { text: "INNOVATE", color: "from-primary to-blue-400" },
@@ -46,105 +42,18 @@ const Hero = () => {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Parallax scroll effects
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 1000], [0, -100]);
-  const videoY = useTransform(scrollY, [0, 800], [0, -200]);
-  const contentY = useTransform(scrollY, [0, 600], [0, -150]);
-
-  // Video controls
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause();
-        setIsVideoPlaying(false);
-      } else {
-        videoRef.current.play();
-        setIsVideoPlaying(true);
-      }
-    }
-  };
-
-  const videoEnded = () => {
-    setIsVideoPlaying(false);
-  };
-
   return (
-    <section id="home" ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-orange-glow/10">
-      {/* Parallax Video Background */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden pointer-events-none"
-        style={{ y: videoY }}
-        aria-hidden="true"
-      >
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover opacity-10 lg:opacity-15"
-          loop
-          muted
-          playsInline
-          onEnded={videoEnded}
-          preload="metadata"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          <source src="/videos/hero-bg.webm" type="video/webm" />
-          {/* Fallback image if video doesn't load */}
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-primary/5 to-orange-glow/10" />
-      </motion.div>
-
-      {/* Parallax Background Pattern */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden pointer-events-none opacity-20"
-        style={{ y: backgroundY }}
-        aria-hidden="true"
-      >
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-orange-glow/10">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
         <div className="absolute inset-0" style={{backgroundImage: 'linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)', backgroundSize: '50px 50px'}} />
-      </motion.div>
+      </div>
 
-      {/* Video Control Button */}
-      <motion.button
-        onClick={toggleVideo}
-        onMouseEnter={() => setShowVideoControls(true)}
-        onMouseLeave={() => setShowVideoControls(false)}
-        className="absolute top-6 right-6 z-20 p-3 bg-background/80 backdrop-blur-md hover:bg-background rounded-full border border-primary/30 shadow-lg hover:shadow-xl transition-all duration-300 hidden md:flex items-center justify-center group"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={isVideoPlaying ? "Pause background video" : "Play background video"}
-      >
-        {isVideoPlaying ? (
-          <Pause className="w-5 h-5 text-primary group-hover:text-orange-glow transition-colors" />
-        ) : (
-          <Play className="w-5 h-5 text-primary group-hover:text-orange-glow transition-colors" />
-        )}
-      </motion.button>
-
-      {/* Video Controls Tooltip */}
-      <AnimatePresence>
-        {showVideoControls && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-16 right-6 z-20 px-3 py-2 bg-background/90 backdrop-blur-md rounded-lg border border-primary/30 shadow-lg pointer-events-none"
-          >
-            <span className="text-sm text-foreground font-medium">
-              {isVideoPlaying ? "Pause Video" : "Play Video"}
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Animated Floating Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <motion.div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" animate={{scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3]}} transition={{duration: 8, repeat: Infinity, ease: "easeInOut"}} />
         <motion.div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-glow/20 to-transparent blur-3xl" animate={{scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2}} />
       </div>
 
-      <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10"
-        style={{ y: contentY }}
-      >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div className="space-y-8 text-center lg:text-left" initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={{duration: 0.8}}>
@@ -201,7 +110,7 @@ const Hero = () => {
             </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
