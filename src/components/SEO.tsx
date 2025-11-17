@@ -8,14 +8,14 @@ interface SEOProps {
   type?: string;
 }
 
-const SEO = ({ 
-  title = "ClikXo - Performance Digital Marketing Agency",
+const SEO = ({
+  title = "ClikXo Studio - Performance Digital Marketing Agency",
   description = "Performance-driven digital marketing agency helping businesses grow through innovative strategies and data-driven solutions. Expert team delivering measurable results.",
   image = "/og-image.jpg",
   url = "https://clikxo.com",
   type = "website"
 }: SEOProps) => {
-  const fullTitle = title === "ClikXo - Performance Digital Marketing Agency" ? title : `${title} | ClikXo`;
+  const fullTitle = title === "ClikXo Studio - Performance Digital Marketing Agency" ? title : `${title} | ClikXo Studio`;
   
   return (
     <Helmet>

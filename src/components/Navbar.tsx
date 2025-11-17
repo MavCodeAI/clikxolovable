@@ -101,7 +101,7 @@ const Navbar = () => {
               <div className="w-6 h-6 rounded-full bg-orange-glow"></div>
             </div>
             <span className="ml-2 text-xl font-black font-heading text-foreground hover:text-primary transition-colors tracking-tight">
-              ClikXo
+              ClikXo Studio
             </span>
           </Link>
 

@@ -4,7 +4,7 @@ const StructuredData = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "DigitalMarketingAgency",
-    "name": "ClikXo",
+    "name": "ClikXo Studio",
     "description": "Performance-driven digital marketing agency helping businesses grow",
     "url": "https://clikxo.com",
     "logo": "https://clikxo.com/logo.png",
@@ -29,7 +29,7 @@ const StructuredData = () => {
     "serviceType": "Digital Marketing",
     "provider": {
       "@type": "Organization",
-      "name": "ClikXo"
+      "name": "ClikXo Studio"
     },
     "areaServed": "Worldwide",
     "hasOfferCatalog": {

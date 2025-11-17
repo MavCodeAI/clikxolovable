@@ -9,7 +9,10 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -18,20 +21,41 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'motion': ['framer-motion'],
-          'radix': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          'ui': ['lucide-react', 'clsx', 'tailwind-merge'],
+        manualChunks: (id) => {
+          // Vendor chunks for better caching
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('@react')) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'motion';
+            }
+            if (id.includes('@radix-ui') || id.includes('cmdk') || id.includes('vaul')) {
+              return 'ui-components';
+            }
+            if (id.includes('lucide-react') || id.includes('recharts')) {
+              return 'icons-charts';
+            }
+            if (id.includes('@tanstack') || id.includes('@supabase')) {
+              return 'data-utils';
+            }
+            // Group smaller dependencies
+            return 'vendor-others';
+          }
+
+          // Page-specific chunks for route-based splitting
+          if (id.includes('/pages/')) {
+            return 'pages';
+          }
         },
       },
     },
     minify: 'esbuild',
     cssCodeSplit: true,
-    sourcemap: mode === 'development',
-    target: 'esnext',
-    chunkSizeWarningLimit: 500,
+    sourcemap: false,
+    target: 'es2015',
+    chunkSizeWarningLimit: 300,
+    reportCompressedSize: true,
   },
   optimizeDeps: {
     include: [
