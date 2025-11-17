@@ -1,5 +1,0 @@
-[33m7c14efc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m 🔧 Major Production Code Quality & Security Fixes
-[33mb454de2[m fix: Correct gradient text display in Hero component
-[33m31ea2aa[m feat: Update branding from ClikXo to ClikXo Studio
-[33m58aca9f[m Optimize Lighthouse performance: bundle splitting, CSP security headers, accessibility fixes
-[33m6463a68[m Add spinner and skeleton loaders

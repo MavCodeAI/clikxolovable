@@ -66,11 +66,11 @@ const Footer = () => {
                   <div className="w-8 h-8 rounded-full bg-primary"></div>
                   <div className="w-8 h-8 rounded-full bg-orange-glow"></div>
                 </div>
-                <span className="text-2xl font-bold text-foreground">ClikXo Studio</span>
+                <span className="text-2xl font-bold text-foreground">ClikXo</span>
               </div>
 
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                Your trusted digital studio partner offering professional Web Development, Graphics Design, and Digital Marketing services in Dubai, UAE.
+                Your trusted digital marketing partner driving growth, engagement, and measurable results for businesses worldwide.
               </p>
 
               {/* Contact Info */}
@@ -185,7 +185,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6">
               <p className="text-muted-foreground text-sm">
-                © {currentYear} ClikXo Studio. All rights reserved.
+                © {currentYear} ClikXo. All rights reserved.
               </p>
             </div>
 

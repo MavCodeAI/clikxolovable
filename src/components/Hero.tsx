@@ -1,8 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, ChevronDown } from "lucide-react";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -13,6 +13,24 @@ const Hero = () => {
     "Graphics Design",
     "Digital Marketing"
   ];
+
+  // Mouse parallax values for subtle interactions
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring animations for micro-interactions
+  const smoothX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const smoothY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   // Simplified button component for better performance
   const MagneticButton = ({ children, onClick, className, variant = "default", ...props }: any) => {
@@ -173,7 +191,7 @@ const Hero = () => {
                     style={{
                       backgroundClip: 'text',
                       WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
+                      color: 'white',
                       filter: 'brightness(1.1)'
                     }}
                   >

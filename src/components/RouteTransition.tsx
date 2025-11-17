@@ -1,21 +1,11 @@
 import { motion } from "framer-motion";
-import { type ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
 interface RouteTransitionProps {
   children: ReactNode;
 }
 
 const RouteTransition = ({ children }: RouteTransitionProps) => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
-
-  if (prefersReducedMotion) {
-    return <div>{children}</div>;
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
