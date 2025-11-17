@@ -47,13 +47,14 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Images - Cache first, fallback to network
-  if (request.destination === 'image') {
+  // Fonts - Cache aggressively (they rarely change)
+  if (request.destination === 'font' || url.pathname.endsWith('.woff2')) {
     event.respondWith(
-      caches.open(IMAGE_CACHE).then((cache) => {
+      caches.open(STATIC_CACHE).then((cache) => {
         return cache.match(request).then((response) => {
-          return response || fetch(request).then((networkResponse) => {
-            // Only cache successful responses
+          if (response) return response;
+
+          return fetch(request).then((networkResponse) => {
             if (networkResponse.status === 200) {
               cache.put(request, networkResponse.clone());
             }
@@ -65,8 +66,31 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Images - Cache first with better strategy
+  if (request.destination === 'image') {
+    event.respondWith(
+      caches.open(IMAGE_CACHE).then((cache) => {
+        return cache.match(request).then((response) => {
+          if (response) return response;
+
+          return fetch(request).then((networkResponse) => {
+            if (networkResponse.status === 200) {
+              cache.put(request, networkResponse.clone());
+              // Preload smaller version if it's large
+              if (networkResponse.headers.get('content-length') > 100000) {
+                // Could implement progressive loading here
+              }
+            }
+            return networkResponse;
+          });
+        });
+      })
+    );
+    return;
+  }
+
   // Static assets - Cache first
-  if (STATIC_ASSETS.includes(url.pathname) || request.destination === 'font' || request.destination === 'style' || request.destination === 'script') {
+  if (STATIC_ASSETS.includes(url.pathname) || request.destination === 'style' || request.destination === 'script') {
     event.respondWith(
       caches.match(request).then((response) => {
         return response || fetch(request).then((networkResponse) => {

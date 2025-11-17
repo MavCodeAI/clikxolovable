@@ -21,26 +21,28 @@ const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // Generate optimized URL for Unsplash images
+  // Generate optimized URL for Unsplash images with better compression
   const getOptimizedUrl = (url: string) => {
     if (url.includes('unsplash.com')) {
       try {
         const u = new URL(url);
-        if (width) u.searchParams.set('w', width.toString());
-        if (height) u.searchParams.set('h', height.toString());
-        u.searchParams.set('q', '80');
+        if (width) u.searchParams.set('w', Math.min(width, 1200).toString()); // Cap max width for performance
+        if (height) u.searchParams.set('h', Math.min(height, 1200).toString());
+        u.searchParams.set('q', '75'); // Reduced quality for better compression
         u.searchParams.set('fm', 'webp');
         u.searchParams.set('fit', 'crop');
         u.searchParams.set('auto', 'format');
+        u.searchParams.set('cs', 'tinysrgb'); // Better compression
         return u.toString();
       } catch {
         const params = new URLSearchParams();
-        if (width) params.set('w', width.toString());
-        if (height) params.set('h', height.toString());
-        params.set('q', '80');
+        if (width) params.set('w', Math.min(width, 1200).toString());
+        if (height) params.set('h', Math.min(height, 1200).toString());
+        params.set('q', '75');
         params.set('fm', 'webp');
         params.set('fit', 'crop');
         params.set('auto', 'format');
+        params.set('cs', 'tinysrgb');
         const sep = url.includes('?') ? '&' : '?';
         return `${url}${sep}${params.toString()}`;
       }
