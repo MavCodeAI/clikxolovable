@@ -158,33 +158,17 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              {/* Primary Statement */}
-              <div className="space-y-3">
-                <motion.h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
-                  style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                >
-                  WE CREATE
-                </motion.h1>
-                <motion.h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
-                  style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                >
-                  EXCEPTIONAL
-                </motion.h1>
-                <motion.h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
-                  style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                >
+              {/* Primary Statement with proper h1 hierarchy */}
+              <motion.h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tighter leading-[1.1] drop-shadow-sm space-y-3"
+                style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              >
+                <span className="block">WE CREATE</span>
+                <span className="block">EXCEPTIONAL</span>
+                <span className="block">
                   DIGITAL{" "}
                   <span
                     className="bg-gradient-to-r from-primary to-orange-glow"
@@ -197,8 +181,8 @@ const Hero = () => {
                   >
                     EXPERIENCES
                   </span>
-                </motion.h1>
-              </div>
+                </span>
+              </motion.h1>
 
               {/* Professional Description */}
               <motion.p
