@@ -1,365 +1,116 @@
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ArrowRight, ChevronDown } from "lucide-react";
+import { Sparkles, ArrowRight, Zap, Target, Rocket, TrendingUp } from "lucide-react";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const [currentService, setCurrentService] = useState(0);
-  const services = [
-    "Web Development",
-    "App Development",
-    "Graphics Design",
-    "Digital Marketing"
+  const [currentWord, setCurrentWord] = useState(0);
+  const [currentStat, setCurrentStat] = useState(0);
+  
+  const powerWords = [
+    { text: "INNOVATE", color: "from-primary to-blue-400" },
+    { text: "DOMINATE", color: "from-orange-glow to-red-400" },
+    { text: "TRANSFORM", color: "from-primary to-purple-400" },
+    { text: "ACCELERATE", color: "from-orange-glow to-yellow-400" }
   ];
 
-  // Mouse parallax values for subtle interactions
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const stats = [
+    { number: "150+", label: "Projects Delivered", icon: Rocket },
+    { number: "98%", label: "Client Satisfaction", icon: Target },
+    { number: "5x", label: "Average ROI", icon: TrendingUp },
+    { number: "24/7", label: "Support Available", icon: Zap }
+  ];
 
-  // Smooth spring animations for micro-interactions
-  const smoothX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const smoothY = useSpring(mouseY, { stiffness: 300, damping: 30 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  // Simplified button component for better performance
-  const MagneticButton = ({ children, onClick, className, variant = "default", ...props }: any) => {
-    return (
-      <Button
-        onClick={onClick}
-        className={className}
-        variant={variant}
-        {...props}
-      >
-        {children}
-      </Button>
-    );
-  };
-
-  // Service rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentService((prev) => (prev + 1) % services.length);
-    }, 3000);
+      setCurrentWord((prev) => (prev + 1) % powerWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStat((prev) => (prev + 1) % stats.length);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   const scrollToServices = () => {
     const element = document.getElementById("services");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-hero-bg via-background to-hero-accent/20"
-      style={{ zIndex: 1 }}
-    >
-      {/* Minimal Geometric Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Primary geometric elements */}
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-32 h-32 border-2 border-primary/30 rounded-full"
-          animate={{
-            scale: [1, 1.05, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-1/3 left-1/4 w-24 h-24 bg-orange-glow/15 rounded-lg rotate-45"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [45, 135, 45],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-
-        {/* Minimal floating particles */}
-        <motion.div
-          className="absolute top-1/6 left-1/3 w-2 h-2 bg-primary/50 rounded-full"
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        <motion.div
-          className="absolute top-2/3 right-1/6 w-1.5 h-1.5 bg-orange-glow/40 rounded-full"
-          animate={{
-            y: [0, -40, 0],
-            opacity: [0.7, 1, 0.7],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-orange-glow/10">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
+        <div className="absolute inset-0" style={{backgroundImage: 'linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)', backgroundSize: '50px 50px'}} />
       </div>
 
-      {/* Main Content Container */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-20 relative flex items-center min-h-screen" style={{ zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto w-full">
-          {/* Top Section - Badge & Subheading */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/15 mb-8"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-white text-sm font-medium tracking-wide uppercase">
-                Transform Your Digital Presence With Expert Solutions
-              </span>
-            </motion.div>
-          </motion.div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <motion.div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" animate={{scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3]}} transition={{duration: 8, repeat: Infinity, ease: "easeInOut"}} />
+        <motion.div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-glow/20 to-transparent blur-3xl" animate={{scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3]}} transition={{duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2}} />
+      </div>
 
-          {/* Middle Section - Main Content */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Column - Text Content */}
-            <motion.div
-              className="space-y-8 text-center lg:text-left"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            >
-              {/* Primary Statement with proper h1 hierarchy */}
-              <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tighter leading-[1.1] drop-shadow-sm space-y-3"
-                style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.1)' }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              >
-                <span className="block">WE CREATE</span>
-                <span className="block">EXCEPTIONAL</span>
-                <span className="block">
-                  DIGITAL{" "}
-                  <span
-                    className="bg-gradient-to-r from-primary to-orange-glow"
-                    style={{
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      color: 'white',
-                      filter: 'brightness(1.1)'
-                    }}
-                  >
-                    EXPERIENCES
-                  </span>
-                </span>
-              </motion.h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <motion.div className="space-y-8 text-center lg:text-left" initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={{duration: 0.8}}>
+              <motion.div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/30 shadow-lg" whileHover={{scale: 1.05}}>
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" aria-hidden="true" />
+                <span className="text-sm font-bold text-foreground uppercase tracking-wider">#1 Digital Innovation Partner</span>
+              </motion.div>
 
-              {/* Professional Description */}
-              <motion.p
-                className="text-gray-text text-lg md:text-xl leading-relaxed font-medium max-w-xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-              >
-                From stunning web experiences to mobile apps, creative designs, and strategic digital marketing — we bring your vision to life with cutting-edge technology and unparalleled expertise.
-              </motion.p>
+              <div className="space-y-4">
+                <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+                  <span className="block text-foreground mb-2">LET'S</span>
+                  <AnimatePresence mode="wait">
+                    <motion.span key={currentWord} className={`block text-transparent bg-clip-text bg-gradient-to-r ${powerWords[currentWord].color} mb-2`} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{duration: 0.5}}>
+                      {powerWords[currentWord].text}
+                    </motion.span>
+                  </AnimatePresence>
+                  <span className="block text-foreground">YOUR BUSINESS</span>
+                </motion.h1>
 
-              {/* CTA Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-              >
-                <MagneticButton
-                  onClick={scrollToServices}
-                  size="lg"
-                  aria-label="Explore our services"
-                  className="group relative overflow-hidden px-10 py-5 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-lg uppercase tracking-wider rounded-full shadow-2xl shadow-primary/30 hover:shadow-3xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50 min-w-[200px]"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-3 drop-shadow-sm">
-                    Get Started Today
-                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-orange-primary to-orange-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={false}
-                    animate={{}}
-                  />
-                </MagneticButton>
+                <motion.p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                  We craft <span className="text-primary font-bold">game-changing digital solutions</span> that drive real results. From stunning websites to powerful marketing strategies — we turn your vision into reality.
+                </motion.p>
+              </div>
 
-                <MagneticButton
-                  onClick={() => navigate('/portfolio')}
-                  size="lg"
-                  variant="outline"
-                  aria-label="View our work"
-                  className="px-10 py-5 bg-transparent border-2 border-white/30 text-white font-bold text-lg uppercase tracking-wider rounded-full hover:bg-white/5 hover:border-white/60 transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 min-w-[200px] relative"
-                >
-                  <span className="relative z-10 flex items-center justify-center drop-shadow-sm hover:text-primary transition-colors duration-300"
-                        style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.2)' }}>
-                    View Our Work
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-white/0 hover:bg-white/5 rounded-full transition-colors duration-300"
-                    initial={false}
-                    animate={{}}
-                  />
-                </MagneticButton>
+              <motion.div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <Button onClick={scrollToServices} size="lg" className="group px-8 py-6 bg-gradient-to-r from-primary to-orange-glow text-white font-bold uppercase rounded-full shadow-2xl hover:scale-105 min-w-[220px]" aria-label="Start your project">
+                  <span className="flex items-center gap-2">Start Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1" aria-hidden="true" /></span>
+                </Button>
+                <Button onClick={() => navigate('/portfolio')} size="lg" variant="outline" className="px-8 py-6 border-2 font-bold uppercase rounded-full min-w-[220px]" aria-label="View portfolio">
+                  <span className="flex items-center gap-2">View Portfolio <ArrowRight className="w-5 h-5" aria-hidden="true" /></span>
+                </Button>
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Services Display */}
-            <motion.div
-              className="text-center lg:text-right relative"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              style={{ zIndex: 15 }}
-            >
-              <div className="relative">
-                {/* Core Services Cycle */}
-                <motion.div
-                  className="mb-12"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                >
-                  <div className="relative h-40 md:h-48 lg:h-56 flex items-center justify-center" style={{ zIndex: 20 }}>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentService}
-                        className="absolute inset-0 flex items-center justify-center"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{
-                          duration: 0.4,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <h2
-                          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-heading tracking-tight leading-tight"
-                          style={{
-                            background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-primary)), hsl(var(--orange-glow)))',
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            color: 'white',
-                            filter: 'brightness(1.2) contrast(1.1)',
-                            textShadow: '0 0 30px hsl(var(--primary) / 0.3)',
-                            fontWeight: 900,
-                            letterSpacing: '-0.02em'
-                          }}
-                        >
-                          {services[currentService]}
-                        </h2>
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-
-                {/* Service Indicators */}
-                <motion.div
-                  className="flex items-center justify-center lg:justify-end gap-3 mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                >
-                  {services.map((_, index) => (
-                    <motion.div
-                      key={index}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        index === currentService
-                          ? 'w-12 bg-gradient-to-r from-primary to-orange-glow'
-                          : 'w-1.5 bg-white/30'
-                      }`}
-                      initial={false}
-                      animate={{
-                        width: index === currentService ? 48 : 6
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  ))}
-                </motion.div>
-
-                {/* Professional Tagline */}
-                <motion.div
-                  className="space-y-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                >
-                  <p className="text-white text-base font-medium tracking-wide uppercase"
-                     style={{ textShadow: '0 0 15px rgba(255, 255, 255, 0.1)' }}>
-                    Empowering Businesses Through Innovation
-                  </p>
-                </motion.div>
+            <motion.div className="relative" initial={{opacity: 0, x: 40}} animate={{opacity: 1, x: 0}} transition={{duration: 0.8, delay: 0.4}}>
+              <div className="bg-gradient-to-br from-background to-primary/5 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-primary/20 shadow-2xl">
+                <AnimatePresence mode="wait">
+                  <motion.div key={currentStat} className="space-y-6" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}}>
+                    <div className="flex items-center justify-between">
+                      <div className="p-4 bg-gradient-to-br from-primary/20 to-orange-glow/20 rounded-2xl">
+                        {(() => { const Icon = stats[currentStat].icon; return <Icon className="w-8 h-8 text-primary" aria-hidden="true" />; })()}
+                      </div>
+                      <div className="text-right">
+                        <div className="text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-glow">{stats[currentStat].number}</div>
+                        <div className="text-sm text-muted-foreground font-medium uppercase mt-2">{stats[currentStat].label}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+                <div className="flex justify-center gap-2 mt-8">
+                  {stats.map((_, index) => (<button key={index} onClick={() => setCurrentStat(index)} className={`h-1.5 rounded-full transition-all ${currentStat === index ? 'w-8 bg-primary' : 'w-1.5 bg-primary/30'}`} aria-label={`View stat ${index + 1}`} />))}
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </div>
-
-      {/* Enhanced Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
-        animate={{
-          y: [0, 10, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        onClick={() => scrollToServices()}
-        whileHover={{ scale: 1.1 }}
-        style={{ zIndex: 15 }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-gray-text text-sm font-medium tracking-wide"
-                style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.1)' }}>Scroll to Explore</span>
-          <div className="w-8 h-12 border-2 border-gray-300/70 rounded-full flex justify-center p-1">
-            <motion.div
-              className="w-1 h-3 bg-primary rounded-full"
-              animate={{ y: [0, 16, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 };
