@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import Hero from "@/components/HeroClassic";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
@@ -55,7 +55,7 @@ const Index = () => {
     <>
       <SEO 
         title="Top Digital Agency in Dubai | Web & App Development | ClikXo"
-        description="Dubai's leading digital solutions provider offering custom web development, mobile apps, and result-driven marketing strategies for UAE businesses."
+        description="Dubai's leading digital solutions provider offering web development, app development, graphic design, and digital marketing for UAE businesses."
         url="https://clikxo.com/"
         image="https://clikxo.com/og-image-dubai.jpg"
         alternateHreflangs={[{ hreflang: 'ar-AE', href: 'https://clikxo.com/ar' }]}
