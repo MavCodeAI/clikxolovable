@@ -51,69 +51,74 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            // React ecosystem - defer loading
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'react-vendor';
+            // React ecosystem - core, keep small
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-core';
             }
-            // Animation library - load after main content
+            if (id.includes('react-router-dom')) {
+              return 'react-router';
+            }
+            // Animation library - defer completely
             if (id.includes('framer-motion')) {
-              return 'motion';
+              return 'animation';
             }
-            // UI components (split larger packages)
-            if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-dropdown-menu')) {
-              return 'ui-dialog';
-            }
-            if (id.includes('@radix-ui/react-accordion') || id.includes('@radix-ui/react-tabs')) {
-              return 'ui-layout';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'ui-components';
-            }
-            // Forms and validation - defer
-            if (id.includes('react-hook-form') || id.includes('zod') || id.includes('@hookform/resolvers')) {
-              return 'form-validation';
-            }
-            // Icons - lazy load
+            // Icons - very lazy load
             if (id.includes('lucide-react')) {
               return 'icons';
             }
-            // Charts and data visualization - very lazy
+            // Charts - only load when needed
             if (id.includes('recharts')) {
               return 'charts';
             }
-            // Query management
+            // Forms - defer
+            if (id.includes('react-hook-form') || id.includes('zod')) {
+              return 'forms';
+            }
+            // Query management - small, keep separate
             if (id.includes('@tanstack/react-query')) {
               return 'query';
             }
-            // Theme management
-            if (id.includes('next-themes')) {
-              return 'theme';
-            }
-            // Supabase - defer database operations
+            // Supabase - defer as much as possible
             if (id.includes('@supabase')) {
-              return 'supabase';
+              return 'db';
             }
-            // Everything else goes to vendor
+            // UI components - split by usage frequency
+            if (id.includes('@radix-ui')) {
+              return 'ui-components';
+            }
+            // All other vendor code
             return 'vendor';
           }
-          // Split large app chunks to prevent main thread blocking
-          if (id.includes('src/pages/') && !id.includes('Index')) {
-            return 'pages';
+          // Application chunks - split by priority
+          if (id.includes('src/pages/services/')) {
+            return 'service-pages';
           }
-          if (id.includes('src/components/') && !id.includes('Hero') && !id.includes('Navbar')) {
+          if (id.includes('src/pages/') && !id.includes('Index') && !id.includes('services')) {
+            return 'other-pages';
+          }
+          if (id.includes('src/components/ui/')) {
+            return 'ui';
+          }
+          if (id.includes('src/components/') &&
+              !id.includes('Hero') &&
+              !id.includes('Navbar') &&
+              !id.includes('Footer')) {
             return 'components';
           }
         },
       },
     },
+    // Enhanced minification and optimization
     minify: 'esbuild',
+    cssMinify: 'esbuild',
     drop: ['console', 'debugger'],
     sourcemap: false,
     target: 'esnext',
     cssCodeSplit: true,
     reportCompressedSize: true,
-    // Optimize chunk size limits for better caching
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 500,
+    // Optimize asset handling
+    assetsInlineLimit: 4096, // Inline small files
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],

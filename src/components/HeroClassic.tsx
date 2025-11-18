@@ -66,12 +66,44 @@ const HeroClassic = () => {
           aria-hidden="true"
         />
 
+        {/* LCP Critical Image - Large Contentful Paint Element */}
+        <div className="hero-lcp-image" role="presentation">
+          <img
+            src="/og-image.jpg"
+            alt="ClikXo Studio - Dubai Digital Agency"
+            className="hero-bg-image"
+            width="1200"
+            height="800"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.15,
+              zIndex: 1,
+              filter: 'blur(2px)',
+              transform: 'scale(1.05)'
+            }}
+          />
+        </div>
+
         {/* Main content container - optimized for mobile-first */}
         <div className="hero-content" itemProp="mainEntity">
-          {/* High-conversion H1 optimized for Dubai business market */}
+          {/* High-conversion H1 optimized for Dubai business market - LCP Text Element */}
           <h1
             className="hero-title"
             itemProp="name"
+            style={{
+              background: 'none',
+              color: 'hsl(var(--f))',
+              WebkitBackgroundClip: 'unset',
+              backgroundClip: 'unset'
+            }}
           >
             Elevate Your Dubai Business with Expert Digital Solutions
           </h1>
