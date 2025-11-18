@@ -217,7 +217,7 @@ const Portfolio = () => {
   }, [activeCategory, projects]);
 
   return (
-    <section id="portfolio" className="py-24 bg-background relative overflow-hidden" aria-labelledby="portfolio-heading">
+    <section id="portfolio" className="py-24 bg-background relative overflow-hidden scroll-mt-20 md:scroll-mt-24" aria-labelledby="portfolio-heading">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" aria-hidden="true"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl" aria-hidden="true"></div>

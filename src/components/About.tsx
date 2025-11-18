@@ -26,7 +26,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white-section relative overflow-hidden" aria-label="About section">
+    <section id="about" className="py-24 bg-white-section relative overflow-hidden scroll-mt-20 md:scroll-mt-24" aria-label="About section">
       {/* Background decorations */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" aria-hidden="true"></div>
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-glow/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} aria-hidden="true"></div>

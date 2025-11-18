@@ -85,7 +85,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden py-24">
+    <section id="contact" className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden py-24 scroll-mt-20 md:scroll-mt-24">
       {/* Modern Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>

@@ -4,13 +4,13 @@ const useScrollSpy = (sectionIds: string[], offset: number = 100) => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + offset;
+    let ticking = false;
 
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + offset;
       const currentSection = sectionIds.find((id) => {
         const element = document.getElementById(id);
         if (!element) return false;
-
         const { offsetTop, offsetHeight } = element;
         return scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight;
       });
@@ -18,10 +18,18 @@ const useScrollSpy = (sectionIds: string[], offset: number = 100) => {
       if (currentSection && currentSection !== activeSection) {
         setActiveSection(currentSection);
       }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial position
+    updateActiveSection(); // Check initial position
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sectionIds, activeSection, offset]);
