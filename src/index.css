@@ -267,6 +267,22 @@ html {
                0 0 40px hsl(var(--primary) / 0.3);
 }
 
+/* Hover glow effect for interactive elements */
+.hover-glow {
+  transition: text-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  text-shadow: 0 0 15px hsl(var(--primary) / 0.6),
+               0 0 30px hsl(var(--primary) / 0.4);
+}
+
+/* Focus ring for better keyboard navigation */
+.focus-ring:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
 /* Button hover glow */
 .btn-glow {
   transition: all 0.3s ease;

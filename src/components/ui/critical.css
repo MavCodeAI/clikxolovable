@@ -31,18 +31,38 @@ body {
 /* Hero Section - Critical for LCP */
 .hero-section {
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   position: relative;
   overflow: hidden;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2rem;
+  }
 }
 
 .hero-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%);
-  opacity: 0.1;
+  background: radial-gradient(1200px 600px at 10% 10%, hsl(var(--primary) / 0.12), transparent 40%),
+              radial-gradient(1200px 600px at 90% 80%, hsl(var(--primary) / 0.10), transparent 40%),
+              linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)));
+}
+
+.hero-background::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: conic-gradient(from 180deg at 50% 50%, hsl(var(--primary) / 0.2), transparent 50%, hsl(var(--primary) / 0.2));
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: bg-pan 14s linear infinite;
 }
 
 .hero-content {
@@ -50,7 +70,6 @@ body {
   z-index: 1;
   text-align: center;
   max-width: 800px;
-  padding: 0 1rem;
 }
 
 .hero-title {
@@ -69,6 +88,72 @@ body {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.95rem;
+}
+
+.hero-stats li {
+  list-style: none;
+}
+
+.hero-visual {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  max-width: 720px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (min-width: 768px) {
+  .hero-visual {
+    height: 420px;
+    justify-self: stretch;
+  }
+}
+
+.accent-float {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  width: 120px;
+  height: 120px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.85), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.65;
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes bg-pan {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-8px) translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background::before, .accent-float { animation: none; }
 }
 
 .hero-buttons {
