@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Phone, ArrowRight, Sparkles, Home, Layers, Info, Users, FolderOpen, Mail } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import useScrollSpy from "@/hooks/use-scroll-spy";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,8 +12,13 @@ const Navbar = () => {
     }
   }
   const isHomePage = location.pathname === '/';
-  const getLinkClasses = "px-4 py-2 font-medium rounded-lg text-foreground hover:text-primary transition-colors";
-  const getMobileLinkClasses = "flex items-center w-full text-left px-4 py-4 transition-all duration-200 font-medium rounded-lg text-foreground/80 hover:text-primary hover:bg-primary/5";
+
+  // Use scroll spy for active section detection on home page
+  const sectionIds = isHomePage ? ['services', 'about', 'team', 'portfolio', 'contact'] : [];
+  const activeSection = useScrollSpy(sectionIds, 100); // 100px offset for navbar height
+
+  const getLinkClasses = (isActive = false) => `px-4 py-2 font-medium rounded-lg ${isActive ? 'text-primary' : 'text-foreground hover:text-primary'} transition-colors`;
+  const getMobileLinkClasses = (isActive = false) => `flex items-center w-full text-left px-4 py-4 transition-all duration-200 font-medium rounded-lg ${isActive ? 'text-primary bg-primary/5' : 'text-foreground/80 hover:text-primary hover:bg-primary/5'}`;
 
   
 
@@ -29,56 +35,56 @@ const Navbar = () => {
           <nav className="hidden lg:flex items-center gap-2 flex-1 justify-center mx-8" role="navigation" aria-label="Main navigation">
             {isHomePage ? (
               <>
-                <Link to="/" className={`relative group inline-block ${getLinkClasses}`} aria-label="Home">
+                <Link to="/" className={`relative group inline-block ${getLinkClasses()}`} aria-label="Home">
                   Home
                   <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
-                <a href="#services" className={`relative group inline-block ${getLinkClasses}`} aria-label="Services">
+                <a href="#services" className={`relative group inline-block ${getLinkClasses(activeSection === 'services')}`} aria-label="Services">
                   Services
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${activeSection === 'services' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </a>
-                <Link to="/about" className={`relative group inline-block ${getLinkClasses}`} aria-label="About">
+                <a href="#about" className={`relative group inline-block ${getLinkClasses(activeSection === 'about')}`} aria-label="About">
                   About
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-                <Link to="/team" className={`relative group inline-block ${getLinkClasses}`} aria-label="Team">
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </a>
+                <a href="#team" className={`relative group inline-block ${getLinkClasses(activeSection === 'team')}`} aria-label="Team">
                   Team
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-                <Link to="/portfolio" className={`relative group inline-block ${getLinkClasses}`} aria-label="Portfolio">
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${activeSection === 'team' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </a>
+                <a href="#portfolio" className={`relative group inline-block ${getLinkClasses(activeSection === 'portfolio')}`} aria-label="Portfolio">
                   Portfolio
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-                <Link to="/contact" className={`relative group inline-block ${getLinkClasses}`} aria-label="Contact">
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${activeSection === 'portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </a>
+                <a href="#contact" className={`relative group inline-block ${getLinkClasses(activeSection === 'contact')}`} aria-label="Contact">
                   Contact
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${activeSection === 'contact' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </a>
               </>
             ) : (
               <>
-                <Link to="/" className={`relative group inline-block ${getLinkClasses}`} aria-label="Home">
+                <Link to="/" className={`relative group inline-block ${getLinkClasses()}`} aria-label="Home">
                   Home
                   <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
-                <Link to="/#services" className={`relative group inline-block ${getLinkClasses}`} aria-label="Services">
+                <Link to="/#services" className={`relative group inline-block ${getLinkClasses()}`} aria-label="Services">
                   Services
                   <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
-                <Link to="/about" className={`relative group inline-block ${getLinkClasses} ${location.pathname === '/about' ? 'text-primary' : ''}`} aria-label="About">
+                <Link to="/about" className={`relative group inline-block ${getLinkClasses(location.pathname === '/about')} ${location.pathname === '/about' ? 'text-primary' : ''}`} aria-label="About">
                   About
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </Link>
-                <Link to="/team" className={`relative group inline-block ${getLinkClasses} ${location.pathname === '/team' ? 'text-primary' : ''}`} aria-label="Team">
+                <Link to="/team" className={`relative group inline-block ${getLinkClasses(location.pathname === '/team')} ${location.pathname === '/team' ? 'text-primary' : ''}`} aria-label="Team">
                   Team
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${location.pathname === '/team' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </Link>
-                <Link to="/portfolio" className={`relative group inline-block ${getLinkClasses} ${location.pathname === '/portfolio' ? 'text-primary' : ''}`} aria-label="Portfolio">
+                <Link to="/portfolio" className={`relative group inline-block ${getLinkClasses(location.pathname === '/portfolio')} ${location.pathname === '/portfolio' ? 'text-primary' : ''}`} aria-label="Portfolio">
                   Portfolio
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${location.pathname === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </Link>
-                <Link to="/contact" className={`relative group inline-block ${getLinkClasses} ${location.pathname === '/contact' ? 'text-primary' : ''}`} aria-label="Contact">
+                <Link to="/contact" className={`relative group inline-block ${getLinkClasses(location.pathname === '/contact')} ${location.pathname === '/contact' ? 'text-primary' : ''}`} aria-label="Contact">
                   Contact
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-primary via-orange-glow to-primary transition-all duration-300 ${location.pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </Link>
               </>
             )}
@@ -111,43 +117,43 @@ const Navbar = () => {
                   {isHomePage ? (
                     <>
                       <SheetClose asChild>
-                        <Link to="/" className={getMobileLinkClasses} aria-label="Home"><Home className="w-5 h-5 text-primary mr-3" /><span>Home</span></Link>
+                        <Link to="/" className={getMobileLinkClasses()} aria-label="Home"><Home className="w-5 h-5 text-primary mr-3" /><span>Home</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <a href="#services" className={getMobileLinkClasses} aria-label="Services"><Layers className="w-5 h-5 text-primary mr-3" /><span>Services</span></a>
+                        <a href="#services" className={getMobileLinkClasses(activeSection === 'services')} aria-label="Services"><Layers className="w-5 h-5 text-primary mr-3" /><span>Services</span></a>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/about" className={getMobileLinkClasses} aria-label="About"><Info className="w-5 h-5 text-primary mr-3" /><span>About</span></Link>
+                        <a href="#about" className={getMobileLinkClasses(activeSection === 'about')} aria-label="About"><Info className="w-5 h-5 text-primary mr-3" /><span>About</span></a>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/team" className={getMobileLinkClasses} aria-label="Team"><Users className="w-5 h-5 text-primary mr-3" /><span>Team</span></Link>
+                        <a href="#team" className={getMobileLinkClasses(activeSection === 'team')} aria-label="Team"><Users className="w-5 h-5 text-primary mr-3" /><span>Team</span></a>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/portfolio" className={getMobileLinkClasses} aria-label="Portfolio"><FolderOpen className="w-5 h-5 text-primary mr-3" /><span>Portfolio</span></Link>
+                        <a href="#portfolio" className={getMobileLinkClasses(activeSection === 'portfolio')} aria-label="Portfolio"><FolderOpen className="w-5 h-5 text-primary mr-3" /><span>Portfolio</span></a>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/contact" className={getMobileLinkClasses} aria-label="Contact"><Mail className="w-5 h-5 text-primary mr-3" /><span>Contact</span></Link>
+                        <a href="#contact" className={getMobileLinkClasses(activeSection === 'contact')} aria-label="Contact"><Mail className="w-5 h-5 text-primary mr-3" /><span>Contact</span></a>
                       </SheetClose>
                     </>
                   ) : (
                     <>
                       <SheetClose asChild>
-                        <Link to="/" className={getMobileLinkClasses} aria-label="Home"><Home className="w-5 h-5 text-primary mr-3" /><span>Home</span></Link>
+                        <Link to="/" className={getMobileLinkClasses()} aria-label="Home"><Home className="w-5 h-5 text-primary mr-3" /><span>Home</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/#services" className={getMobileLinkClasses} aria-label="Services"><Layers className="w-5 h-5 text-primary mr-3" /><span>Services</span></Link>
+                        <Link to="/#services" className={getMobileLinkClasses()} aria-label="Services"><Layers className="w-5 h-5 text-primary mr-3" /><span>Services</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/about" className={getMobileLinkClasses} aria-label="About"><Info className="w-5 h-5 text-primary mr-3" /><span>About</span></Link>
+                        <Link to="/about" className={getMobileLinkClasses(location.pathname === '/about')} aria-label="About"><Info className="w-5 h-5 text-primary mr-3" /><span>About</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/team" className={getMobileLinkClasses} aria-label="Team"><Users className="w-5 h-5 text-primary mr-3" /><span>Team</span></Link>
+                        <Link to="/team" className={getMobileLinkClasses(location.pathname === '/team')} aria-label="Team"><Users className="w-5 h-5 text-primary mr-3" /><span>Team</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/portfolio" className={getMobileLinkClasses} aria-label="Portfolio"><FolderOpen className="w-5 h-5 text-primary mr-3" /><span>Portfolio</span></Link>
+                        <Link to="/portfolio" className={getMobileLinkClasses(location.pathname === '/portfolio')} aria-label="Portfolio"><FolderOpen className="w-5 h-5 text-primary mr-3" /><span>Portfolio</span></Link>
                       </SheetClose>
                       <SheetClose asChild>
-                        <Link to="/contact" className={getMobileLinkClasses} aria-label="Contact"><Mail className="w-5 h-5 text-primary mr-3" /><span>Contact</span></Link>
+                        <Link to="/contact" className={getMobileLinkClasses(location.pathname === '/contact')} aria-label="Contact"><Mail className="w-5 h-5 text-primary mr-3" /><span>Contact</span></Link>
                       </SheetClose>
                     </>
                   )}
