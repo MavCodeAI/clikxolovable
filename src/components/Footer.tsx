@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock, Sparkles } from "lucide-react";
+import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, Clock, Sparkles } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -68,7 +68,7 @@ const Footer = () => {
                 </span>
               </Link>
 
-              <p className="text-muted-foreground text-sm mb-6 leading-relaxed font-medium">
+              <p className="text-foreground text-sm mb-6 leading-relaxed font-medium">
                 Transforming ideas into exceptional digital experiences. Your growth is our mission.
               </p>
 
@@ -158,6 +158,8 @@ const Footer = () => {
             <div>
               <h4 className="text-foreground font-bold text-lg mb-6">Connect With Us</h4>
 
+
+
               {/* Social Links */}
               <div className="flex gap-3 mb-6">
                 <a href="https://facebook.com/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on Facebook" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
@@ -171,10 +173,6 @@ const Footer = () => {
                 <a href="https://instagram.com/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on Instagram" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
                   <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
                   <span className="sr-only">Instagram</span>
-                </a>
-                <a href="https://linkedin.com/company/clikxo" target="_blank" rel="noopener noreferrer" aria-label="Visit ClikXo Studio on LinkedIn" className="w-12 h-12 rounded-2xl bg-card hover:bg-primary group flex items-center justify-center transition-all duration-300 hover:scale-110 border border-border hover:border-primary">
-                  <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors duration-300" />
-                  <span className="sr-only">LinkedIn</span>
                 </a>
               </div>
 

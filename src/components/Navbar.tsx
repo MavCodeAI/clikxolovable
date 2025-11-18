@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Phone, ArrowRight, Sparkles, Home, Layers, Info, Users, FolderOpen, Mail } from "lucide-react";
+import { Menu, Phone, Sparkles, Home, Layers, Info, Users, FolderOpen, Mail } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import useScrollSpy from "@/hooks/use-scroll-spy";
 
@@ -97,14 +97,7 @@ const Navbar = () => {
               <span className="text-sm font-medium text-foreground sm:hidden">Call</span>
             </a>
 
-            <div className="hidden xl:block">
-              <Link to="/contact" className="group relative px-8 py-3 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-sm uppercase tracking-wider rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:scale-105 transition-all duration-300" aria-label="Get Started">
-                <span className="flex items-center gap-3">
-                  <span>Get Started</span>
-                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </div>
+
 
             <Sheet>
               <SheetTrigger asChild>
@@ -157,16 +150,6 @@ const Navbar = () => {
                       </SheetClose>
                     </>
                   )}
-                  <div className="pt-6 border-t border-border">
-                    <SheetClose asChild>
-                      <Link to="/contact" className="group w-full relative px-6 py-4 bg-gradient-to-r from-primary to-orange-glow text-white font-bold text-base rounded-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 active:scale-95 transition-all duration-300" aria-label="Get Started">
-                        <span className="flex items-center justify-center gap-3">
-                          <span>Get Started</span>
-                          <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                        </span>
-                      </Link>
-                    </SheetClose>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>

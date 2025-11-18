@@ -151,7 +151,6 @@ const HeroClassic = () => {
             className="absolute inset-0"
             accent="primary"
             density={8}
-            speed={0}
           />
         </div>
       </section>
