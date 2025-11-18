@@ -11,7 +11,11 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
 }
 
 createRoot(document.getElementById("root")!).render(
-  <ErrorBoundary>
+  import.meta.env.DEV ? (
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  ) : (
     <App />
-  </ErrorBoundary>
+  )
 );

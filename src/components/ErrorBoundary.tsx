@@ -38,17 +38,14 @@ class ErrorBoundary extends Component<Props, State> {
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Something went wrong</AlertTitle>
             <AlertDescription className="mt-2">
-              We encountered an unexpected error. Please refresh the page to try again.
+              We're sorry, but something went wrong. Please try refreshing the page.
+              <div className="mt-4">
+                <Button onClick={this.handleRetry} variant="outline" size="sm">
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Retry
+                </Button>
+              </div>
             </AlertDescription>
-            <div className="mt-4 flex gap-2">
-              <Button onClick={this.handleRetry} variant="outline" size="sm">
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Try Again
-              </Button>
-              <Button onClick={() => window.location.reload()} size="sm">
-                Refresh Page
-              </Button>
-            </div>
           </Alert>
         </div>
       );
