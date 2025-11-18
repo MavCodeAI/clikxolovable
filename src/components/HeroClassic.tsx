@@ -46,7 +46,7 @@ const HeroClassic = () => {
         </script>
         {/* Additional meta tags for hero content */}
         <meta name="twitter:label1" content="Services" />
-        <meta name="twitter:data1" content="Web & App Development, Digital Marketing" />
+        <meta name="twitter:data1" content="Web Development, App Development, Digital Marketing, Graphic Design" />
         <meta name="twitter:label2" content="Location" />
         <meta name="twitter:data2" content="Dubai, UAE" />
       </Helmet>
@@ -54,136 +54,106 @@ const HeroClassic = () => {
       <section
         id="hero"
         className="hero-section"
-        aria-label="Dubai's Leading Digital Studio Hero Section"
+        aria-label="ClikXo Dubai - Premium Digital Services Hero"
         role="banner"
         itemScope
         itemType="https://schema.org/Organization"
       >
-        {/* Enhanced background with better accessibility */}
+        {/* Optimized background - removed complex animations for better performance */}
         <div
           className="hero-background"
           role="presentation"
+          aria-hidden="true"
         />
 
-        {/* Main content container with improved semantics */}
-        <div className="hero-content smooth-fade-in" itemProp="mainEntity">
-          {/* Primary headline with enhanced accessibility */}
+        {/* Main content container - optimized for mobile-first */}
+        <div className="hero-content" itemProp="mainEntity">
+          {/* High-conversion H1 optimized for Dubai business market */}
           <h1
-            className="hero-title gradient-text animate-gradient animate-fade-in-up"
+            className="hero-title"
             itemProp="name"
           >
-            <span className="sr-only">ClikXo - </span>
-            REVOLUTIONIZE Your Dubai Business with Leading Digital Innovation
+            Elevate Your Dubai Business with Expert Digital Solutions
           </h1>
 
-          {/* Enhanced subtitle with better structure */}
+          {/* Concise, benefit-focused subheading */}
           <p
-            className="hero-subtitle animate-fade-in-up animate-delay-200 glow-text"
+            className="hero-subtitle"
             itemProp="description"
           >
-            Experience unmatched growth through expert{" "}
-            <span className="font-semibold text-primary">web development</span>, custom{" "}
-            <span className="font-semibold text-primary">mobile apps</span>, performance-driven{" "}
-            <span className="font-semibold text-primary">digital marketing</span>, and premium{" "}
-            <span className="font-semibold text-primary">graphic design</span>. Engineered for Dubai's elite brands demanding measurable results and rapid ROI.
+            Leading Dubai web development, mobile app development, digital marketing, and graphic design agency.
+            Drive growth for UAE businesses with our proven expertise and measurable results.
           </p>
 
-          {/* Primary actions with enhanced accessibility */}
-          <nav
-            className="hero-ctas animate-fade-in-up animate-delay-300"
-            aria-label="Primary Call-to-Actions"
-            role="navigation"
-          >
+          {/* Primary and secondary CTAs - mobile-optimized */}
+          <div className="hero-ctas" role="navigation" aria-label="Call to Actions">
             <Button
               size="lg"
-              className="px-8 shadow-lg hover:shadow-xl hover-lift btn-glow animate-fade-in-up animate-delay-400 focus-ring"
-              aria-label="Get started with a personalized quote today"
+              className="hero-cta-primary"
+              aria-label="Start your Dubai business transformation"
               asChild
             >
               <Link
                 to="/contact"
-                aria-describedby="cta-primary-desc"
                 className="flex items-center gap-2"
               >
                 <FileText className="w-5 h-5" />
-                Get a Quote
+                Get Free Consultation
               </Link>
             </Button>
-            <span id="cta-primary-desc" className="sr-only">
-              Contact us for a free consultation
-            </span>
 
             <Button
               variant="outline"
               size="lg"
-              className="px-8 hover-lift btn-glow animate-fade-in-up animate-delay-500 focus-ring"
-              aria-label="Explore our previous work and projects"
+              className="hero-cta-secondary"
+              aria-label="See Dubai business success stories"
               asChild
             >
               <Link
                 to="/portfolio"
-                aria-describedby="cta-secondary-desc"
                 className="flex items-center gap-2"
               >
                 <Eye className="w-5 h-5" />
-                View Portfolio
+                View Our Work
               </Link>
             </Button>
-            <span id="cta-secondary-desc" className="sr-only">
-              See our successful digital projects
-            </span>
-          </nav>
+          </div>
 
-          {/* Trust indicators with enhanced semantics */}
+          {/* Key performance stats - Dubai-focused */}
           <div
-            className="hero-stats animate-fade-in-up animate-delay-700"
-            aria-label="Trust and credibility indicators"
+            className="hero-stats"
+            aria-label="ClikXo credibility measures"
             role="region"
           >
-            <ul className="sr-only" aria-hidden="true">
-              <li>Over 150 successful UAE projects completed</li>
-              <li>4.9 out of 5 star client rating</li>
-              <li>Fast 7-day project kickoff process</li>
-            </ul>
-
-            <div aria-live="polite" aria-atomic="true">
-              <div className="flex items-center gap-2">
-                <Target className="w-5 h-5 text-primary" />
-                <span className="animate-slide-in-left animate-delay-100 hover-glow">
-                  150+ UAE projects
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-primary fill-current" />
-                <span className="animate-slide-in-left animate-delay-300 hover-glow">
-                  4.9/5 rating
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Rocket className="w-5 h-5 text-primary" />
-                <span className="animate-slide-in-left animate-delay-500 hover-glow">
-                  7-day kickoff
-                </span>
-              </div>
+            <div className="flex items-center gap-2">
+              <Target className="w-5 h-5 text-primary" />
+              <span>200+ Dubai Projects</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-primary fill-current" />
+              <span>4.9/5 Client Rating</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Rocket className="w-5 h-5 text-primary" />
+              <span>5-Day Project Start</span>
             </div>
           </div>
         </div>
 
-        {/* Enhanced visual elements with accessibility */}
-        <aside
-          className="hero-visual"
+        {/* Performance-optimized visual background - no heavy animations */}
+        <div
+          className="hero-visual-bg"
           aria-hidden="true"
           role="presentation"
         >
-          <Suspense fallback={<div className="absolute inset-0 bg-primary/5 animate-pulse" />}>
-            <PixelGridBackground className="absolute inset-0" accent="primary" density={12} speed={0.6} />
-          </Suspense>
-          <div className="accent-float" aria-hidden="true" />
-        </aside>
-
-        {/* Performance optimization - preload critical assets */}
-        <link rel="prefetch" href="/contact" />
-        <link rel="prefetch" href="/portfolio" />
+          {/* Optimized: Removed lazy loading and complex animations */}
+          <PixelGridBackground
+            className="absolute inset-0"
+            accent="primary"
+            density={8}
+            speed={0}
+          />
+        </div>
       </section>
     </>
   );

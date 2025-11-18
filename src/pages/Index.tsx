@@ -4,7 +4,10 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import SkipToContent from "@/components/SkipToContent";
+import { SkeletonSection } from "@/components/ui/skeleton-loader";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
+
+// Defer heavy components with priority-based loading
 
 // Lazy-load below-the-fold sections when they enter the viewport
 const TrustedBrands = lazy(() => import("@/components/TrustedBrands"));
@@ -66,37 +69,37 @@ const Index = () => {
         <Navbar />
         <main id="main-content">
           <Hero />
-          <Suspense fallback={<Placeholder className="min-h-[200px]" />}> 
+          <Suspense fallback={<SkeletonSection content="list" className="py-16" />}>
             <LazyMount rootMargin="400px" minHeight="min-h-[160px]">
               <TrustedBrands />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="cards" className="py-24" />}>
             <LazyMount rootMargin="500px">
               <Services />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="paragraph" className="py-24" />}>
             <LazyMount rootMargin="500px">
               <About />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="list" className="py-24" />}>
             <LazyMount rootMargin="500px">
               <Team />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="list" className="py-24" />}>
             <LazyMount rootMargin="500px">
               <Testimonials />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="cards" className="py-24" />}>
             <LazyMount rootMargin="600px">
               <Portfolio />
             </LazyMount>
           </Suspense>
-          <Suspense fallback={<Placeholder className="min-h-[300px]" />}> 
+          <Suspense fallback={<SkeletonSection title content="paragraph" className="py-24" />}>
             <LazyMount rootMargin="700px">
               <Contact />
             </LazyMount>

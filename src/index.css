@@ -329,6 +329,16 @@ html {
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background-size: 200% 100%;
+}
+
 .animated-border {
   background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--orange-glow)), hsl(var(--primary)));
   background-size: 200% 200%;
