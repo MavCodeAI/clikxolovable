@@ -93,35 +93,7 @@
       @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
     </style>
 
-    <!-- Performance optimization: Defer non-critical JS loading -->
-    <script>
-      // Defer heavy JS chunks until hero is visible
-      let criticalLoaded = false;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !criticalLoaded) {
-            criticalLoaded = true;
-            // Load non-critical scripts after hero renders
-            setTimeout(() => {
-              const scripts = document.querySelectorAll('link[rel="modulepreload"]');
-              scripts.forEach(script => {
-                if (!script.href.includes('Hero') && !script.href.includes('Index')) {
-                  const preload = document.createElement('link');
-                  preload.rel = 'preload';
-                  preload.as = 'script';
-                  preload.href = script.href.replace('modulepreload', 'module');
-                  document.head.appendChild(preload);
-                }
-              });
-            }, 100);
-          }
-        });
-      });
 
-      // Observe hero section
-      const target = document.querySelector('#hero') || document.body;
-      observer.observe(target);
-    </script>
 
     <!-- Google Fonts - Optimized for Performance with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
