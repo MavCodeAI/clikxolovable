@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import PixelGridBackground from "@/components/PixelGridBackground";
 import { Helmet } from "react-helmet-async";
-import { lazy, Suspense } from "react";
 import { FileText, Eye, Target, Star, Rocket } from "lucide-react";
-
-// Lazy load background component for performance
-const LazyPixelGridBackground = lazy(() => import("@/components/PixelGridBackground"));
 
 const HeroClassic = () => {
   // Hero-specific structured data
@@ -59,38 +54,21 @@ const HeroClassic = () => {
         itemScope
         itemType="https://schema.org/Organization"
       >
-        {/* Optimized background - removed complex animations for better performance */}
+        {/* Simple background */}
         <div
           className="hero-background"
           role="presentation"
           aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%)',
+            zIndex: 1
+          }}
         />
-
-        {/* LCP Critical Image - Large Contentful Paint Element */}
-        <div className="hero-lcp-image" role="presentation">
-          <img
-            src="/og-image.jpg"
-            alt="ClikXo Studio - Dubai Digital Agency"
-            className="hero-bg-image"
-            width="1200"
-            height="800"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              opacity: 0.15,
-              zIndex: 1,
-              filter: 'blur(2px)',
-              transform: 'scale(1.05)'
-            }}
-          />
-        </div>
 
         {/* Main content container - optimized for mobile-first */}
         <div className="hero-content" itemProp="mainEntity">
@@ -99,13 +77,13 @@ const HeroClassic = () => {
             className="hero-title"
             itemProp="name"
             style={{
-              background: 'none',
-              color: 'hsl(var(--f))',
-              WebkitBackgroundClip: 'unset',
-              backgroundClip: 'unset'
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--orange-glow)))',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent'
             }}
           >
-            Elevate Your Dubai Business with Expert Digital Solutions
+            Streamline your digital experience
           </h1>
 
           {/* Concise, benefit-focused subheading */}
@@ -113,8 +91,7 @@ const HeroClassic = () => {
             className="hero-subtitle"
             itemProp="description"
           >
-            Leading Dubai web development, mobile app development, digital marketing, and graphic design agency.
-            Drive growth for UAE businesses with our proven expertise and measurable results.
+            Experience clarity in every interaction with our intuitive platform designed for the modern digital landscape.
           </p>
 
           {/* Primary and secondary CTAs - mobile-optimized */}
@@ -172,19 +149,7 @@ const HeroClassic = () => {
           </div>
         </div>
 
-        {/* Performance-optimized visual background - no heavy animations */}
-        <div
-          className="hero-visual-bg"
-          aria-hidden="true"
-          role="presentation"
-        >
-          {/* Optimized: Removed lazy loading and complex animations */}
-          <PixelGridBackground
-            className="absolute inset-0"
-            accent="primary"
-            density={8}
-          />
-        </div>
+
       </section>
     </>
   );

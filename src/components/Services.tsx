@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { memo, useMemo } from "react";
 import { Globe, Smartphone, Brush, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: Ser
         <div className="relative z-10 p-8 flex flex-col h-full">
           {/* Icon */}
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 via-orange-glow/10 to-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/30">
-            {(() => { const I = service.Icon; return <I className="text-primary w-10 h-10 group-hover:scale-110 transition-transform duration-500" aria-hidden="true" />; })()}
+            <service.Icon className="text-primary w-10 h-10 group-hover:scale-110 transition-transform duration-500" aria-hidden="true" />
           </div>
           
           {/* Title */}

@@ -16,6 +16,7 @@ interface Project {
   tags: string[];
   category: string;
   description: string;
+  caseStudyUrl?: string;
 }
 
 const ProjectCard = memo(function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -113,6 +114,16 @@ const ProjectCard = memo(function ProjectCard({ project, index }: { project: Pro
                 Try AI Generator
                 <ExternalLink className="w-4 h-4" />
               </Link>
+            ) : project.caseStudyUrl && project.caseStudyUrl !== "#" ? (
+              <a
+                href={project.caseStudyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-primary text-sm font-black uppercase tracking-wider gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer hover:text-primary/80"
+              >
+                View Case Study
+                <ExternalLink className="w-4 h-4" />
+              </a>
             ) : (
               <span className="inline-flex items-center text-primary text-sm font-black uppercase tracking-wider gap-2 group-hover:gap-3 transition-all duration-300 cursor-pointer">
                 View Case Study
@@ -165,17 +176,6 @@ const Portfolio = () => {
     },
     {
       id: 4,
-      title: "Brand & Website Launch",
-      client: "TechFlow Innovations",
-      image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800",
-      result: "Delivered 38x organic traffic growth in 3 months",
-      metric: "38x",
-      category: "Graphics Design",
-      description: "Complete brand identity redesign with modern website, compelling visuals, and SEO-optimized content strategy.",
-      tags: ["Branding", "UI/UX", "Figma", "SEO"]
-    },
-    {
-      id: 5,
       title: "Mobile Banking App",
       client: "FinSecure Digital",
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800",
@@ -186,7 +186,7 @@ const Portfolio = () => {
       tags: ["React Native", "Security", "API", "ML"]
     },
     {
-      id: 6,
+      id: 5,
       title: "SEO & Content Strategy",
       client: "LegalEase Partners",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
@@ -197,7 +197,7 @@ const Portfolio = () => {
       tags: ["SEO", "Content", "Analytics", "Backlinks"]
     },
     {
-      id: 7,
+      id: 6,
       title: "AI Video Generator",
       client: "Digital Offshores",
       image: "/fynix ai.png",
@@ -206,6 +206,127 @@ const Portfolio = () => {
       category: "AI/ML Development",
       description: "Built a cutting-edge AI-powered video generation platform with advanced download capabilities, ASMR prompt system, and seamless user experience.",
       tags: ["AI/ML", "React", "Next.js", "Video Generation", "ASMR"]
+    },
+    {
+      id: 8,
+      title: "Creative Design Portfolio",
+      client: "Digital Offshores",
+      image: "/new/creative-design-portfolio-1.jpg",
+      result: "Showcased diverse creative design capabilities and modern aesthetics",
+      metric: "Premium Quality",
+      category: "Graphics Design",
+      description: "Professional graphic design portfolio featuring contemporary styles, innovative concepts, and artistic visual storytelling for diverse client needs.",
+      tags: ["Graphic Design", "Creative", "Portfolio", "Art Direction"]
+    },
+    {
+      id: 9,
+      title: "Graphic Concept Art Collection",
+      client: "Digital Offshores",
+      image: "/new/graphic-concept-art-1.png",
+      result: "Developed groundbreaking art concepts with unique visual approaches",
+      metric: "Innovative Designs",
+      category: "Graphics Design",
+      description: "Exploration of cutting-edge graphic concepts featuring bold creativity, experimental techniques, and boundary-pushing visual communication.",
+      tags: ["Concept Art", "Graphic Design", "Creativity", "Innovation"]
+    },
+    {
+      id: 10,
+      title: "Modern Branding & Identity",
+      client: "Digital Offshores",
+      image: "/new/modern-branding-design-2.jpg",
+      result: "Delivered cohesive brand identity systems for modern businesses",
+      metric: "Brand Excellence",
+      category: "Graphics Design",
+      description: "Comprehensive branding solutions combining contemporary aesthetics with strategic thinking to create memorable and effective brand identities.",
+      tags: ["Branding", "Identity Design", "Modern", "Strategy"]
+    },
+    {
+      id: 11,
+      title: "Digital Illustration Excellence",
+      client: "Digital Offshores",
+      image: "/new/digital-illustration-3.png",
+      result: "Created stunning digital artwork with professional craftsmanship",
+      metric: "Award-Winning Quality",
+      category: "Graphics Design",
+      description: "High-resolution digital illustrations combining artistic skill with technical precision to deliver visually compelling and professionally crafted designs.",
+      tags: ["Digital Art", "Illustration", "Professional", "Quality"]
+    },
+    {
+      id: 12,
+      title: "Creative Logo Design Solutions",
+      client: "Digital Offshores",
+      image: "/new/creative-logo-design-1.png",
+      result: "Designed memorable logos that capture brand essence perfectly",
+      metric: "+85% Client Satisfaction",
+      category: "Graphics Design",
+      description: "Creative logo design services specializing in unique typographic treatments, symbolic representations, and brand-centric visual solutions.",
+      tags: ["Logo Design", "Typography", "Branding", "Creativity"]
+    },
+    {
+      id: 13,
+      title: "Typography & Visual Design",
+      client: "Digital Offshores",
+      image: "/new/typography-design-4.jpg",
+      result: "Mastered the art of typography for enhanced communication",
+      metric: "Typography Mastery",
+      category: "Graphics Design",
+      description: "Advanced typography designs that balance readability with artistic expression, creating visually compelling text-based designs.",
+      tags: ["Typography", "Visual Design", "Communication", "Art"]
+    },
+    {
+      id: 14,
+      title: "Visual Brand Identity Systems",
+      client: "Digital Offshores",
+      image: "/new/visual-brand-identity-5.jpg",
+      result: "Built comprehensive visual identity systems for brands",
+      metric: "100% Brand Recognition",
+      category: "Graphics Design",
+      description: "Complete visual identity systems including logos, color palettes, typography, and brand guidelines for cohesive brand representation.",
+      tags: ["Brand Identity", "Visual Systems", "Guidelines", "Cohesion"]
+    },
+    {
+      id: 15,
+      title: "Contemporary Graphic Art",
+      client: "Digital Offshores",
+      image: "/new/contemporary-graphic-art-6.jpg",
+      result: "Created contemporary artwork that pushes creative boundaries",
+      metric: "Contemporary Appeal",
+      category: "Graphics Design",
+      description: "Contemporary graphic art that blends traditional design principles with modern aesthetics to create timeless and relevant visual solutions.",
+      tags: ["Contemporary Art", "Graphic Design", "Timeless", "Modern"]
+    },
+    {
+      id: 16,
+      title: "Innovative Design Concepts",
+      client: "Digital Offshores",
+      image: "/new/innovative-design-concepts-7.jpg",
+      result: "Developed forward-thinking design solutions",
+      metric: "Innovation Leader",
+      category: "Graphics Design",
+      description: "Cutting-edge design concepts that challenge conventional thinking and deliver fresh, innovative approaches to visual communication.",
+      tags: ["Innovation", "Design Thinking", "Forward-Thinking", "Creative"]
+    },
+    {
+      id: 17,
+      title: "Portfolio Showcase Excellence",
+      client: "Digital Offshores",
+      image: "/new/portfolio-showcase-8.png",
+      result: "Compiled outstanding design portfolio showcasing capabilities",
+      metric: "Portfolio Excellence",
+      category: "Graphics Design",
+      description: "Comprehensive portfolio showcase featuring the finest examples of graphic design work, demonstrating skill, creativity, and professional excellence.",
+      tags: ["Portfolio", "Showcase", "Excellence", "Professional"]
+    },
+    {
+      id: 18,
+      title: "Professional Design Collection",
+      client: "Digital Offshores",
+      image: "/new/professional-design-collection-9.jpg",
+      result: "Built comprehensive design collection for diverse applications",
+      metric: "Professional Standard",
+      category: "Graphics Design",
+      description: "Professional-grade design collection offering versatile solutions for various industries and applications with consistent quality and expertise.",
+      tags: ["Professional", "Collection", "Versatile", "Expertise"]
     }
   ], []);
 
