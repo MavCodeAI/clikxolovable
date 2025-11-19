@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ImgHTMLAttributes } from 'react';
+import React, { useState, useRef, useEffect, useCallback, ImgHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton-loader';
 
@@ -44,7 +44,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
 
   // Generate optimized source URL with quality parameter
-  const getOptimizedSrc = (originalSrc: string, isWebPCheck = false): string => {
+  const getOptimizedSrc = useCallback((originalSrc: string, isWebPCheck = false): string => {
     const url = new URL(originalSrc, window.location.origin);
 
     // Add quality parameter
@@ -58,7 +58,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
 
     return url.toString();
-  };
+  }, [quality]);
 
   useEffect(() => {
     if (priority && imgRef.current) {
@@ -74,7 +74,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         setCurrentSrc(getOptimizedSrc(src));
       }, 10);
     }
-  }, [src, priority]);
+  }, [src, priority, getOptimizedSrc]);
 
   const handleLoad = () => {
     setIsLoaded(true);
