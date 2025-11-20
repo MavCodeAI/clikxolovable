@@ -137,4 +137,73 @@ export const SkeletonSection = ({
   </div>
 );
 
-// Add to global CSS: Use the shimmer animation and gradient in the Skeleton component above
+// Page-specific skeletons
+export const NavbarSkeleton = () => (
+  <div className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
+    <div className="container mx-auto px-4">
+      <div className="flex items-center justify-between h-16">
+        <Skeleton height="32px" width="120px" />
+        <div className="hidden md:flex items-center gap-6">
+          <Skeleton height="20px" width="60px" />
+          <Skeleton height="20px" width="60px" />
+          <Skeleton height="20px" width="60px" />
+          <Skeleton height="20px" width="60px" />
+        </div>
+        <div className="md:hidden">
+          <Skeleton height="32px" width="32px" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const HeroSkeleton = () => (
+  <div className="min-h-screen flex items-center justify-center px-4 py-20">
+    <div className="text-center space-y-6 max-w-4xl mx-auto">
+      <Skeleton height="48px" width="80%" className="mx-auto" />
+      <Skeleton height="48px" width="60%" className="mx-auto" />
+      <Skeleton height="24px" width="70%" className="mx-auto mt-8" />
+      <div className="flex gap-4 justify-center mt-12">
+        <Skeleton height="48px" width="150px" rounded />
+        <Skeleton height="48px" width="150px" rounded />
+      </div>
+    </div>
+  </div>
+);
+
+export const CardSkeleton = ({ className }: { className?: string }) => (
+  <div className={cn("p-6 space-y-4 border rounded-lg bg-card", className)}>
+    <Skeleton height="48px" width="48px" rounded />
+    <Skeleton height="24px" width="70%" />
+    <Skeleton height="16px" width="100%" />
+    <Skeleton height="16px" width="90%" />
+    <Skeleton height="40px" width="120px" rounded className="mt-4" />
+  </div>
+);
+
+export const ProfileSkeleton = ({ className }: { className?: string }) => (
+  <div className={cn("text-center space-y-4", className)}>
+    <Skeleton height="200px" width="200px" rounded="full" className="mx-auto" />
+    <Skeleton height="24px" width="150px" className="mx-auto" />
+    <Skeleton height="18px" width="120px" className="mx-auto" />
+    <div className="flex gap-3 justify-center mt-4">
+      <Skeleton height="32px" width="32px" rounded="full" />
+      <Skeleton height="32px" width="32px" rounded="full" />
+      <Skeleton height="32px" width="32px" rounded="full" />
+    </div>
+  </div>
+);
+
+export const ProjectSkeleton = ({ className }: { className?: string }) => (
+  <div className={cn("space-y-4", className)}>
+    <Skeleton height="300px" width="100%" rounded />
+    <Skeleton height="28px" width="70%" />
+    <Skeleton height="16px" width="100%" />
+    <Skeleton height="16px" width="90%" />
+    <div className="flex gap-2 mt-4">
+      <Skeleton height="24px" width="60px" rounded />
+      <Skeleton height="24px" width="60px" rounded />
+      <Skeleton height="24px" width="60px" rounded />
+    </div>
+  </div>
+);
