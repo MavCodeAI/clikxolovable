@@ -1,7 +1,0 @@
-{
-  "command": "npm run dev",
-  "serverUrl": "http://localhost:8088/",
-  "authenticateProxy": false,
-  "autoDetectDevServer": false,
-  "commitMode": "commits"
-}
